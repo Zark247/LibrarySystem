@@ -14,7 +14,6 @@ public class User
 	protected int id;
 	protected int checkoutLimit;
 	protected ArrayList<Fee> fines = new ArrayList<Fee>();
-	protected ArrayList<Double> fine = new ArrayList<Double>();
 	protected ArrayList<Media> wishlist = new ArrayList<Media>();
 	protected String accountType;
 	protected ArrayList<String> notifications = new ArrayList<String>();
@@ -41,6 +40,121 @@ public class User
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setId(id);
+	}
+	
+	
+	public void closeAccount()
+	{
+		this.isClosed = true;
+	}
+	
+	
+	public void viewCurrentlyCheckedOutMedia()
+	{
+		
+	}
+	
+	public void viewMediaOnHold()
+	{
+		
+	}
+	
+	/**
+	 * Prints out the fines in the array
+	 * @return
+	 */
+	public double checkFines()
+	{
+		System.out.println("Your list of fines");
+		for (Fee f : fines)
+			System.out.println("$" + f);
+	}
+	
+	public void checkAccountNumber()
+	{
+		
+	}
+	
+	/**
+	 * Prints out the wishlist in the array
+	 */
+	public void checkWishlist()
+	{
+		System.out.println("Your wishlist");
+		for (Media m : wishlist)
+			System.out.println(m);	
+	}
+	
+	/**
+	 * Returns account type
+	 * @return
+	 */
+	public String returnAccountType()
+	{
+		return accountType;
+	}
+	
+	public void checkoutMedia(Media m)
+	{
+		m.checkout();
+	}
+	
+	public void requestMedia(Media m)
+	{
+		
+	}
+	
+	public void returnMedia(Media m)
+	{
+		m.return();
+	}
+	
+	public void renewMedia(Media m)
+	{
+		m.renew();
+	}
+	
+	public void search(String s)
+	{
+		
+	}
+	
+	public void putOnHold()
+	{
+		
+	}
+	
+	public void linkChildAccount()
+	{
+		
+	}
+	
+	/**
+	 * Views user info
+	 * @param u
+	 */
+	public void viewUser(User u)
+	{
+		System.out.println("Name: " + this.getName() +
+				"\nEmail: " + this.getEmail() +
+				"\nUsername: " + this.getUsername() +
+				"\nPassword: " + this.getPassword() +
+				"\nID: " + this.getId() + 
+				"\nPhone Number: " + this.getPhoneNumber() +
+				"\nAddress: " + this.getAddress() +
+				"\nDate of Birth: " + this.getDateOfBirth()
+				);
+	}
+	
+	public void updateFees()
+	{
+		
+	}
+	
+	public String payFine(Fee f)
+	{
+		double fine = f.getFine();
+		
 	}
 	
 	/**
@@ -111,89 +225,7 @@ public class User
 			this.id = id;
 	}
 	
-	
-	public void closeAccount()
-	{
-		
-	}
-	
-	
-	public void viewCurrentlyCheckedOutMedia()
-	{
-		
-	}
-	
-	public void viewMediaOnHold()
-	{
-		
-	}
-	
-	public double checkFines()
-	{
-
-	}
-	
-	public void checkAccountNumber()
-	{
-		
-	}
-	
-	public void checkWishlist()
-	{
-		
-	}
-	
-	public int returnAccountType()
-	{
-		
-	}
-	
-	public void checkoutMedia(Media m)
-	{
-		
-	}
-	
-	public void requestMedia(Media m)
-	{
-		
-	}
-	
-	public void returnMedia(Media m)
-	{
-		
-	}
-	
-	public void renewMedia(Media m)
-	{
-		
-	}
-	
-	public void search(String s)
-	{
-		
-	}
-	
-	public void putOnHold()
-	{
-		
-	}
-	
-	public void linkChildAccount()
-	{
-		
-	}
-	
-	public void viewUser(User u)
-	{
-		
-	}
-	
-	public void updateFees()
-	{
-		
-	}
-	
-	public String payFine(Fee f)
+	public void setCheckoutLimit(int age)
 	{
 		
 	}
