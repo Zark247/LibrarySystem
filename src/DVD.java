@@ -1,4 +1,3 @@
-package DVD;
 
 public class DVD {
     private String director;

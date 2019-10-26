@@ -1,4 +1,3 @@
-package AudioBook;
 
 public class AudioBook {
     private String author, narrator;

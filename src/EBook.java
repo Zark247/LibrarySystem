@@ -1,4 +1,3 @@
-package EBook;
 
 public class EBook {
     private String author;

@@ -1,9 +1,8 @@
-package User;
-
 import java.util.ArrayList;
 
-public class User 
+public abstract class User 
 {
+	public static int USER_COUNT = 0;
 	protected String name;
 	protected String dateOfBirth;
 	protected String Address;
@@ -12,6 +11,7 @@ public class User
 	protected String username;
 	protected String password;
 	protected int id;
+	protected int accountId;
 	protected int checkoutLimit;
 	protected ArrayList<Fee> fines = new ArrayList<Fee>();
 	protected ArrayList<Media> wishlist = new ArrayList<Media>();
@@ -25,13 +25,14 @@ public class User
 		this.name = this.dateOfBirth = this.Address =
 				this.email = this.phoneNumber = this.username =
 				this.password = "";
-		this.id = 0;
+		this.accountId = 0;
 	}
 	
 	public User(String name, String dateOfBirth, String address,
 			String email, String phoneNumber, String username,
 			String password, int id)
 	{
+		USER_COUNT++;
 		this.setName(name);
 		this.setDateOfBirth(dateOfBirth);
 		this.setAddress(address);
@@ -39,7 +40,8 @@ public class User
 		this.setPhoneNumber(phoneNumber);
 		this.setUsername(username);
 		this.setPassword(password);
-		this.setId(id);
+		this.setId(USER_COUNT);
+		this.setAccountId(id);
 	}
 	
 	
@@ -224,9 +226,21 @@ public class User
 		if (id > 0)
 			this.id = id;
 	}
+	public int getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(int accountId) {
+		if (id > 0)
+			this.accountId = accountId;
+	}
+
 	
-	public void setCheckoutLimit(int age)
-	{
+	public void setCheckoutLimit(int age) {
 		
+	}
+
+	public void notify(String note) {
+		this.notifications.add(note);
 	}
 }

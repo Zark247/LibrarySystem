@@ -1,4 +1,3 @@
-package Magazine;
 
 public class Magazine {
     private String author;

@@ -1,4 +1,3 @@
-package Book;
 
 public class Book {
     private String author, publisher;
