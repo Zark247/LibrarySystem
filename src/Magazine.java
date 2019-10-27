@@ -1,3 +1,4 @@
+package src;
 
 public class Magazine extends Media{
     private String author;

@@ -1,3 +1,4 @@
+package src;
 
 public class EBook extends Media{
     private String author;

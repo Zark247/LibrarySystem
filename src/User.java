@@ -1,6 +1,8 @@
+package src;
+
 import java.util.ArrayList;
 
-public abstract class User 
+public abstract class User
 {
 	public static int USER_COUNT = 0;
 	protected String name;
@@ -77,6 +79,8 @@ public abstract class User
 		System.out.println("Your list of fines");
 		for (Fee f : fines)
 			System.out.println("$" + f);
+
+		//TODO: add return statement
 	}
 	
 	public void checkAccountNumber()
@@ -157,12 +161,14 @@ public abstract class User
 	
 	public void updateFees()
 	{
-		//TODO: Update fees by calling the incriment method for each fee.
+		//TODO: Update fees by calling the increment method for each fee.
 	}
 	
 	public String payFine(Fee f, double amt)
 	{
 		//TODO: Add fine payment functionality.
+
+		//TODO: add return statement
 	}
 	
 	/**
