@@ -7,7 +7,7 @@ public abstract class User
 	public static int USER_COUNT = 0;
 	protected String name;
 	protected String dateOfBirth;
-	protected String Address;
+	protected String address;
 	protected String email;
 	protected String phoneNumber;
 	protected String username;
@@ -26,7 +26,7 @@ public abstract class User
 	
 	public User()
 	{
-		this.name = this.dateOfBirth = this.Address =
+		this.name = this.dateOfBirth = this.address =
 				this.email = this.phoneNumber = this.username =
 				this.password = "";
 		this.accountId = 0;
@@ -76,11 +76,14 @@ public abstract class User
 	 */
 	public double checkFines()
 	{
+		//TODO: get fines from all checked out media
 		System.out.println("Your list of fines");
-		for (Fee f : fines)
+		for (Fee f : fines) {
 			System.out.println("$" + f);
+		}
 
-		//TODO: add return statement
+		//TODO: add a real return statement
+		return 0.0; // temporary return statement
 	}
 	
 	public void checkAccountNumber()
@@ -168,7 +171,8 @@ public abstract class User
 	{
 		//TODO: Add fine payment functionality.
 
-		//TODO: add return statement
+		//TODO: add a real return statement
+		return "Fine paid - temporary testing value"; // temporary return String
 	}
 	
 	/**
@@ -191,11 +195,11 @@ public abstract class User
 	}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 
 	public String getEmail() {
