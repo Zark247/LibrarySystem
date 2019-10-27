@@ -14,7 +14,7 @@ public class Fee {
     }
 
     public void pay(double amount) {
-        total = fine - amount;
+        total-=amount;
     }
 
     public Media returnMedia() {
