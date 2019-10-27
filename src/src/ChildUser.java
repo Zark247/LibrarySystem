@@ -7,7 +7,7 @@ package src;
 public class ChildUser extends User{
 	
 	User parent;
-	boolean isLinked;
+	boolean isLinked = false;
 	
 	/**
 	 * Default constructor, calls superclass User's default constructor
@@ -31,12 +31,11 @@ public class ChildUser extends User{
 	 */
 	public ChildUser(String name, String dateOfBirth, String address,
 			String email, String phoneNumber, String username,
-			String password, int id, User parent, boolean isLinked)
+			String password, int id)
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
-		this.parent = parent;
-		this.isLinked = true;
-		USER_COUNT++; // may update twice?
+		//this.parent = parent;
+		//this.isLinked = isLinked;
 	}
 	
 	/**
@@ -45,7 +44,7 @@ public class ChildUser extends User{
 	 */
 	public void linkParentAccount(User parent) {
 		this.parent = parent;
-		boolean isLinked = true;
+		this.isLinked = true;
 	}
 	
 	/**
@@ -55,5 +54,15 @@ public class ChildUser extends User{
 		User user = new AverageUser(this.name, this.dateOfBirth, this.address, this.email,
 				this.phoneNumber, this.username, this.password, this.id = id);
 		USER_COUNT--; // Decrement user count because creating a new user increments it,and we are just switching over user types
+	}
+	
+	public void viewUser() {
+		super.viewUser();
+		if (parent != null)
+			System.out.print("Parent: " +parent.getName());
+		else
+			System.out.print("Parent: No parent");
+		System.out.print("\nisLinked: " +this.isLinked +"\n");
+				
 	}
 }

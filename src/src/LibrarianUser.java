@@ -29,7 +29,6 @@ public class LibrarianUser extends User{
 			String password, int id)
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
-		USER_COUNT++; // may update twice?
 	}
 	
 	/**
@@ -53,5 +52,9 @@ public class LibrarianUser extends User{
 	//TODO add functionality for flagging specific users
 	public void flagUser() {
 		
+	}
+	
+	public void viewUser() {
+		super.viewUser();
 	}
 }

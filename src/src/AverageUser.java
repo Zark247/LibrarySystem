@@ -29,6 +29,9 @@ public class AverageUser extends User{
 			String password, int id)
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
-		USER_COUNT++; // may update twice?
+	}
+	
+	public void viewUser() {
+		super.viewUser();
 	}
 }

@@ -29,11 +29,10 @@ public class TeacherUser extends User{
 	 */
 	public TeacherUser(String name, String dateOfBirth, String address,
 			String email, String phoneNumber, String username,
-			String password, int id, boolean isApproved)
+			String password, int id)
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
 		isApproved = this.isApproved;
-		USER_COUNT++; // may update twice?
 	}
 	
 	/**
@@ -43,5 +42,10 @@ public class TeacherUser extends User{
 	 */
 	public void setIsApproved(boolean isApproved) {
 		this.isApproved = isApproved;
+	}
+	
+	public void viewUser() {
+		super.viewUser();
+		System.out.print("isApproved: " +this.isApproved + "\n");
 	}
 }

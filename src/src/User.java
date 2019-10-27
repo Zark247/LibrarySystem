@@ -149,7 +149,7 @@ public abstract class User
 	 * Views user info
 	 * @param u
 	 */
-	public void viewUser(User u)
+	public void viewUser()
 	{
 		System.out.println("Name: " + this.getName() +
 				"\nEmail: " + this.getEmail() +
