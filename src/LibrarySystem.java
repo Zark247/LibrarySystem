@@ -20,6 +20,7 @@ public class LibrarySystem {
 		users = new ArrayList<User>();
 		systime = Calendar.getInstance();
 		midnightUpdated = false;
+		systime.setLenient(true);
 	}
 	
 	public static LibrarySystem getInstance() {
