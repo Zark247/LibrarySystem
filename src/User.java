@@ -19,6 +19,8 @@ public abstract class User
 	protected ArrayList<String> notifications = new ArrayList<String>();
 	protected boolean isClosed;
 	protected ArrayList<User> children = new ArrayList<User>();
+	protected ArrayList<Media> checkedOutMedia = new ArrayList<Media>();
+	protected ArrayList<Media> heldMedia = new ArrayList<Media>();
 	
 	public User()
 	{
@@ -42,6 +44,7 @@ public abstract class User
 		this.setPassword(password);
 		this.setId(USER_COUNT);
 		this.setAccountId(id);
+		
 	}
 	
 	
@@ -53,12 +56,16 @@ public abstract class User
 	
 	public void viewCurrentlyCheckedOutMedia()
 	{
-		
+		System.out.println("Currently checked out media:");
+		for(Media m: this.checkedOutMedia)
+			System.out.println(m);
 	}
 	
 	public void viewMediaOnHold()
 	{
-		
+		System.out.println("Currently held media:");
+		for(Media m: this.heldMedia)
+			System.out.println(m);
 	}
 	
 	/**
@@ -74,7 +81,7 @@ public abstract class User
 	
 	public void checkAccountNumber()
 	{
-		
+		System.out.println(this.accountId);
 	}
 	
 	/**
@@ -103,12 +110,12 @@ public abstract class User
 	
 	public void requestMedia(Media m)
 	{
-		
+		this.wishlist.add(m);
 	}
 	
 	public void returnMedia(Media m)
 	{
-		m.return();
+		m.returnMedia();
 	}
 	
 	public void renewMedia(Media m)
@@ -121,14 +128,14 @@ public abstract class User
 		
 	}
 	
-	public void putOnHold()
+	public void putOnHold(Media m)
 	{
-		
+		m.placeHold(this);
 	}
 	
 	public void linkChildAccount()
 	{
-		
+		//TODO: Add child and parent functionality
 	}
 	
 	/**
@@ -150,13 +157,12 @@ public abstract class User
 	
 	public void updateFees()
 	{
-		
+		//TODO: Update fees by calling the incriment method for each fee.
 	}
 	
-	public String payFine(Fee f)
+	public String payFine(Fee f, double amt)
 	{
-		double fine = f.getFine();
-		
+		//TODO: Add fine payment functionality.
 	}
 	
 	/**
@@ -242,5 +248,9 @@ public abstract class User
 
 	public void notify(String note) {
 		this.notifications.add(note);
+	}
+	
+	public void update() {
+		//TODO: Add update functionality
 	}
 }
