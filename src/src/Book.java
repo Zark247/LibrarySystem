@@ -8,5 +8,6 @@ public class Book extends Media{
     	this.author = anAuthor;
         this.ISBN = anISBN;
         this.publisher = aPublisher;
+        this.checkoutLength = 30;
     }
 }

@@ -35,4 +35,8 @@ public class Fee {
     public Media returnMedia() {
         return returnMedia();
     }
+    
+    public String toString() {
+    	return "Fine for " + this.media.title + ": $" + this.fine;
+    }
 }

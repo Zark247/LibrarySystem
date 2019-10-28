@@ -24,7 +24,10 @@ public class LibrarySystem {
 		midnightUpdated = false;
 		systime.setLenient(true);
 	}
-	
+	/**
+	 * Returns the instance of the library system - since there should only ever be one.
+	 * @return the current LibrarySystem.
+	 */
 	public static LibrarySystem getInstance() {
 		if(librarySystem == null) {
 			librarySystem = new LibrarySystem();
@@ -32,14 +35,24 @@ public class LibrarySystem {
 		return librarySystem;
 	}
 	
-	public void createAccount(String name, String dateOfBirth, String address,
+	/**
+	 * Creates a new average user using the passed in information.  May be modified to create different types of users at a later date.
+	 * @param name
+	 * @param dateOfBirth
+	 * @param address
+	 * @param email
+	 * @param phoneNumber
+	 * @param username
+	 * @param password
+	 * @param id
+	 */
+	public void createAverageAccount(String name, String dateOfBirth, String address,
 			String email, String phoneNumber, String username,
-			String password) {
+			String password, int id) {
 		if(!checkDuplicateAccount(email,phoneNumber)) {
-			//TODO: Uncomment below lines once user subtypes have been created.
-			//users.add(new GeneralUser(name, dateOfBirth, address,
-			//email, phoneNumber, username,
-			//password));
+			users.add(new AverageUser(name, dateOfBirth, address,
+			email, phoneNumber, username,
+			password, id));
 		} else
 			System.out.println("That email or phone number is already in use.  Try another.");
 	}
@@ -66,19 +79,27 @@ public class LibrarySystem {
 		return this.systime;
 	}
 	
+	/**
+	 * Change the current systime to the passed in systime, and calls midnight update if it is currently midnight.
+	 * Since the time 00:00 is likely to occur multiple times, the variable midnightUpdated is used to create a threshold.
+	 * The method midnight update will only run if midnight update is false, after which it will be made true.
+	 * Then, the midnightUpdated member will be made false once midnight has passed, preventing multiple updates.
+	 * @param SysTime
+	 */
 	public void updateSystime(Calendar SysTime) {
 		this.systime = SysTime;
-		if(systime.get(Calendar.HOUR_OF_DAY) == 0 && systime.get(Calendar.MINUTE) == 0)
+		if(systime.get(Calendar.HOUR_OF_DAY) == 0 && systime.get(Calendar.MINUTE) == 0 && !midnightUpdated)
 			midnightUpdate();
 		else
 			midnightUpdated = false;
 	}
 	
+	/**
+	 * Calls the update methods for various classes once systime hits midnight.
+	 */
 	private void midnightUpdate() {
-		if(!midnightUpdated) {
-			//TODO: Call fee/media update methods once implimented.
-		} else 
-			midnightUpdated = true;
+		//TODO: Call fee/media update methods once implimented.
+		midnightUpdated = true;
 	}
 	
 	public void search(String searchterm) {

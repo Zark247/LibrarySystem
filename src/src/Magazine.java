@@ -8,5 +8,6 @@ public class Magazine extends Media{
         this.author = anAuthor;
         this.volume = aVolume;
         this.issue = anIssue;
+        this.checkoutLength = 7;
     }
 }

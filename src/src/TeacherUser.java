@@ -32,7 +32,7 @@ public class TeacherUser extends User{
 			String password, int id)
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
-		isApproved = this.isApproved;
+		this.checkoutLimit = 10; //This is increased to 50 once the account is approved.
 	}
 	
 	/**
@@ -42,6 +42,10 @@ public class TeacherUser extends User{
 	 */
 	public void setIsApproved(boolean isApproved) {
 		this.isApproved = isApproved;
+		if(isApproved == true)
+			this.checkoutLimit = 50;
+		else
+			this.checkoutLimit = 10;
 	}
 	
 	public void viewUser() {

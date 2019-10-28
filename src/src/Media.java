@@ -24,7 +24,7 @@ public abstract class Media {
 	protected ArrayList<User> waitlist;
 	protected int renewCount;
 	protected int copies;
-	protected int checkoutLength;
+	protected int checkoutLength; //Length of standard checkout in DAYS.
 	
 	public Media(String title,String genre,String description,String year,boolean newRelease,int copies) {
 		MEDIA_COUNT++;
@@ -64,6 +64,10 @@ public abstract class Media {
 		}
 	}
 	
+	/**
+	 * Resets renew counts and sets checked out to false.  Notifies the next user on the waitlist that the item is now avaliable.
+	 * TODO: May be modified later to call a user method that sets a timer to claim the hold.
+	 */
 	public void returnMedia() {
 		checkedOut = false;
 		renewCount = 0;
@@ -100,6 +104,10 @@ public abstract class Media {
 		return "Placeholder";
 	}
 	
+	/**
+	 * Compares the current date to the last due date.  If it's after, the item is overdue.
+	 * @return true is the due date has passed.
+	 */
 	public boolean isOverdue() {
 		return LibrarySystem.getInstance().returnSystime().getTime().after(this.lastDueDate);
 	}

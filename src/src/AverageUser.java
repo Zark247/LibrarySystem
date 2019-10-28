@@ -29,6 +29,7 @@ public class AverageUser extends User{
 			String password, int id)
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
+		this.checkoutLimit = 10;
 	}
 	
 	public void viewUser() {

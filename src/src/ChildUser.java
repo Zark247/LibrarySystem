@@ -34,6 +34,7 @@ public class ChildUser extends User{
 			String password, int id)
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
+		this.checkoutLimit = 3;
 		//this.parent = parent;
 		//this.isLinked = isLinked;
 	}

@@ -6,5 +6,6 @@ public class AudioBook extends Media{
     	super(title,genre,description,year,newRelease,copies);
     	this.author = anAuthor;
         this.narrator = aNarrator;
+        this.checkoutLength = 30;
     }
 }

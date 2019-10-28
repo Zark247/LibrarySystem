@@ -7,5 +7,6 @@ public class DVD extends Media{
     	super(title,genre,description,year,newRelease,copies);
     	this.director = aDirector;
         //TODO: need to initialize actors
+    	this.checkoutLength = 7;
     }
 }
