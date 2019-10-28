@@ -1,5 +1,3 @@
-package src;
-
 import java.util.ArrayList;
 
 public abstract class User
@@ -30,6 +28,7 @@ public abstract class User
 				this.email = this.phoneNumber = this.username =
 				this.password = "";
 		this.accountId = 0;
+		
 	}
 	
 	public User(String name, String dateOfBirth, String address,
@@ -130,9 +129,13 @@ public abstract class User
 		m.renew();
 	}
 	
+	// Search for username???
 	public void search(String s)
 	{
-		
+		if (this.username.equals(s))
+			this.viewUser();
+		else
+			System.out.println("No user found");
 	}
 	
 	public void putOnHold(Media m)
@@ -143,6 +146,7 @@ public abstract class User
 	public void linkChildAccount()
 	{
 		//TODO: Add child and parent functionality
+		// Is this already done in the child class?
 	}
 	
 	/**
@@ -165,11 +169,14 @@ public abstract class User
 	public void updateFees()
 	{
 		//TODO: Update fees by calling the increment method for each fee.
+		
+		
 	}
 	
 	public String payFine(Fee f, double amt)
 	{
 		//TODO: Add fine payment functionality.
+		f.pay(amt);
 
 		//TODO: add a real return statement
 		return "Fine paid - temporary testing value"; // temporary return String
