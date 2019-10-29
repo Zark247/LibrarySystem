@@ -1,7 +1,3 @@
-package Banking;
-
-import src.Media;
-
 public class Fee {
 
     private double max, fine, total;

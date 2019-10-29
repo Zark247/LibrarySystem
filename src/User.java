@@ -1,8 +1,4 @@
-package Banking;
 import java.util.ArrayList;
-
-import src.Fee;
-import src.Media;
 
 public abstract class User
 {
