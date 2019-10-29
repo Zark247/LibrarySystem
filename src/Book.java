@@ -1,5 +1,3 @@
-package src;
-
 public class Book extends Media{
     private String author, publisher;
     private int ISBN;
