@@ -1,10 +1,10 @@
-package src;
 
 public class Fee {
 
     private double max, fine, total;
     private Media media;
 
+    
     public Fee(Media aMedia) {
         total = 0.00;
         fine = 0.10;
@@ -31,12 +31,12 @@ public class Fee {
             +"\nNew total after payment: "+ total);
         }
     }
+    
+    public double getTotal(){
+    	return this.total;
+    }
 
     public Media returnMedia() {
         return returnMedia();
-    }
-    
-    public String toString() {
-    	return "Fine for " + this.media.title + ": $" + this.fine;
     }
 }

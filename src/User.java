@@ -1,4 +1,3 @@
-package src;
 import java.util.ArrayList;
 
 public abstract class User
@@ -144,12 +143,6 @@ public abstract class User
 		m.placeHold(this);
 	}
 	
-	public void linkChildAccount()
-	{
-		//TODO: Add child and parent functionality
-		// Is this already done in the child class?
-	}
-	
 	/**
 	 * Views user info
 	 * @param u
@@ -177,7 +170,18 @@ public abstract class User
 	public String payFine(Fee f, double amt)
 	{
 		//TODO: Add fine payment functionality.
-		f.pay(amt);
+		double total = 0;
+		
+		if (fines.isEmpty())
+			System.out.println("You own nothing");
+		else
+		{
+			for (Fee fee : fines)
+			{
+				total += fee.getTotal();
+			}
+		}
+
 
 		//TODO: add a real return statement
 		return "Fine paid - temporary testing value"; // temporary return String
