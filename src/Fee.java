@@ -1,3 +1,6 @@
+package Banking;
+
+import src.Media;
 
 public class Fee {
 
@@ -36,6 +39,10 @@ public class Fee {
     	return this.total;
     }
 
+    public Media getMedia(){
+    	return this.media;
+    }
+    
     public Media returnMedia() {
         return returnMedia();
     }
