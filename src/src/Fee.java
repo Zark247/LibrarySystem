@@ -1,15 +1,19 @@
 package src;
 
 public class Fee {
-
+	public static int FEE_COUNT = 0;
     private double max, fine, total;
     private Media media;
+    private int id;
 
     public Fee(Media aMedia) {
-        total = 0.00;
+        FEE_COUNT++;
+    	total = 0.00;
         fine = 0.10;
         max = 15.00;
         media = aMedia;
+        this.id = FEE_COUNT;
+        LibrarySystem.getInstance().fees.add(this);
     }
 
     public void dailyFineIncrease() {
@@ -37,6 +41,10 @@ public class Fee {
     }
     
     public String toString() {
-    	return "Fine for " + this.media.title + ": $" + this.fine;
+    	return "Fine for " + this.media.title + ": $" + this.total;
+    }
+    
+    public int returnId() {
+    	return this.id;
     }
 }

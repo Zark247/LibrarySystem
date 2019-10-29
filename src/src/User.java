@@ -46,7 +46,7 @@ public abstract class User
 		this.setPassword(password);
 		this.setId(USER_COUNT);
 		this.setAccountId(id);
-		
+		LibrarySystem.getInstance().users.add(this);
 	}
 	
 	
@@ -60,7 +60,7 @@ public abstract class User
 	{
 		System.out.println("Currently checked out media:");
 		for(Media m: this.checkedOutMedia)
-			System.out.println(m);
+			System.out.println(m.title + " | Overdue: " + m.isOverdue());
 	}
 	
 	public void viewMediaOnHold()
@@ -113,6 +113,7 @@ public abstract class User
 	public void checkoutMedia(Media m)
 	{
 		m.checkout();
+		this.checkedOutMedia.add(m);
 	}
 	
 	public void requestMedia(Media m)
@@ -271,4 +272,64 @@ public abstract class User
 	public void update() {
 		//TODO: Add update functionality
 	}
+
+	public void setFines(ArrayList<Fee> fines) {
+		this.fines = fines;
+	}
+
+	public void setWishlist(ArrayList<Media> wishlist) {
+		this.wishlist = wishlist;
+	}
+
+	public void setNotifications(ArrayList<String> notifications) {
+		this.notifications = notifications;
+	}
+
+	public void setClosed(boolean isClosed) {
+		this.isClosed = isClosed;
+	}
+
+	public void setChildren(ArrayList<User> children) {
+		this.children = children;
+	}
+
+	public void setCheckedOutMedia(ArrayList<Media> checkedOutMedia) {
+		this.checkedOutMedia = checkedOutMedia;
+	}
+
+	public void setHeldMedia(ArrayList<Media> heldMedia) {
+		this.heldMedia = heldMedia;
+	}
+
+	public ArrayList<Fee> getFines() {
+		return fines;
+	}
+
+	public ArrayList<Media> getWishlist() {
+		return wishlist;
+	}
+
+	public ArrayList<String> getNotifications() {
+		return notifications;
+	}
+
+	public boolean isClosed() {
+		return isClosed;
+	}
+
+	public ArrayList<User> getChildren() {
+		return children;
+	}
+
+	public ArrayList<Media> getCheckedOutMedia() {
+		return checkedOutMedia;
+	}
+
+	public ArrayList<Media> getHeldMedia() {
+		return heldMedia;
+	}
+	public String getAccountType() {
+		return accountType;
+	}
+
 }

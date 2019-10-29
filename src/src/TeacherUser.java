@@ -33,6 +33,7 @@ public class TeacherUser extends User{
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
 		this.checkoutLimit = 10; //This is increased to 50 once the account is approved.
+		this.accountType = "Teacher";
 	}
 	
 	/**

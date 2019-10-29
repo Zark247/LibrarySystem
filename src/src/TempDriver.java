@@ -9,7 +9,26 @@ import java.util.ArrayList;
 public class TempDriver {
 
 	public static void main(String[] args) {
+		Book Exaltiora = new Book("Exaltiora", "Tomes", "Codex Caelum", "1934", false, 1, "Lightener", 00000001, "None");
+		Book Exaltiora2 = new Book("Exaltiora2", "Tomes2", "Codex Caelum2", "19342", false, 1, "Lightener2", 000000012, "None");
+		JSONReader json = new JSONReader();
 		
+		User Lightener = LibrarySystem.getInstance().createAccount(4, "Jorgen", "1978", "REDACTED", "REDACTED", "REDACTED", "jlight9", "tomer", 1);
+		Lightener.checkoutMedia(Exaltiora);
+		Lightener.renewMedia(Exaltiora);
+		User Lightener2 = LibrarySystem.getInstance().createAccount(4, "Jorgen2", "19782", "REDACTED2", "REDACTED2", "REDACTED2", "jlight92", "tomer2", 1);
+		
+		json.writeUsers();
+		LibrarySystem.getInstance().users.clear();
+		json.loadUsers();
+		for(User u: LibrarySystem.getInstance().users) {
+			u.viewUser();
+			u.viewCurrentlyCheckedOutMedia();
+			u.viewMediaOnHold();
+		}
+		
+		
+		if (false) {
 		AverageUser avgUser = new AverageUser("Average Name", "10/10/1980", "99 Sumter Dr.",
 				"average@email.com", "000-000-0000", "averageusername",
 				"averagepassword", 0);
@@ -53,7 +72,7 @@ public class TempDriver {
 			user.viewUser();
 			System.out.println();
 		}
-		
+		}
 	}
 
 }

@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "address": "REDACTED",
+      "checkedOutMedia": "[1]",
+      "wishlist": "[]",
+      "accountType": "Librarian",
+      "dateOfBirth": "1978",
+      "number": "REDACTED",
+      "password": "tomer",
+      "isClosed": false,
+      "children": "[]",
+      "fines": "[]",
+      "name": "Jorgen",
+      "heldMedia": "[]",
+      "id": 1,
+      "email": "REDACTED",
+      "notifications": "[]",
+      "username": "jlight9"
+    },
+    {
+      "address": "REDACTED2",
+      "checkedOutMedia": "[]",
+      "wishlist": "[]",
+      "accountType": "Librarian",
+      "dateOfBirth": "19782",
+      "number": "REDACTED2",
+      "password": "tomer2",
+      "isClosed": false,
+      "children": "[]",
+      "fines": "[]",
+      "name": "Jorgen2",
+      "heldMedia": "[]",
+      "id": 2,
+      "email": "REDACTED2",
+      "notifications": "[]",
+      "username": "jlight92"
+    }
+  ]
+}
