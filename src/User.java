@@ -58,7 +58,6 @@ public abstract class User {
 		LibrarySystem.getInstance().users.add(this);
 	}
 	
-	}
 	
 	/**
 	 * Closes a User's account
@@ -311,14 +310,6 @@ public abstract class User {
 
 	public void setCheckoutLimit(int age) {
 		
-	}
-
-	public void notify(String note) {
-		this.notifications.add(note);
-	}
-	
-	public void update() {
-		//TODO: Add update functionality
 	}
 
 	public void setFines(ArrayList<Fee> fines) {

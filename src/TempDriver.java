@@ -60,7 +60,7 @@ public class TempDriver {
 		AudioBook audioBook = new AudioBook("AudioBook 1", "NonFiction", "AudioBook 1 Description", "2019", true, 2,
                 "Audiobook Author", "Audiobook Narrator");
 		Book book = new Book("Book 1", "Fiction", "Book 1 Description", "2018", false, 1,
-                "Book Author", 0, "Book Publisher");
+                "Book Author", "0", "Book Publisher");
 		DVD dvd = new DVD("DVD 1", "Documentary", "DVD 1 Description", "2005", false, 1,
 	               "DVD Director");
 		EBook eBook = new EBook("EBook 1", "Historical Fiction", "EBook 1 Description", "2010", false, 10,
@@ -69,11 +69,6 @@ public class TempDriver {
                 "Magazine Author", 10, 2);
 		
 		LibrarySystem lib = LibrarySystem.getInstance();
-		librarian.addMedia(audioBook);
-		librarian.addMedia(book);
-		librarian.addMedia(dvd);
-		librarian.addMedia(eBook);
-		librarian.addMedia(magazine);
 		
 		System.out.println("Currently in the library inventory");
 		for (Media media : lib.inventory) {

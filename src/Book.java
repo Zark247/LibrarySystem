@@ -8,7 +8,7 @@ public class Book extends Media{
      * Variables
      */
     private String author, publisher;
-    private int ISBN;
+    private String ISBN;
 
     /**
      *
@@ -23,7 +23,7 @@ public class Book extends Media{
      * @param aPublisher Declares publisher to aPublisher
      */
     public Book(String title, String genre, String description, String year, boolean newRelease, int copies,
-                String anAuthor, int anISBN, String aPublisher) {
+                String anAuthor, String anISBN, String aPublisher) {
     	super(title, genre, description, year, newRelease, copies);
     	this.author = anAuthor;
         this.ISBN = anISBN;

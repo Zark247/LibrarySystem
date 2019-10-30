@@ -67,6 +67,7 @@ public class LibrarySystem {
 			System.out.println("That email or phone number is already in use.  Try another.");
 		}
 		return temp;
+	}
 	
 	/**
 	 * Checks for duplicate accounts within the system.
