@@ -1,3 +1,20 @@
 {
-  "magazines": []
+  "magazines": [
+    {
+      "checkedOut": false,
+      "issue": 1,
+      "year": "2017",
+      "author": "Alpha",
+      "description": "Did you know tiny houses cost less than non-tiny houses?  Bet not.",
+      "title": "Tiny Houses",
+      "volume": 2,
+      "newRelease": false,
+      "copies": 4,
+      "genre": "Construction",
+      "waitlist": "[]",
+      "lastBorrowDate": "N/A",
+      "renewCount": 0,
+      "lastDueDate": "N/A"
+    }
+  ]
 }

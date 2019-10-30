@@ -16,7 +16,15 @@ public class Fee {
         LibrarySystem.getInstance().fees.add(this);
     }
 
-    public void dailyFineIncrease() {
+    public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public void setMedia(Media media) {
+		this.media = media;
+	}
+
+	public void dailyFineIncrease() {
         if(total+fine > max) {
             // System.out.println("Max fine reached");
         } else {  // total + fine < max
@@ -35,10 +43,6 @@ public class Fee {
             +"\nNew total after payment: "+ total);
         }
     }
-
-    public Media returnMedia() {
-        return returnMedia();
-    }
     
     public String toString() {
     	return "Fine for " + this.media.title + ": $" + this.total;
@@ -47,4 +51,25 @@ public class Fee {
     public int returnId() {
     	return this.id;
     }
+
+	public static int getFEE_COUNT() {
+		return FEE_COUNT;
+	}
+
+	public double getMax() {
+		return max;
+	}
+
+	public double getFine() {
+		return fine;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public Media getMedia() {
+		return media;
+	}
+
 }

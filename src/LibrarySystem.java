@@ -21,6 +21,7 @@ public class LibrarySystem {
 		inventory = new ArrayList<Media>();
 		comingSoon = new ArrayList<Media>();
 		users = new ArrayList<User>();
+		fees = new ArrayList<Fee>();
 		systime = Calendar.getInstance();
 		midnightUpdated = false;
 		systime.setLenient(true);

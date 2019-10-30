@@ -29,17 +29,20 @@ public class JSONReader {
 	private static final String DVDS_FILE_NAME = "dvds.json";
 	private static final String AUDIOBOOKS_FILE_NAME = "audiobooks.json";
 	private static final String EBOOKS_FILE_NAME = "ebooks.json";
+	private static final String FEES_FILE_NAME = "fees.json";
 	private static final String JSON_FOLDER_DEST = "src/JSONs/";
+	
 	
 	private ArrayList<Integer[]> waitlists = new ArrayList<Integer[]>();
 	
 	public void loadDatabase() {
-		loadUsers();
 		loadBooks();
 		loadAudioBooks();
 		loadDVDs();
 		loadEBooks();
 		loadMagazines();
+		loadUsers();
+		loadFees();
 		loadWaitLists();
 		System.out.println("Data loaded!");
 	}
@@ -51,6 +54,7 @@ public class JSONReader {
 		writeDVDs();
 		writeEBooks();
 		writeMagazines();
+		writeFees();
 		System.out.println("Data saved!");
 	}
 	
@@ -144,7 +148,9 @@ public class JSONReader {
 		}
 	}
 	
-	public void loadBooks() {
+	
+	
+	private void loadBooks() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.BOOKS_FILE_NAME;
 			FileReader booksReader = new FileReader(fileDest);
@@ -157,12 +163,13 @@ public class JSONReader {
 				String genre = (String)bookJSON.get("genre");
 				String description = (String)bookJSON.get("description");
 				String year = (String)bookJSON.get("year");
-				boolean newRelease = ((Boolean)bookJSON.get("newRelease")).booleanValue();
+				boolean newString = (Boolean) bookJSON.get("newRelease");
+				boolean newRelease = newString;
 				int copies = ((Long)bookJSON.get("copies")).intValue();
 				
 				//Book specific variables:
 				String author = (String)bookJSON.get("author");
-				int ISBN = ((Long)bookJSON.get("ISBN")).intValue();
+				String ISBN = ((String)bookJSON.get("ISBN"));
 				String publisher = (String)bookJSON.get("publisher");
 				
 				Book loadedBook = new Book(title,genre,description,year,newRelease,copies,author,ISBN,publisher);
@@ -175,7 +182,7 @@ public class JSONReader {
 		}
 	}
 	
-	public void loadAudioBooks() {
+	private void loadAudioBooks() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.AUDIOBOOKS_FILE_NAME;
 			FileReader AudioBooksReader = new FileReader(fileDest);
@@ -205,7 +212,7 @@ public class JSONReader {
 		}
 	}
 	
-	public void loadDVDs() {
+	private void loadDVDs() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.DVDS_FILE_NAME;
 			FileReader DVDsReader = new FileReader(fileDest);
@@ -235,7 +242,7 @@ public class JSONReader {
 		}
 	}
 	
-	public void loadEBooks() {
+	private void loadEBooks() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.EBOOKS_FILE_NAME;
 			FileReader EbooksReader = new FileReader(fileDest);
@@ -264,7 +271,7 @@ public class JSONReader {
 		}
 	}
 	
-	public void loadMagazines() {
+	private void loadMagazines() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.MAGAZINES_FILE_NAME;
 			FileReader MagazinesReader = new FileReader(fileDest);
@@ -288,6 +295,30 @@ public class JSONReader {
 				Magazine loadedMagazine = new Magazine(title,genre,description,year,newRelease,copies,author,volume,issue);
 
 				loadMediaData(loadedMagazine,MagazineJSON);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		
+		}
+	}
+	
+	private void loadFees() {
+		try {
+			String fileDest = JSON_FOLDER_DEST + JSONReader.FEES_FILE_NAME;
+			FileReader FeesReader = new FileReader(fileDest);
+			JSONParser parser = new JSONParser();
+			JSONObject jsonData = (JSONObject)new JSONParser().parse(FeesReader);
+			JSONArray FeesJSON = (JSONArray)jsonData.get("fees");
+			for(int i=0;i < FeesJSON.size();i++) {
+				JSONObject FeeJSON = (JSONObject)FeesJSON.get(i);
+				double total = ((Double)FeeJSON.get("total")).doubleValue();
+				int tempid = ((Long)FeeJSON.get("mediaID")).intValue();
+				Media temp = null;
+				for(Media m:LibrarySystem.getInstance().inventory)
+					if(m.id == tempid)
+						temp = m;
+				Fee tempF = new Fee(temp);
+				tempF.setTotal(total);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -484,6 +515,29 @@ public class JSONReader {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+	}
+	
+	private void writeFees() {
+		try {
+			String fileDest = JSON_FOLDER_DEST + JSONReader.FEES_FILE_NAME;
+			FileWriter writer = new FileWriter(fileDest);
+			JSONArray fees = new JSONArray();
+			for(Fee a:LibrarySystem.getInstance().fees) {
+				JSONObject feedetail = new JSONObject();
+				feedetail.put("mediaID",a.getMedia().getId());
+				feedetail.put("total",a.getTotal());
+				fees.add(feedetail);
+				}
+			JSONObject allFees = new JSONObject();
+			allFees.put("fees",fees);
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			String JSON = gson.toJson(allFees);
+			writer.write(JSON);
+			writer.flush();
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//Common detail method for all media

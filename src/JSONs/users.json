@@ -1,40 +1,22 @@
 {
   "users": [
     {
-      "address": "REDACTED",
-      "checkedOutMedia": "[1]",
-      "wishlist": "[]",
-      "accountType": "Librarian",
-      "dateOfBirth": "1978",
-      "number": "REDACTED",
-      "password": "tomer",
-      "isClosed": false,
-      "children": "[]",
-      "fines": "[]",
-      "name": "Jorgen",
-      "heldMedia": "[]",
-      "id": 1,
-      "email": "REDACTED",
-      "notifications": "[]",
-      "username": "jlight9"
-    },
-    {
-      "address": "REDACTED2",
+      "address": "123 Park Avenue",
       "checkedOutMedia": "[]",
       "wishlist": "[]",
       "accountType": "Librarian",
-      "dateOfBirth": "19782",
-      "number": "REDACTED2",
-      "password": "tomer2",
+      "dateOfBirth": "March 02, 1988",
+      "number": "803-565-4433",
+      "password": "incorrect",
       "isClosed": false,
       "children": "[]",
       "fines": "[]",
-      "name": "Jorgen2",
+      "name": "Robbie White",
       "heldMedia": "[]",
-      "id": 2,
-      "email": "REDACTED2",
+      "id": 1,
+      "email": "rwhite@gmail.com",
       "notifications": "[]",
-      "username": "jlight92"
+      "username": "Whrite"
     }
   ]
 }
