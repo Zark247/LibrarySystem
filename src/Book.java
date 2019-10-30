@@ -1,3 +1,4 @@
+
 /**
  * Sub-media
  */
@@ -29,4 +30,13 @@ public class Book extends Media{
         this.publisher = aPublisher;
         this.checkoutLength = 30;
     }
+	public String getAuthor() {
+		return author;
+	}
+	public String getPublisher() {
+		return publisher;
+	}
+	public String getISBN() {
+		return ISBN;
+	}
 }

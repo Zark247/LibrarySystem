@@ -1,3 +1,4 @@
+
 /**
  * Sub-media
  */
@@ -29,4 +30,14 @@ public class Magazine extends Media{
         this.issue = anIssue;
         this.checkoutLength = 7;
     }
+
+	public String getAuthor() {
+		return author;
+	}
+	public int getVolume() {
+		return volume;
+	}
+	public int getIssue() {
+		return issue;
+	}
 }

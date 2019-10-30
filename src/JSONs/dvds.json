@@ -1,0 +1,18 @@
+{
+  "dvds": [
+    {
+      "checkedOut": false,
+      "newRelease": false,
+      "copies": 2,
+      "year": "1986",
+      "director": "Tony Scott",
+      "genre": "Action",
+      "description": "RIP Plane Guy",
+      "waitlist": "[]",
+      "lastBorrowDate": "N/A",
+      "title": "Top Gun",
+      "renewCount": 0,
+      "lastDueDate": "N/A"
+    }
+  ]
+}

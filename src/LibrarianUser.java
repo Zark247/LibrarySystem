@@ -33,6 +33,7 @@ public class LibrarianUser extends User{
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
 		this.checkoutLimit = 50;
+    this.accountType = "Librarian";
 	}
 	
 	/**

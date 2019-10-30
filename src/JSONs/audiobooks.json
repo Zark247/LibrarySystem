@@ -1,0 +1,19 @@
+{
+  "audiobooks": [
+    {
+      "checkedOut": false,
+      "year": "1936",
+      "author": "Margaret Mitchell",
+      "description": "Whoooooosh!",
+      "title": "Gone With the Wind",
+      "newRelease": false,
+      "copies": 2,
+      "narrator": "Joey Momodora",
+      "genre": "Historical Fiction",
+      "waitlist": "[]",
+      "lastBorrowDate": "N/A",
+      "renewCount": 0,
+      "lastDueDate": "N/A"
+    }
+  ]
+}

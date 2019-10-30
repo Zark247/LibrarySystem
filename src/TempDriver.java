@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 /**
@@ -7,6 +8,9 @@ import java.util.ArrayList;
 public class TempDriver {
 
 	public static void main(String[] args) {
+    
+    JSONReader json = new JSONReader();
+		json.loadDatabase();
 		
 		AverageUser avgUser = new AverageUser("Average Name", "10/10/1980", "99 Sumter Dr.",
 				"average@email.com", "000-000-0000", "averageusername",

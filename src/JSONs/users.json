@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "address": "123 Park Avenue",
+      "checkedOutMedia": "[]",
+      "wishlist": "[]",
+      "accountType": "Librarian",
+      "dateOfBirth": "March 02, 1988",
+      "number": "803-565-4433",
+      "password": "incorrect",
+      "isClosed": false,
+      "children": "[]",
+      "fines": "[]",
+      "name": "Robbie White",
+      "heldMedia": "[]",
+      "id": 1,
+      "email": "rwhite@gmail.com",
+      "notifications": "[]",
+      "username": "Whrite"
+    }
+  ]
+}

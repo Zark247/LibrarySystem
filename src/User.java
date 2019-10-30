@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 public abstract class User {
@@ -54,6 +55,9 @@ public abstract class User {
 		this.setPassword(password);
 		this.setId(USER_COUNT);
 		this.setAccountId(id);
+		LibrarySystem.getInstance().users.add(this);
+	}
+	
 	}
 	
 	/**
@@ -73,7 +77,7 @@ public abstract class User {
 		else {
 			System.out.println("Currently checked out media:");
 			for(Media m: this.checkedOutMedia)
-				System.out.println(m);	
+				System.out.println(m.title + " | Overdue: " + m.isOverdue());
 		}
 	}
 	
@@ -132,28 +136,35 @@ public abstract class User {
 	 * Returns account type
 	 * @return
 	 */
-	public String returnAccountType() {
+	public String returnAccountType()
+	{
 		return accountType;
 	}
 	
-	public void checkoutMedia(Media m) {
+	public void checkoutMedia(Media m)
+	{
 		m.checkout();
+		this.checkedOutMedia.add(m);
 	}
 	
-	public void requestMedia(Media m) {
+	public void requestMedia(Media m)
+	{
 		this.wishlist.add(m);
 	}
 	
-	public void returnMedia(Media m) {
+	public void returnMedia(Media m)
+	{
 		m.returnMedia();
 	}
 	
-	public void renewMedia(Media m) {
+	public void renewMedia(Media m)
+	{
 		m.renew();
 	}
 	
-	// TODO: Search for username???
-	public void search(String s) {
+	// Search for username???
+	public void search(String s)
+	{
 		if (this.username.equals(s))
 			this.viewUser();
 		else
@@ -298,7 +309,78 @@ public abstract class User {
 			this.accountId = accountId;
 	}
 
+	public void setCheckoutLimit(int age) {
+		
+	}
+
 	public void notify(String note) {
 		this.notifications.add(note);
 	}
+	
+	public void update() {
+		//TODO: Add update functionality
+	}
+
+	public void setFines(ArrayList<Fee> fines) {
+		this.fines = fines;
+	}
+
+	public void setWishlist(ArrayList<Media> wishlist) {
+		this.wishlist = wishlist;
+	}
+
+	public void setNotifications(ArrayList<String> notifications) {
+		this.notifications = notifications;
+	}
+
+	public void setClosed(boolean isClosed) {
+		this.isClosed = isClosed;
+	}
+
+	public void setChildren(ArrayList<User> children) {
+		this.children = children;
+	}
+
+	public void setCheckedOutMedia(ArrayList<Media> checkedOutMedia) {
+		this.checkedOutMedia = checkedOutMedia;
+	}
+
+	public void setHeldMedia(ArrayList<Media> heldMedia) {
+		this.heldMedia = heldMedia;
+	}
+
+	public ArrayList<Fee> getFines() {
+		return fines;
+	}
+
+	public ArrayList<Media> getWishlist() {
+		return wishlist;
+	}
+
+	public ArrayList<String> getNotifications() {
+		return notifications;
+	}
+
+	public boolean isClosed() {
+		return isClosed;
+	}
+
+	public ArrayList<User> getChildren() {
+		return children;
+	}
+
+	public ArrayList<Media> getCheckedOutMedia() {
+		return checkedOutMedia;
+	}
+
+	public ArrayList<Media> getHeldMedia() {
+		return heldMedia;
+	}
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void notify(String note) {
+		this.notifications.add(note);
+  }
 }

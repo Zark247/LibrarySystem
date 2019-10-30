@@ -1,3 +1,4 @@
+
 /**
  * Sub-media
  */
@@ -24,4 +25,8 @@ public class EBook extends Media{
     	this.author = anAuthor;
     	this.checkoutLength = 30;
     }
+    	
+    public String getAuthor() {
+		  return author;
+	  }
 }

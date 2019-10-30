@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -10,6 +11,8 @@ public class LibrarySystem {
 	public ArrayList<Media> inventory;
 	public ArrayList<Media> comingSoon;
 	public ArrayList<User> users;
+	public ArrayList<Fee> fees;
+
 	public static LibrarySystem librarySystem;
 	private Calendar systime;
 	private boolean midnightUpdated;
@@ -18,6 +21,7 @@ public class LibrarySystem {
 		inventory = new ArrayList<Media>();
 		comingSoon = new ArrayList<Media>();
 		users = new ArrayList<User>();
+		fees = new ArrayList<Fee>();
 		systime = Calendar.getInstance();
 		midnightUpdated = false;
 		systime.setLenient(true);
@@ -34,26 +38,35 @@ public class LibrarySystem {
 	}
 	
 	/**
-	 * Creates a new average user using the passed in information.  May be modified to create different types of users at a later date.
-	 * @param name
-	 * @param dateOfBirth
-	 * @param address
-	 * @param email
-	 * @param phoneNumber
-	 * @param username
-	 * @param password
-	 * @param id
+
+	 * Creates a new  using the passed in information.  Modified to create different types of users based on type int
+	 * @param type - Indicates type of account. 1 = child, 2 = average, 3 = teacher, 4 = librarian.
 	 */
-	public void createAverageAccount(String name, String dateOfBirth, String address,
+	public User createAccount(int type,String name, String dateOfBirth, String address,
 			String email, String phoneNumber, String username,
 			String password, int id) {
+		User temp = null;
 		if(!checkDuplicateAccount(email,phoneNumber)) {
-			users.add(new AverageUser(name, dateOfBirth, address,
-			email, phoneNumber, username,
-			password, id));
-		} else
+			if(type == 1)
+				temp = new ChildUser(name, dateOfBirth, address,
+						email, phoneNumber, username,
+						password, id);
+			if(type == 2)
+				temp = new AverageUser(name, dateOfBirth, address,
+						email, phoneNumber, username,
+						password, id);
+			if(type == 3)
+				temp = new TeacherUser(name, dateOfBirth, address,
+						email, phoneNumber, username,
+						password, id);
+			if(type == 4)
+				temp = new LibrarianUser(name, dateOfBirth, address,
+						email, phoneNumber, username,
+						password, id);
+		} else {
 			System.out.println("That email or phone number is already in use.  Try another.");
-	}
+		}
+		return temp;
 	
 	/**
 	 * Checks for duplicate accounts within the system.

@@ -1,3 +1,4 @@
+
 /**
  * A type of user that is the average user (what most accounts are)
  * @author Cameron Brandenburg
@@ -28,6 +29,7 @@ public class AverageUser extends User{
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
 		this.checkoutLimit = 10;
+		this.accountType = "Average";
 	}
 	
 	public void viewUser() {

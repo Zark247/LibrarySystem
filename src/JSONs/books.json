@@ -1,0 +1,20 @@
+{
+  "books": [
+    {
+      "checkedOut": false,
+      "year": "1957",
+      "author": "Dr. Seuss",
+      "description": "A cat. in a hat.",
+      "title": "The Cat in the Hat",
+      "newRelease": false,
+      "copies": 3,
+      "ISBN": "0394800001X",
+      "genre": "Children",
+      "waitlist": "[]",
+      "publisher": "Random House",
+      "lastBorrowDate": "N/A",
+      "renewCount": 0,
+      "lastDueDate": "N/A"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,7 +9,7 @@ import java.util.Date;
  */
 public abstract class Media {
 	public static int MEDIA_COUNT = 0;
-	
+
 	protected String title;
 	protected String genre;
 	protected String description;
@@ -36,14 +37,17 @@ public abstract class Media {
 		this.checkedOut = false;
 		this.id = MEDIA_COUNT;
 		this.waitlist = new ArrayList<User>();
+		LibrarySystem.getInstance().inventory.add(this);
 	}
 	
 	public void checkout() {
 		//TODO: Add hold functionality.
 		if(!this.checkedOut) {
 			this.checkedOut = true;
-			System.out.println("You have successfully checked out " + this.title + " on " + LibrarySystem.getInstance().returnSystime());
+
+			System.out.println("You have successfully checked out " + this.title + " on " + LibrarySystem.getInstance().returnSystime().getTime());
 			setDueDates();
+			System.out.println("This item is due on: " + this.lastDueDate.toString());
 		} else {
 			System.out.println("This item is already checked out!  Checkout failed.");
 		}
@@ -54,6 +58,8 @@ public abstract class Media {
 		if(this.checkedOut && this.renewCount < 3) {
 			renewCount++;
 			setDueDates();
+			System.out.println("Success! New due date is: " + this.lastDueDate.toString());
+			System.out.println("This has been renewed " + this.renewCount + " times.");
 		} else {
 			if(renewCount >= 3)
 				System.out.println("You cannot renew this item: it has already been renewed 3 times.");
@@ -115,12 +121,82 @@ public abstract class Media {
 	 * amount of days equal to the checkoutLength to the calendar.  It stores that value into the lastDueDate member, then restores the calendar.
 	 */
 	private void setDueDates() {
-		Calendar temp = LibrarySystem.getInstance().returnSystime();
+		Calendar temp = (Calendar) LibrarySystem.getInstance().returnSystime().clone();
 		this.lastBorrowDate = temp.getTime();
 		LibrarySystem.getInstance().returnSystime().add(Calendar.DAY_OF_YEAR, checkoutLength);
 		this.lastDueDate = LibrarySystem.getInstance().returnSystime().getTime();
 		LibrarySystem.getInstance().updateSystime(temp);
 	}
 	
+	public void setCheckedOut(boolean checkedOut) {
+		this.checkedOut = checkedOut;
+	}
+
+	public void setLastBorrowDate(Date lastBorrowDate) {
+		this.lastBorrowDate = lastBorrowDate;
+	}
+
+	public void setLastDueDate(Date lastDueDate) {
+		this.lastDueDate = lastDueDate;
+	}
+
+	public void setWaitlist(ArrayList<User> waitlist) {
+		this.waitlist = waitlist;
+	}
+
+	public void setRenewCount(int renewCount) {
+		this.renewCount = renewCount;
+	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getYearOfRelease() {
+		return yearOfRelease;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public boolean isNewRelease() {
+		return newRelease;
+	}
+
+	public Date getLastBorrowDate() {
+		return lastBorrowDate;
+	}
+
+	public Date getLastDueDate() {
+		return lastDueDate;
+	}
+
+	public ArrayList<User> getWaitlist() {
+		return waitlist;
+	}
+
+	public int getRenewCount() {
+		return renewCount;
+	}
+
+	public int getCopies() {
+		return copies;
+	}
+
+	public int getCheckoutLength() {
+		return checkoutLength;
+	}
 }

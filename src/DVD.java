@@ -1,3 +1,4 @@
+
 /**
  * Sub-media
  */
@@ -26,4 +27,8 @@ public class DVD extends Media{
     	this.checkoutLength = 7;
     	this.actors = new String[50];
     }
+    
+    public String getDirector() {
+		  return director;
+	  }
 }

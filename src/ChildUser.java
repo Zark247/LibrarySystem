@@ -1,3 +1,4 @@
+
 /**
  * A type of user that is the average user (what most accounts are)
  * @author Cameron Brandenburg
@@ -33,6 +34,7 @@ public class ChildUser extends User{
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
 		this.checkoutLimit = 3;
+    this.accountType = "Child";
 		//this.parent = parent;
 		//this.isLinked = isLinked;
 	}
