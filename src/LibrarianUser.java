@@ -1,10 +1,13 @@
-
-
 /**
  * A type of user that is the average user (what most accounts are)
  * @author Cameron Brandenburg
  */
 public class LibrarianUser extends User{
+	
+	/**
+	 * An instance of LibrarySystem used to access its attributes
+	 */
+	LibrarySystem lib = LibrarySystem.getInstance();
 	
 	/**
 	 * Default constructor, calls superclass User's default constructor
@@ -30,7 +33,7 @@ public class LibrarianUser extends User{
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
 		this.checkoutLimit = 50;
-		this.accountType = "Librarian";
+    this.accountType = "Librarian";
 	}
 	
 	/**
@@ -41,14 +44,20 @@ public class LibrarianUser extends User{
 		teacher.setIsApproved(true);
 	}
 	
-	//TODO add functionality for removing media
-	void retireMedia() {
-		
+	/**
+	 * Adds a piece of media to the LibrarySystem's inventory
+	 * @param media The media to be added
+	 */
+	public void addMedia(Media media) {
+		lib.inventory.add(media);
 	}
 	
-	//TODO add functionality for adding media
-	public void addMedia() {
-		
+	/**
+	 * Removes a piece of media from the LibrarySystem's inventory
+	 * @param media The media to be removed
+	 */
+	void retireMedia(Media media) {
+		lib.inventory.remove(media);
 	}
 	
 	//TODO add functionality for flagging specific users
@@ -56,6 +65,7 @@ public class LibrarianUser extends User{
 		
 	}
 	
+	//TODO add functionality for viewing users
 	public void viewUser() {
 		super.viewUser();
 	}

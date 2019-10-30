@@ -1,5 +1,4 @@
 
-
 public class Fee {
 	public static int FEE_COUNT = 0;
     private double max, fine, total;
@@ -32,6 +31,10 @@ public class Fee {
         }
     }
 
+    /**
+     *
+     * @param amount The user is asked what amount they would like to pay towards their total
+     */
     public void pay(double amount) {
         double tempTotal = total;
         if(amount > total) {
@@ -71,5 +74,4 @@ public class Fee {
 	public Media getMedia() {
 		return media;
 	}
-
 }

@@ -1,8 +1,7 @@
 
 import java.util.ArrayList;
 
-public abstract class User
-{
+public abstract class User {
 	public static int USER_COUNT = 0;
 	protected String name;
 	protected String dateOfBirth;
@@ -23,19 +22,29 @@ public abstract class User
 	protected ArrayList<Media> checkedOutMedia = new ArrayList<Media>();
 	protected ArrayList<Media> heldMedia = new ArrayList<Media>();
 	
-	public User()
-	{
+	/**
+	 * User default
+	 */
+	public User() {
 		this.name = this.dateOfBirth = this.address =
 				this.email = this.phoneNumber = this.username =
 				this.password = "";
 		this.accountId = 0;
-		
 	}
 	
-	public User(String name, String dateOfBirth, String address,
-			String email, String phoneNumber, String username,
-			String password, int id)
-	{
+	/**
+	 * User constructor
+	 * @param name
+	 * @param dateOfBirth
+	 * @param address
+	 * @param email
+	 * @param phoneNumber
+	 * @param username
+	 * @param password
+	 * @param id
+	 */
+	public User(String name, String dateOfBirth, String address, String email, String phoneNumber, String username,
+			String password, int id) {
 		USER_COUNT++;
 		this.setName(name);
 		this.setDateOfBirth(dateOfBirth);
@@ -49,43 +58,61 @@ public abstract class User
 		LibrarySystem.getInstance().users.add(this);
 	}
 	
+	}
 	
+	/**
+	 * Closes a User's account
+	 */
 	public void closeAccount()
 	{
 		this.isClosed = true;
 	}
 	
-	
-	public void viewCurrentlyCheckedOutMedia()
-	{
-		System.out.println("Currently checked out media:");
-		for(Media m: this.checkedOutMedia)
-			System.out.println(m.title + " | Overdue: " + m.isOverdue());
-	}
-	
-	public void viewMediaOnHold()
-	{
-		System.out.println("Currently held media:");
-		for(Media m: this.heldMedia)
-			System.out.println(m);
+	/**
+	 * allows user to currently view their checked out media
+	 */
+	public void viewCurrentlyCheckedOutMedia() {
+		if(checkedOutMedia.isEmpty())
+			System.out.println("Checked Out list is empty");
+		else {
+			System.out.println("Currently checked out media:");
+			for(Media m: this.checkedOutMedia)
+				System.out.println(m.title + " | Overdue: " + m.isOverdue());
+		}
 	}
 	
 	/**
-	 * Prints out the fines in the array
-	 * @return
+	 * Allows user to view their hold list
 	 */
-	public double checkFines()
-	{
-		//TODO: get fines from all checked out media
-		System.out.println("Your list of fines");
-		for (Fee f : fines) {
-			System.out.println("$" + f);
+	public void viewMediaOnHold() {
+		if(heldMedia.isEmpty())
+			System.out.println("Hold list is empty");
+		else {
+			System.out.println("Currently held media:");
+			for(Media m: this.heldMedia)
+				System.out.println(m);	
 		}
-
-		//TODO: add a real return statement
-		return 0.0; // temporary return statement
 	}
 	
+	/**
+	 * Prints out the fines according to the media
+	 * @return
+	 */
+	public void checkFines() {
+		if(fines.isEmpty()) {
+			System.out.println("You have no fines");
+		}
+		else {
+			System.out.println("Your list of fines");
+			for (Fee f : fines) {
+				System.out.println("Your fine for " + f.getMedia() + " is " + f.getTotal());
+			}
+		}
+	}
+	
+	/**
+	 * Prints out the current user account id
+	 */
 	public void checkAccountNumber()
 	{
 		System.out.println(this.accountId);
@@ -94,11 +121,15 @@ public abstract class User
 	/**
 	 * Prints out the wishlist in the array
 	 */
-	public void checkWishlist()
-	{
-		System.out.println("Your wishlist");
-		for (Media m : wishlist)
-			System.out.println(m);	
+	public void checkWishlist() {
+		if(wishlist.isEmpty()) {
+			System.out.println("Wishlist is empty");
+		}
+		else {
+			System.out.println("Your wishlist");
+			for (Media m : wishlist)
+				System.out.println(m);	
+		}
 	}
 	
 	/**
@@ -140,48 +171,66 @@ public abstract class User
 			System.out.println("No user found");
 	}
 	
-	public void putOnHold(Media m)
-	{
+	public void putOnHold(Media m) {
 		m.placeHold(this);
 	}
 	
-	public void linkChildAccount()
-	{
-		//TODO: Add child and parent functionality
-		// Is this already done in the child class?
+	/**
+	 * Prints out User information
+	 */
+	public void viewUser() {
+		System.out.println("Name: " + this.name +
+		"\nEmail: " + this.email +
+		"\nUsername: " + this.username +
+		"\nPassword: " + this.password +
+		"\nID: " + this.id +
+		"\nPhone Number: " + this.phoneNumber +
+		"\nAddress: " + this.address +
+		"\nDate of Birth: " + this.dateOfBirth);
 	}
 	
 	/**
-	 * Views user info
-	 * @param u
+	 * User method
 	 */
-	public void viewUser()
-	{
-		System.out.println("Name: " + this.getName() +
-				"\nEmail: " + this.getEmail() +
-				"\nUsername: " + this.getUsername() +
-				"\nPassword: " + this.getPassword() +
-				"\nID: " + this.getId() + 
-				"\nPhone Number: " + this.getPhoneNumber() +
-				"\nAddress: " + this.getAddress() +
-				"\nDate of Birth: " + this.getDateOfBirth()
-				);
+	public void update() {
+		double total = 0.0;
+		if (fines.isEmpty())
+			System.out.println("There are currently no fines");
+		else {
+			for (Fee f : fines)
+			{
+				total += f.getTotal();
+			}
+			System.out.println("Your current total of fees are: " + total);
+		}
 	}
 	
-	public void updateFees()
-	{
-		//TODO: Update fees by calling the increment method for each fee.
-		
-		
+	/**
+	 * System method
+	 */
+	private void updateFees() {
+		if (fines.isEmpty())
+			System.out.println("There are currently no fines");
+		else {
+			System.out.println("Increasing each fine in the list");
+			for (Fee f : fines)
+				f.dailyFineIncrease();
+		}
 	}
 	
-	public String payFine(Fee f, double amt)
-	{
+	public void payFine(Fee f, double amt) {
 		//TODO: Add fine payment functionality.
-		f.pay(amt);
-
-		//TODO: add a real return statement
-		return "Fine paid - temporary testing value"; // temporary return String
+		//TODO: Jacob
+		double total = 0;
+		
+		if (fines.isEmpty())
+			System.out.println("You own nothing");
+		else {
+			for (Fee fee : fines)
+			{
+				total += fee.getTotal();
+			}
+		}
 	}
 	
 	/**
@@ -260,7 +309,6 @@ public abstract class User
 			this.accountId = accountId;
 	}
 
-	
 	public void setCheckoutLimit(int age) {
 		
 	}
@@ -332,4 +380,7 @@ public abstract class User
 		return accountType;
 	}
 
+	public void notify(String note) {
+		this.notifications.add(note);
+  }
 }

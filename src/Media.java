@@ -1,5 +1,4 @@
 
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,6 +9,7 @@ import java.util.Date;
  */
 public abstract class Media {
 	public static int MEDIA_COUNT = 0;
+
 	protected String title;
 	protected String genre;
 	protected String description;
@@ -44,6 +44,7 @@ public abstract class Media {
 		//TODO: Add hold functionality.
 		if(!this.checkedOut) {
 			this.checkedOut = true;
+
 			System.out.println("You have successfully checked out " + this.title + " on " + LibrarySystem.getInstance().returnSystime().getTime());
 			setDueDates();
 			System.out.println("This item is due on: " + this.lastDueDate.toString());

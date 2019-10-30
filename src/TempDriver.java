@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,8 @@ import java.util.ArrayList;
 public class TempDriver {
 
 	public static void main(String[] args) {
-		JSONReader json = new JSONReader();
+    
+    JSONReader json = new JSONReader();
 		json.loadDatabase();
 		
 		AverageUser avgUser = new AverageUser("Average Name", "10/10/1980", "99 Sumter Dr.",
@@ -53,5 +55,54 @@ public class TempDriver {
 			user.viewUser();
 			System.out.println();
 		}
+		
+		
+		AudioBook audioBook = new AudioBook("AudioBook 1", "NonFiction", "AudioBook 1 Description", "2019", true, 2,
+                "Audiobook Author", "Audiobook Narrator");
+		Book book = new Book("Book 1", "Fiction", "Book 1 Description", "2018", false, 1,
+                "Book Author", 0, "Book Publisher");
+		DVD dvd = new DVD("DVD 1", "Documentary", "DVD 1 Description", "2005", false, 1,
+	               "DVD Director");
+		EBook eBook = new EBook("EBook 1", "Historical Fiction", "EBook 1 Description", "2010", false, 10,
+                 "EBook Author");
+		Magazine magazine = new Magazine("Magazine 1", "Lifestyle", "Magazine 1 Description", "2019", true, 3,
+                "Magazine Author", 10, 2);
+		
+		LibrarySystem lib = LibrarySystem.getInstance();
+		librarian.addMedia(audioBook);
+		librarian.addMedia(book);
+		librarian.addMedia(dvd);
+		librarian.addMedia(eBook);
+		librarian.addMedia(magazine);
+		
+		System.out.println("Currently in the library inventory");
+		for (Media media : lib.inventory) {
+			System.out.println(media.title);
+		}
+		
+		System.out.println("Removing AudioBook 1, Magazine 1, and DVD 1");
+		librarian.retireMedia(audioBook);
+		librarian.retireMedia(magazine);
+		librarian.retireMedia(dvd);
+		
+		System.out.println("Currently in the library inventory");
+		for (Media media : lib.inventory) {
+			System.out.println(media.title);
+		}
+		
+		
+		avgUser.checkoutMedia(book);
+		
+		System.out.println("Currently in the library inventory");
+		for (Media media : lib.inventory) {
+			System.out.println(media.title);
+		}
+		
+		for (Media media : lib.inventory) {
+			System.out.println(avgUser.checkedOutMedia);
+		}
+
+		avgUser.returnMedia(book);
 	}
+
 }

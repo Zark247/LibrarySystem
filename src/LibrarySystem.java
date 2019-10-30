@@ -1,5 +1,4 @@
 
-
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -13,6 +12,7 @@ public class LibrarySystem {
 	public ArrayList<Media> comingSoon;
 	public ArrayList<User> users;
 	public ArrayList<Fee> fees;
+
 	public static LibrarySystem librarySystem;
 	private Calendar systime;
 	private boolean midnightUpdated;
@@ -38,6 +38,7 @@ public class LibrarySystem {
 	}
 	
 	/**
+
 	 * Creates a new  using the passed in information.  Modified to create different types of users based on type int
 	 * @param type - Indicates type of account. 1 = child, 2 = average, 3 = teacher, 4 = librarian.
 	 */
@@ -66,7 +67,6 @@ public class LibrarySystem {
 			System.out.println("That email or phone number is already in use.  Try another.");
 		}
 		return temp;
-	}
 	
 	/**
 	 * Checks for duplicate accounts within the system.

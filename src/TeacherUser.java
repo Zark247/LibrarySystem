@@ -1,5 +1,4 @@
 
-
 /**
  * A type of user that is the average user (what most accounts are)
  * @author Cameron Brandenburg

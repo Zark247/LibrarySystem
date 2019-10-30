@@ -1,5 +1,4 @@
 
-
 /**
  * A type of user that is the average user (what most accounts are)
  * @author Cameron Brandenburg
@@ -35,7 +34,7 @@ public class ChildUser extends User{
 	{
 		super(name, dateOfBirth, address, email, phoneNumber, username, password, id);
 		this.checkoutLimit = 3;
-		this.accountType = "Child";
+    this.accountType = "Child";
 		//this.parent = parent;
 		//this.isLinked = isLinked;
 	}
@@ -58,7 +57,6 @@ public class ChildUser extends User{
 		USER_COUNT--; // Decrement user count because creating a new user increments it,and we are just switching over user types
 	}
 	
-	@Override
 	public void viewUser() {
 		super.viewUser();
 		if (parent != null)
