@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class User
-{
+public abstract class User {
 	public static int USER_COUNT = 0;
 	protected String name;
 	protected String dateOfBirth;
@@ -25,13 +24,11 @@ public abstract class User
 	/**
 	 * User default
 	 */
-	public User()
-	{
+	public User() {
 		this.name = this.dateOfBirth = this.address =
 				this.email = this.phoneNumber = this.username =
 				this.password = "";
 		this.accountId = 0;
-		
 	}
 	
 	/**
@@ -45,10 +42,8 @@ public abstract class User
 	 * @param password
 	 * @param id
 	 */
-	public User(String name, String dateOfBirth, String address,
-			String email, String phoneNumber, String username,
-			String password, int id)
-	{
+	public User(String name, String dateOfBirth, String address, String email, String phoneNumber, String username,
+			String password, int id) {
 		USER_COUNT++;
 		this.setName(name);
 		this.setDateOfBirth(dateOfBirth);
@@ -59,7 +54,6 @@ public abstract class User
 		this.setPassword(password);
 		this.setId(USER_COUNT);
 		this.setAccountId(id);
-		
 	}
 	
 	/**
@@ -73,54 +67,43 @@ public abstract class User
 	/**
 	 * allows user to currently view their checked out media
 	 */
-	public void viewCurrentlyCheckedOutMedia()
-	{
+	public void viewCurrentlyCheckedOutMedia() {
 		if(checkedOutMedia.isEmpty())
 			System.out.println("Checked Out list is empty");
-		else
-		{
+		else {
 			System.out.println("Currently checked out media:");
 			for(Media m: this.checkedOutMedia)
 				System.out.println(m);	
 		}
-
 	}
 	
 	/**
 	 * Allows user to view their hold list
 	 */
-	public void viewMediaOnHold()
-	{
+	public void viewMediaOnHold() {
 		if(heldMedia.isEmpty())
 			System.out.println("Hold list is empty");
-		else
-		{
+		else {
 			System.out.println("Currently held media:");
 			for(Media m: this.heldMedia)
 				System.out.println(m);	
 		}
-
 	}
 	
 	/**
 	 * Prints out the fines according to the media
 	 * @return
 	 */
-	public void checkFines()
-	{
-		if(fines.isEmpty())
-		{
+	public void checkFines() {
+		if(fines.isEmpty()) {
 			System.out.println("You have no fines");
 		}
-		else
-		{
+		else {
 			System.out.println("Your list of fines");
 			for (Fee f : fines) {
 				System.out.println("Your fine for " + f.getMedia() + " is " + f.getTotal());
 			}
 		}
-
-
 	}
 	
 	/**
@@ -134,13 +117,11 @@ public abstract class User
 	/**
 	 * Prints out the wishlist in the array
 	 */
-	public void checkWishlist()
-	{
-		if(wishlist.isEmpty())
-		{
+	public void checkWishlist() {
+		if(wishlist.isEmpty()) {
 			System.out.println("Wishlist is empty");
 		}
-		else{
+		else {
 			System.out.println("Your wishlist");
 			for (Media m : wishlist)
 				System.out.println(m);	
@@ -151,71 +132,60 @@ public abstract class User
 	 * Returns account type
 	 * @return
 	 */
-	public String returnAccountType()
-	{
+	public String returnAccountType() {
 		return accountType;
 	}
 	
-	public void checkoutMedia(Media m)
-	{
+	public void checkoutMedia(Media m) {
 		m.checkout();
 	}
 	
-	public void requestMedia(Media m)
-	{
+	public void requestMedia(Media m) {
 		this.wishlist.add(m);
 	}
 	
-	public void returnMedia(Media m)
-	{
+	public void returnMedia(Media m) {
 		m.returnMedia();
 	}
 	
-	public void renewMedia(Media m)
-	{
+	public void renewMedia(Media m) {
 		m.renew();
 	}
 	
-	// Search for username???
-	public void search(String s)
-	{
+	// TODO: Search for username???
+	public void search(String s) {
 		if (this.username.equals(s))
 			this.viewUser();
 		else
 			System.out.println("No user found");
 	}
 	
-	public void putOnHold(Media m)
-	{
+	public void putOnHold(Media m) {
 		m.placeHold(this);
 	}
 	
 	/**
 	 * Prints out User information
 	 */
-	public void viewUser()
-	{
+	public void viewUser() {
 		System.out.println("Name: " + this.name +
-				"\nEmail: " + this.email +
-				"\nUsername: " + this.username +
-				"\nPassword: " + this.password +
-				"\nID: " + this.id + 
-				"\nPhone Number: " + this.phoneNumber +
-				"\nAddress: " + this.address +
-				"\nDate of Birth: " + this.dateOfBirth
-				);
+		"\nEmail: " + this.email +
+		"\nUsername: " + this.username +
+		"\nPassword: " + this.password +
+		"\nID: " + this.id +
+		"\nPhone Number: " + this.phoneNumber +
+		"\nAddress: " + this.address +
+		"\nDate of Birth: " + this.dateOfBirth);
 	}
 	
 	/**
-	 * Updates and gets the new total.
+	 * User method
 	 */
-	public void update() 
-	{
+	public void update() {
 		double total = 0.0;
 		if (fines.isEmpty())
 			System.out.println("There are currently no fines");
-		else
-		{
+		else {
 			for (Fee f : fines)
 			{
 				total += f.getTotal();
@@ -225,30 +195,26 @@ public abstract class User
 	}
 	
 	/**
-	 * Updates each fines in list and increases it
+	 * System method
 	 */
-	public void updateFees()
-	{
+	private void updateFees() {
 		if (fines.isEmpty())
 			System.out.println("There are currently no fines");
-		else
-		{
+		else {
 			System.out.println("Increasing each fine in the list");
 			for (Fee f : fines)
 				f.dailyFineIncrease();
 		}
 	}
 	
-	public void payFine(Fee f, double amt)
-	{
+	public void payFine(Fee f, double amt) {
 		//TODO: Add fine payment functionality.
 		//TODO: Jacob
 		double total = 0;
 		
 		if (fines.isEmpty())
 			System.out.println("You own nothing");
-		else
-		{
+		else {
 			for (Fee fee : fines)
 			{
 				total += fee.getTotal();
@@ -335,6 +301,4 @@ public abstract class User
 	public void notify(String note) {
 		this.notifications.add(note);
 	}
-	
-
 }
