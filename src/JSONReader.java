@@ -60,13 +60,13 @@ public class JSONReader {
 	
 	private void loadUsers() {
 		try {
-			String fileDest = JSON_FOLDER_DEST + JSONReader.USERS_FILE_NAME;
+			String fileDest = JSON_FOLDER_DEST + JSONReader.USERS_FILE_NAME;			//Create the file reader
 			FileReader userReader = new FileReader(fileDest);
 			//JSONParser parser = new JSONParser();
-			JSONObject jsonData = (JSONObject)new JSONParser().parse(userReader);
-			JSONArray usersJSON = (JSONArray)jsonData.get("users");
-			for(int i=0;i < usersJSON.size();i++) {
-				JSONObject userJSON = (JSONObject)usersJSON.get(i);
+			JSONObject jsonData = (JSONObject)new JSONParser().parse(userReader);		//Get the JSON object from the file
+			JSONArray usersJSON = (JSONArray)jsonData.get("users");						//Get the array from the object
+			for(int i=0;i < usersJSON.size();i++) {										//For each object in the array...
+				JSONObject userJSON = (JSONObject)usersJSON.get(i);						//Create a new object for this object within the array
 				String name = (String)userJSON.get("name");
 				String dateOfBirth = (String)userJSON.get("dateOfBirth");
 				String address= (String)userJSON.get("address");
@@ -75,7 +75,7 @@ public class JSONReader {
 				String username = (String)userJSON.get("username");
 				String password = (String)userJSON.get("password");
 				int id = ((Long)userJSON.get("id")).intValue();
-				User temp = null;
+				User temp = null;														//Create a null user, and instantiate it using the method in the system.
 				if(((String)userJSON.get("accountType")).equals("Librarian"))
 					temp = LibrarySystem.getInstance().createAccount(4, name, dateOfBirth, address, email, phoneNumber, username, password, id);
 				if(((String)userJSON.get("accountType")).equals("Teacher"))
@@ -86,7 +86,7 @@ public class JSONReader {
 					temp = LibrarySystem.getInstance().createAccount(1, name, dateOfBirth, address, email, phoneNumber, username, password, id);
 				temp.setClosed(((Boolean)userJSON.get("isClosed")).booleanValue());
 				JSONArray feeArray = (JSONArray) new JSONParser().parse((String) userJSON.get("fines"));
-				ArrayList<Fee> feeList = new ArrayList<Fee>();
+				ArrayList<Fee> feeList = new ArrayList<Fee>();							//Set the fee array using the array within the object.
 				for(Object l:feeArray.toArray()) {
 					int tempfee = ((Long)l).intValue();
 					for(Fee f:LibrarySystem.getInstance().fees) {
@@ -606,7 +606,7 @@ public class JSONReader {
 		}
 		return Magazines;
 	}
-	
+	//Loads waitlist.  Due to load order, waitlists must be loaded after users.
 	private void loadWaitLists() {
 		for(int i = 1;i < LibrarySystem.getInstance().inventory.size();i++) {
 			if(waitlists.get(i).length != 0)
@@ -620,6 +620,7 @@ public class JSONReader {
 		}
 	}
 	
+	//Load common data for all media.
 	private void loadMediaData(Media loadedBook,JSONObject bookJSON) {
 		try { 
 		loadedBook.setCheckedOut(((Boolean)bookJSON.get("checkedOut")).booleanValue());
