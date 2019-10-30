@@ -93,8 +93,9 @@ public class TempDriver {
 			System.out.println(media.title);
 		}
 		
-		for (Media media : lib.inventory) {
-			System.out.println(avgUser.checkedOutMedia);
+		System.out.println("Currently checked out:");
+		for (Media m:avgUser.checkedOutMedia) {
+			System.out.println(m.getTitle());
 		}
 
 		avgUser.returnMedia(book);
