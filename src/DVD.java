@@ -1,4 +1,4 @@
-package src;
+
 
 public class DVD extends Media{
     private String director;
@@ -9,4 +9,11 @@ public class DVD extends Media{
         //TODO: need to initialize actors
     	this.checkoutLength = 7;
     }
+	public String getDirector() {
+		return director;
+	}
+	//public String[] getActors() {
+		//return actors;
+	//}
+    
 }

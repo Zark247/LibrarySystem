@@ -1,4 +1,4 @@
-package src;
+
 
 public class Magazine extends Media{
     private String author;
@@ -10,4 +10,14 @@ public class Magazine extends Media{
         this.issue = anIssue;
         this.checkoutLength = 7;
     }
+	public String getAuthor() {
+		return author;
+	}
+	public int getVolume() {
+		return volume;
+	}
+	public int getIssue() {
+		return issue;
+	}
+    
 }

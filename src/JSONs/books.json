@@ -1,0 +1,36 @@
+{
+  "books": [
+    {
+      "checkedOut": true,
+      "year": "1934",
+      "author": "Lightener",
+      "description": "Codex Caelum",
+      "title": "Exaltiora",
+      "newRelease": false,
+      "copies": 1,
+      "ISBN": 1,
+      "genre": "Tomes",
+      "waitlist": "[]",
+      "publisher": "None",
+      "lastBorrowDate": "10/29/19 11:02 PM",
+      "renewCount": 1,
+      "lastDueDate": "11/28/19 11:02 PM"
+    },
+    {
+      "checkedOut": false,
+      "year": "19342",
+      "author": "Lightener2",
+      "description": "Codex Caelum2",
+      "title": "Exaltiora2",
+      "newRelease": false,
+      "copies": 1,
+      "ISBN": 10,
+      "genre": "Tomes2",
+      "waitlist": "[]",
+      "publisher": "None",
+      "lastBorrowDate": "N/A",
+      "renewCount": 0,
+      "lastDueDate": "N/A"
+    }
+  ]
+}

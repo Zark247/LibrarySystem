@@ -1,4 +1,4 @@
-package src;
+
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -149,5 +149,53 @@ public abstract class Media {
 	
 	public int getId() {
 		return id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getYearOfRelease() {
+		return yearOfRelease;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public boolean isNewRelease() {
+		return newRelease;
+	}
+
+	public Date getLastBorrowDate() {
+		return lastBorrowDate;
+	}
+
+	public Date getLastDueDate() {
+		return lastDueDate;
+	}
+
+	public ArrayList<User> getWaitlist() {
+		return waitlist;
+	}
+
+	public int getRenewCount() {
+		return renewCount;
+	}
+
+	public int getCopies() {
+		return copies;
+	}
+
+	public int getCheckoutLength() {
+		return checkoutLength;
 	}
 }

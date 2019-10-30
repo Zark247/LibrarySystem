@@ -1,4 +1,4 @@
-package src;
+
 
 public class AudioBook extends Media{
     private String author, narrator;
@@ -8,4 +8,11 @@ public class AudioBook extends Media{
         this.narrator = aNarrator;
         this.checkoutLength = 30;
     }
+	public String getAuthor() {
+		return author;
+	}
+	public String getNarrator() {
+		return narrator;
+	}
+    
 }
