@@ -30,5 +30,12 @@ public class DVD extends Media{
     
     public String getDirector() {
 		  return director;
-	  }
+	 }
+    
+	@Override
+	public void copy() {
+		Object[] data = super.copyMediaData();
+		DVD clone = new DVD((String)data[0],(String)data[1],(String)data[2],(String)data[3],((Boolean)data[4]).booleanValue(),((Integer)data[5]).intValue(),
+				this.director);
+	}
 }

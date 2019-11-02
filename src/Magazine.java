@@ -40,4 +40,11 @@ public class Magazine extends Media{
 	public int getIssue() {
 		return issue;
 	}
+	
+	@Override
+	public void copy() {
+		Object[] data = super.copyMediaData();
+		Magazine clone = new Magazine((String)data[0],(String)data[1],(String)data[2],(String)data[3],((Boolean)data[4]).booleanValue(),((Integer)data[5]).intValue(),
+				this.author,this.volume,this.issue);
+	}
 }

@@ -40,7 +40,7 @@ public abstract class Media {
 		LibrarySystem.getInstance().inventory.add(this);
 	}
 	
-	public void checkout() {
+	public Media checkout() {
 		//TODO: Add hold functionality.
 		if(!this.checkedOut) {
 			this.checkedOut = true;
@@ -48,10 +48,24 @@ public abstract class Media {
 			System.out.println("You have successfully checked out " + this.title + " on " + LibrarySystem.getInstance().returnSystime().getTime());
 			setDueDates();
 			System.out.println("This item is due on: " + this.lastDueDate.toString());
+			return this;
 		} else {
-			System.out.println("This item is already checked out!  Checkout failed.");
-		}
-			
+			//If this item IS checked out, it'll check it's copies for an available one.
+			if(this.hasCopies()) {
+				System.out.println("Checking for copies...");
+				for(Media m:LibrarySystem.getInstance().inventory) {
+					if(m.title.equals(this.title)) {
+						if(!m.isCheckedOut()) {
+							System.out.println("Copy found!");
+							m.checkout();
+							return m;
+						}
+					}
+				}
+			} 
+			System.out.println("There are no copies of this item available.");
+			return null;
+		}	
 	}
 	
 	public void renew() {
@@ -70,13 +84,17 @@ public abstract class Media {
 	
 	/**
 	 * Resets renew counts and sets checked out to false.  Notifies the next user on the waitlist that the item is now avaliable.
-	 * TODO: May be modified later to call a user method that sets a timer to claim the hold.
+	 * TODO: May be modified later to call a user method that sets a timer to claim the hold.  Modify Hold system to accomodate copies.
 	 */
 	public void returnMedia() {
 		checkedOut = false;
 		renewCount = 0;
-		if(!waitlist.isEmpty()) {
-			waitlist.get(0).notify("An item on your wishlist is available: " + this.title);
+		for(Media m:LibrarySystem.getInstance().inventory) {
+			if(m.title.equals(this.title)) {
+				if(!m.getWaitlist().isEmpty()) {
+					m.getWaitlist().get(0).notify("An item on your wishlist is available: " + this.title);
+				}
+			}
 		}
 	}
 	
@@ -199,4 +217,17 @@ public abstract class Media {
 	public int getCheckoutLength() {
 		return checkoutLength;
 	}
+	
+	protected Object[] copyMediaData() {
+		Object[] data = new Object[8];
+		data[0] = this.title;
+		data[1] = this.genre;
+		data[2] = this.description;
+		data[3] = this.yearOfRelease;
+		data[4] = this.newRelease;
+		data[5] = this.copies;
+		return data;
+	}
+	
+	public abstract void copy();
 }

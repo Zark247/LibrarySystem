@@ -128,4 +128,17 @@ public class LibrarySystem {
 		//LibrarySearch search = new LibrarySearch();
 		//search.searchInventory(searchterm);
 	}
+	
+	public ArrayList<Media> inventoryNoCopies() {
+		ArrayList<Media> nocopies = new ArrayList<Media>();
+		for(Media m:this.inventory) {
+			boolean copy = false;
+			for(Media n:nocopies)
+				if(m.title.contentEquals(n.title))
+					copy = true;
+			if(!copy)
+				nocopies.add(m);
+		}
+		return nocopies;
+	}
 }

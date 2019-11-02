@@ -140,10 +140,12 @@ public abstract class User {
 		return accountType;
 	}
 	
+	//Checks out the media returned by the Checkout method.
 	public void checkoutMedia(Media m)
 	{
-		m.checkout();
-		this.checkedOutMedia.add(m);
+		Media checkoutAttempt = m.checkout();
+		if(checkoutAttempt != null)
+			this.checkedOutMedia.add(checkoutAttempt);
 	}
 	
 	public void requestMedia(Media m)
