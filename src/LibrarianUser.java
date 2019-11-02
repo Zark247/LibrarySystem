@@ -62,7 +62,7 @@ public class LibrarianUser extends User{
 	
 	//TODO add functionality for flagging specific users
 	public void flagUser() {
-		
+		super.flagUser();
 	}
 	
 	//TODO add functionality for viewing users

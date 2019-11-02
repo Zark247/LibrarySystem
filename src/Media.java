@@ -15,6 +15,8 @@ public abstract class Media {
 	protected String description;
 	protected String yearOfRelease;
 	protected int rating;
+	protected String comment;
+	protected ArrayList<String> ratingList;
 	protected boolean newRelease;
 	protected boolean checkedOut;
 	protected int id;
@@ -37,6 +39,7 @@ public abstract class Media {
 		this.checkedOut = false;
 		this.id = MEDIA_COUNT;
 		this.waitlist = new ArrayList<User>();
+		this.ratingList = new ArrayList<String>();
 		LibrarySystem.getInstance().inventory.add(this);
 	}
 	
@@ -128,6 +131,42 @@ public abstract class Media {
 		LibrarySystem.getInstance().updateSystime(temp);
 	}
 	
+	/**
+	 * This method sets the rating of a media from 1 - 5, the user can also adds comments.
+	 * @param rate
+	 */
+	public void addRating(int rate, String comment){
+		if(rate >= 1 && rate <=5) {
+			this.rating = rate;
+			this.comment = comment;
+			//System.out.println("Your rating for " + this.title + ": " + this.rating);
+			//System.out.println("Your comment for " + this.title + ": " + this.comment);
+			
+			/**
+			 *  This addRating variable will be user to store the rating as a string and comment 
+			 *  that can be added to an array list. The array list will display the total ratings
+			 *  from each user.
+			 */
+			String addRating = "Rate: " + Integer.toString(this.rating) + "\nComment: " + this.comment;
+			ratingList.add(addRating);
+		}
+		else
+			System.out.println("Rating must be from 1 - 5");
+	}
+	
+	/**
+	 * Displays the total rating for a media
+	 */
+	public void displayRating(){
+		if(!ratingList.isEmpty()) {
+			System.out.println(this.title + " has a total of " + this.ratingList.size() + " ratings: ");
+			for (String rating : ratingList)
+				System.out.println(rating);
+		}
+		else
+			System.out.println(this.title + " has no rating");
+	}
+	
 	public void setCheckedOut(boolean checkedOut) {
 		this.checkedOut = checkedOut;
 	}
@@ -171,6 +210,10 @@ public abstract class Media {
 	public int getRating() {
 		return rating;
 	}
+	
+	public String getComment() {
+		return comment;
+	}
 
 	public boolean isNewRelease() {
 		return newRelease;
@@ -198,5 +241,9 @@ public abstract class Media {
 
 	public int getCheckoutLength() {
 		return checkoutLength;
+	}
+	
+	public ArrayList<String> getRatingList(){
+		return ratingList;
 	}
 }

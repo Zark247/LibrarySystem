@@ -83,8 +83,29 @@ public class LibrarySystem {
 		return false;
 	}
 	
+	/**
+	 * Logins in to a user account if username and password is entered correctly,
+	 * if successfully logged in, a welcome and list of notifications will display.
+	 * @param username
+	 * @param password
+	 */
 	public void login(String username,String password) {
 		//TODO: Create a login function once InputHandler is complete.
+		
+		// Looks for the right username
+		for (User user : users){
+			if(user.getUsername().equals(username)) {
+				if(user.getPassword().equals(password)) {
+					System.out.println("Welcome, " + user.getName() +
+							"\nYou have " + user.getNotifications().size() + " notification(s):");
+					for (String notification : user.getNotifications())
+						System.out.println(notification);
+				}
+				else
+					System.out.println("Incorrect password");
+				
+			}
+		}
 	}
 	
 	public Calendar returnSystime() {
