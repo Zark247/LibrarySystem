@@ -99,6 +99,9 @@ public class TempDriver {
 		}
 
 		avgUser.returnMedia(book);
+		
+		librarian.addMedia("The Cat in the Hat Comes Back");
+		
 	}
 
 }
