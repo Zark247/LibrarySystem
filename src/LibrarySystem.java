@@ -84,7 +84,15 @@ public class LibrarySystem {
 	}
 	
 	public void login(String username,String password) {
-		//TODO: Create a login function once InputHandler is complete.
+		for(User u:LibrarySystem.getInstance().users) {
+			if(u.getUsername().equals(username)) {
+				if(u.getPassword().equals(password)) {
+					InputHandler.changeUser(u);
+					return;
+				}
+			}
+		}
+		System.out.println("Username/password incorrect.");
 	}
 	
 	public Calendar returnSystime() {
@@ -110,11 +118,14 @@ public class LibrarySystem {
 	 * Calls the update methods for various classes once systime hits midnight.
 	 */
 	private void midnightUpdate() {
-		//TODO: Call fee/media update methods once implimented.
+		for(User u:LibrarySystem.getInstance().users)
+			u.update();
 		midnightUpdated = true;
 	}
 	
 	public void search(String searchterm) {
 		//TODO: Impliment call to the search class.
+		//LibrarySearch search = new LibrarySearch();
+		//search.searchInventory(searchterm);
 	}
 }

@@ -9,7 +9,7 @@ public class InputHandler {
      * Variables
      */
     private HashMap<String, Command> commands;
-    private User currentUser;
+    private static User currentUser;
 
     /**
      * Declares a unique key for a command
@@ -36,7 +36,7 @@ public class InputHandler {
      *
      * @param newUser swaps the current user to a new user
      */
-    public void changeUser(User newUser) {
+    public static void changeUser(User newUser) {
         currentUser = newUser;
     }
 }
