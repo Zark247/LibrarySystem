@@ -123,9 +123,18 @@ public class LibrarySystem {
 		midnightUpdated = true;
 	}
 	
-	public void search(String searchterm) {
-		//TODO: Impliment call to the search class.
-		//LibrarySearch search = new LibrarySearch();
-		//search.searchInventory(searchterm);
+	/**
+	 * Searches the library's inventory for media based on the title and prints out all matching media
+	 * @param searchFor The title of the media to search for
+	 */
+	public void search(String searchFor) {
+		LibrarySearch libSearch = new LibrarySearch();
+		ArrayList<Media> foundMedia = new ArrayList<Media>();
+		
+		foundMedia = libSearch.search(searchFor);
+		 
+		for (Media media : foundMedia) {
+			System.out.println(media.getTitle());
+		}
 	}
 }
