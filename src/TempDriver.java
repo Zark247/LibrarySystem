@@ -107,6 +107,12 @@ public class TempDriver {
 		System.out.println("\nSearching for: Top Gun");
 		lib.search("Top Gun");
 		
+		System.out.println("\nSearching for: The");
+		lib.search("The");
+		
+		System.out.println("\nSearching for: h");
+		lib.search("h");
+		
 		System.out.println("\nSearching for: asdfjkl");
 		lib.search("asdfjkl");
 	}

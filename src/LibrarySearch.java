@@ -26,8 +26,19 @@ public class LibrarySearch {
 		ArrayList<Media> foundMedia = new ArrayList<Media>();
 		ArrayList<Media> inv = LibrarySystem.getInstance().inventory;
 		for (Media media : inv) {
+			
+			// Searches for if the title is EXACTLY the search parameter
 			if (searchFor.equalsIgnoreCase(media.title)) {
 				foundMedia.add(media);
+			}
+			
+			//Searches if the search parameter is contained in a substring of the titles
+			for (int i=0; i<(media.getTitle().length() - searchFor.length()); ++i) {
+				String s = media.getTitle().substring(i, i+searchFor.length());
+				if (s.equalsIgnoreCase(searchFor)) {
+					if (!foundMedia.contains(media))
+						foundMedia.add(media);
+				}
 			}
 		}
 		
