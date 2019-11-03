@@ -9,7 +9,7 @@ public class TempDriver {
 
 	public static void main(String[] args) {
     
-    JSONReader json = new JSONReader();
+		JSONReader json = new JSONReader();
 		json.loadDatabase();
 		
 		AverageUser avgUser = new AverageUser("Average Name", "10/10/1980", "99 Sumter Dr.",
@@ -75,30 +75,40 @@ public class TempDriver {
 			System.out.println(media.title);
 		}
 		
-		System.out.println("Removing AudioBook 1, Magazine 1, and DVD 1");
+		System.out.println("\nRemoving AudioBook 1, Magazine 1, and DVD 1");
 		librarian.retireMedia(audioBook);
 		librarian.retireMedia(magazine);
 		librarian.retireMedia(dvd);
 		
-		System.out.println("Currently in the library inventory");
+		System.out.println("\nCurrently in the library inventory");
 		for (Media media : lib.inventory) {
 			System.out.println(media.title);
 		}
 		
-		
+		System.out.println("\nChecking out: "+book.getTitle());
 		avgUser.checkoutMedia(book);
 		
-		System.out.println("Currently in the library inventory");
+		System.out.println("\nCurrently in the library inventory");
 		for (Media media : lib.inventory) {
 			System.out.println(media.title);
 		}
 		
-		System.out.println("Currently checked out:");
+		System.out.println("\nCurrently checked out:");
 		for (Media m:avgUser.checkedOutMedia) {
 			System.out.println(m.getTitle());
 		}
 
+		System.out.println("\nReturning: "+book.getTitle());
 		avgUser.returnMedia(book);
+		
+		System.out.println("\nSearching for: Tiny Houses");
+		lib.search("Tiny Houses");
+		
+		System.out.println("\nSearching for: Top Gun");
+		lib.search("Top Gun");
+		
+		System.out.println("\nSearching for: asdfjkl");
+		lib.search("asdfjkl");
 	}
 
 }
