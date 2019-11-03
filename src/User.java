@@ -160,7 +160,11 @@ public abstract class User {
 	{
 		m.renew();
 	}
-	
+
+
+	//TODO: I thought we needed a "Search" method to "search" the library for media
+
+
 	// Search for username???
 	public void search(String s)
 	{
@@ -189,7 +193,7 @@ public abstract class User {
 	}
 	
 	/**
-	 * User method
+	 * User method for fees
 	 */
 	public void update() {
 		double total = 0.0;
@@ -205,7 +209,7 @@ public abstract class User {
 	}
 	
 	/**
-	 * System method
+	 * System method for fees
 	 */
 	private void updateFees() {
 		if (fines.isEmpty())

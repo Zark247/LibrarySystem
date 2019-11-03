@@ -11,13 +11,22 @@ public class InputHandler {
     private HashMap<String, Command> commands;
     private static User currentUser;
 
+    //TODO: need a better way to handle commands that require more parameters than just User
+    private String string = " ";
+    private Media media;
+    private Fee fee;
+    private double aDouble;
     /**
      * Declares a unique key for a command
      */
     public InputHandler() {
         //TODO: need to list out commands
-        // Example
-        //commands.put("aCommand", new wCommand(currentUser));
+        commands.put("search", new Search(currentUser,string));
+        commands.put("checkout", new CheckoutMedia(currentUser, media));
+        commands.put("payfine", new PayFines(currentUser, fee, aDouble));
+        commands.put("seefine", new SeeFines(currentUser));
+        commands.put("wishlist", new SeeWishList(currentUser));
+        commands.put("closeaccount", new CloseAccount(currentUser));
     }
 
     /**
@@ -25,11 +34,21 @@ public class InputHandler {
      * @param button The command that the user enters
      */
     public void buttonPressed(String button) {
-        /*    // Example
-        if(button.equalsIgnoreCase("aCommand")) {
-            commands.put("aCommand", new wCommand(currentUser)).execute();
+        if(button.equalsIgnoreCase("search")) {
+            commands.put("search", new Search(currentUser, string)).execute();
+        } else if(button.equalsIgnoreCase("checkout")) {
+            commands.put("checkout", new CheckoutMedia(currentUser, media)).execute();
+        } else if(button.equalsIgnoreCase("payfine")) {
+            commands.put("payfine", new PayFines(currentUser, fee, aDouble));
+        } else if(button.equalsIgnoreCase("seefine")) {
+            commands.put("seefine", new SeeFines(currentUser)).execute();
+        } else if(button.equalsIgnoreCase("wishlist")) {
+            commands.put("wishlist", new SeeWishList(currentUser)).execute();
+        } else if (button.equalsIgnoreCase("closeaccount")) {
+            commands.put("closeaccount", new CloseAccount(currentUser)).execute();
+        } else {
+            System.out.println("Enter a proper command.");
         }
-         */
     }
 
     /**
