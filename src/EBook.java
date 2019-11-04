@@ -28,5 +28,12 @@ public class EBook extends Media{
     	
     public String getAuthor() {
 		  return author;
-	  }
+	}
+    
+	@Override
+	public void copy() {
+		Object[] data = super.copyMediaData();
+		EBook clone = new EBook((String)data[0],(String)data[1],(String)data[2],(String)data[3],((Boolean)data[4]).booleanValue(),((Integer)data[5]).intValue(),
+				this.author);
+	}
 }

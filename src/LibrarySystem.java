@@ -83,16 +83,28 @@ public class LibrarySystem {
 		return false;
 	}
 	
+	/**
+	 * Logins in to a user account if username and password is entered correctly,
+	 * if successfully logged in, a welcome and list of notifications will display.
+	 * @param username
+	 * @param password
+	 */
 	public void login(String username,String password) {
-		for(User u:LibrarySystem.getInstance().users) {
-			if(u.getUsername().equals(username)) {
-				if(u.getPassword().equals(password)) {
-					InputHandler.changeUser(u);
-					return;
+		// Looks for the right username
+		for (User user : users){
+			if(user.getUsername().equals(username)) {
+				if(user.getPassword().equals(password)) {
+					InputHandler.changeUser(user);
+					System.out.println("Welcome, " + user.getName() +
+							"\nYou have " + user.getNotifications().size() + " notification(s):");
+					for (String notification : user.getNotifications())
+						System.out.println(notification);
 				}
+				else
+					System.out.println("Incorrect password");
+				
 			}
 		}
-		System.out.println("Username/password incorrect.");
 	}
 	
 	public Calendar returnSystime() {
@@ -123,9 +135,31 @@ public class LibrarySystem {
 		midnightUpdated = true;
 	}
 	
-	public void search(String searchterm) {
-		//TODO: Impliment call to the search class.
-		//LibrarySearch search = new LibrarySearch();
-		//search.searchInventory(searchterm);
+	/**
+	 * Searches the library's inventory for media based on the title and prints out all matching media
+	 * @param searchFor The title of the media to search for
+	 */
+	public void search(String searchFor) {
+		LibrarySearch libSearch = new LibrarySearch();
+		ArrayList<Media> foundMedia = new ArrayList<Media>();
+		
+		foundMedia = libSearch.search(searchFor);
+		 
+		for (Media media : foundMedia) {
+			System.out.println(media.getTitle());
+		}
+	}
+	
+	public ArrayList<Media> inventoryNoCopies() {
+		ArrayList<Media> nocopies = new ArrayList<Media>();
+		for(Media m:this.inventory) {
+			boolean copy = false;
+			for(Media n:nocopies)
+				if(m.title.contentEquals(n.title))
+					copy = true;
+			if(!copy)
+				nocopies.add(m);
+		}
+		return nocopies;
 	}
 }

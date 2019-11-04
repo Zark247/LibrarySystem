@@ -39,4 +39,11 @@ public class Book extends Media{
 	public String getISBN() {
 		return ISBN;
 	}
+	
+	@Override
+	public void copy() {
+		Object[] data = super.copyMediaData();
+		Book clone = new Book((String)data[0],(String)data[1],(String)data[2],(String)data[3],((Boolean)data[4]).booleanValue(),((Integer)data[5]).intValue(),
+				this.author,this.ISBN,this.publisher);
+	}
 }

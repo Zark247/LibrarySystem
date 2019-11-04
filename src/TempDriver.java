@@ -26,18 +26,10 @@ public class TempDriver {
 		
 		if(false) {
 		
-		AverageUser avgUser = new AverageUser("Average Name", "10/10/1980", "99 Sumter Dr.",
-				"average@email.com", "000-000-0000", "averageusername",
-				"averagepassword", 0);
-		ChildUser child = new ChildUser("Child Name", "05/20/2010", "99 Sumter Dr.",
-				"child@email.com", "111-111-1111", "childusername",
-				"childpassword", 0);
-		TeacherUser teacher = new TeacherUser("Teacher Name", "10/10/2000", "499 Sumter Dr.",
-				"teacher@email.com", "222-222-2222", "teacherusername",
-				"teacherpassword", 0);
-		LibrarianUser librarian = new LibrarianUser("Librarian Name", "11/11/1967", "10 Sumter Dr.",
-				"librarian@email.com", "333-333-3333", "librarianusername",
-				"librarianpassword", 0);
+		AverageUser avgUser = (AverageUser) LibrarySystem.getInstance().users.get(1);
+		ChildUser child = (ChildUser) LibrarySystem.getInstance().users.get(2);
+		TeacherUser teacher = (TeacherUser) LibrarySystem.getInstance().users.get(3);
+		LibrarianUser librarian = (LibrarianUser) LibrarySystem.getInstance().users.get(4);
 
 		ArrayList<User> userList = new ArrayList<User>();
 		userList.add(avgUser);
@@ -85,34 +77,77 @@ public class TempDriver {
 		LibrarySystem lib = LibrarySystem.getInstance();
 		
 		System.out.println("Currently in the library inventory");
-		for (Media media : lib.inventory) {
+		for (Media media : lib.inventoryNoCopies()) {
 			System.out.println(media.title);
 		}
 		
-		System.out.println("Removing AudioBook 1, Magazine 1, and DVD 1");
+		System.out.println("\nRemoving AudioBook 1, Magazine 1, and DVD 1");
 		librarian.retireMedia(audioBook);
 		librarian.retireMedia(magazine);
 		librarian.retireMedia(dvd);
 		
-		System.out.println("Currently in the library inventory");
-		for (Media media : lib.inventory) {
+		System.out.println("\nCurrently in the library inventory");
+		for (Media media : lib.inventoryNoCopies()) {
 			System.out.println(media.title);
 		}
 		
-		
+		System.out.println("\nChecking out: "+book.getTitle());
 		avgUser.checkoutMedia(book);
 		
-		System.out.println("Currently in the library inventory");
-		for (Media media : lib.inventory) {
+		System.out.println("\nCurrently in the library inventory");
+		for (Media media : lib.inventoryNoCopies()) {
 			System.out.println(media.title);
 		}
 		
-		System.out.println("Currently checked out:");
+		System.out.println("\nCurrently checked out:");
 		for (Media m:avgUser.checkedOutMedia) {
 			System.out.println(m.getTitle());
 		}
 
+		System.out.println("\nReturning: "+book.getTitle());
 		avgUser.returnMedia(book);
+
+		System.out.println("\nSearching for: Tiny Houses");
+		lib.search("Tiny Houses");
+		
+		System.out.println("\nSearching for: Top Gun");
+		lib.search("Top Gun");
+		
+		System.out.println("\nSearching for: The");
+		lib.search("The");
+		
+		System.out.println("\nSearching for: h");
+		lib.search("h");
+		
+		System.out.println("\nSearching for: asdfjkl");
+		lib.search("asdfjkl");
+
+		System.out.println();
+		
+		System.out.println("Logging in as average user.");
+		LibrarySystem.getInstance().login("averageusername", "averagepassword");
+		System.out.println();
+		
+		System.out.println("Attempting to check out The Cat in the Hat 3 times. -------------------------------");
+		avgUser.checkoutMedia(lib.inventory.get(0));
+		avgUser.checkoutMedia(lib.inventory.get(0));
+		avgUser.checkoutMedia(lib.inventory.get(0));
+		System.out.println();
+		
+		System.out.println("Attempting to add media, \"The Cat in the Hat\". -------------------------------");
+		librarian.addMedia("The Cat in the Hat");
+		System.out.println();
+		
+		System.out.println("Logging in as average user.");
+		LibrarySystem.getInstance().login("averageusername", "averagepassword");
+		System.out.println();
+		
+		System.out.println("Rating book 1, then displaying ratings. -------------------------------");
+		book.addRating(4, "Sort of generic, but still a good read.");
+		
+		book.displayRating();
+		
+		s.close();
 	}
 	}
 }
