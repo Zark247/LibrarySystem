@@ -17,7 +17,8 @@ public abstract class User {
 	protected ArrayList<Media> wishlist = new ArrayList<Media>();
 	protected String accountType;
 	protected ArrayList<String> notifications = new ArrayList<String>();
-	protected boolean isClosed;
+	protected boolean isClosed = false;
+	protected boolean isFlagged = false;
 	protected ArrayList<User> children = new ArrayList<User>();
 	protected ArrayList<Media> checkedOutMedia = new ArrayList<Media>();
 	protected ArrayList<Media> heldMedia = new ArrayList<Media>();
@@ -62,8 +63,7 @@ public abstract class User {
 	/**
 	 * Closes a User's account
 	 */
-	public void closeAccount()
-	{
+	public void closeAccount(){
 		this.isClosed = true;
 	}
 	
@@ -112,8 +112,7 @@ public abstract class User {
 	/**
 	 * Prints out the current user account id
 	 */
-	public void checkAccountNumber()
-	{
+	public void checkAccountNumber(){
 		System.out.println(this.accountId);
 	}
 	
@@ -135,8 +134,7 @@ public abstract class User {
 	 * Returns account type
 	 * @return
 	 */
-	public String returnAccountType()
-	{
+	public String returnAccountType(){
 		return accountType;
 	}
 	
@@ -148,30 +146,42 @@ public abstract class User {
 			this.checkedOutMedia.add(checkoutAttempt);
 	}
 	
-	public void requestMedia(Media m)
-	{
+	/**
+	 * Adds a requested media to the list
+	 * @param m
+	 */
+	public void requestMedia(Media m){
 		this.wishlist.add(m);
 	}
 	
-	public void returnMedia(Media m)
-	{
+	/**
+	 * Returns a media
+	 * @param m
+	 */
+	public void returnMedia(Media m){
 		m.returnMedia();
 	}
 	
-	public void renewMedia(Media m)
-	{
+	/**
+	 * Renews a media
+	 * @param m
+	 */
+	public void renewMedia(Media m){
 		m.renew();
 	}
 	
 	// Search for username???
-	public void search(String s)
-	{
+	public void search(String s){
 		if (this.username.equals(s))
 			this.viewUser();
 		else
 			System.out.println("No user found");
 	}
 	
+	/**
+	 * places media on hold
+	 * @param m
+	 */
 	public void putOnHold(Media m) {
 		m.placeHold(this);
 	}
@@ -191,7 +201,7 @@ public abstract class User {
 	}
 	
 	/**
-	 * User method
+	 * Gets the updated total to display to the user
 	 */
 	public void update() {
 		double total = 0.0;
@@ -219,6 +229,11 @@ public abstract class User {
 		}
 	}
 	
+	/**
+	 * pays individual fines on the fines list
+	 * @param f
+	 * @param amt
+	 */
 	public void payFine(Fee f, double amt) {
 		//TODO: Add fine payment functionality.
 		//TODO: Jacob
@@ -232,6 +247,21 @@ public abstract class User {
 				total += fee.getTotal();
 			}
 		}
+	}
+	
+	/**
+	 * Adds a String of notifications to the list
+	 * @param note
+	 */
+	public void notify(String note) {
+		this.notifications.add(note);
+	}
+	
+	/**
+	 * Flagging Users
+	 */
+	public void flagUser(){
+		isFlagged = true;
 	}
 	
 	/**
@@ -310,10 +340,6 @@ public abstract class User {
 			this.accountId = accountId;
 	}
 
-	public void setCheckoutLimit(int age) {
-		
-	}
-
 	public void setFines(ArrayList<Fee> fines) {
 		this.fines = fines;
 	}
@@ -373,7 +399,4 @@ public abstract class User {
 		return accountType;
 	}
 
-	public void notify(String note) {
-		this.notifications.add(note);
-  }
 }
