@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 
 /**
  * Command to "close a user account"
@@ -8,7 +8,14 @@ public class cmdCloseAccount implements Command {
      * Method to "close account"
      */
     public void execute(String arg,User u) {
-        u.closeAccount();
+    	System.out.println("WARNING: This will close your account permanently, making it impossible to log in to.  Are you sure? (Y/N)");
+    	Scanner s = TempDriver.s;
+    	String response = s.nextLine();
+    	if(response.toUpperCase().equals("Y")) {
+    		u.closeAccount();
+    		InputHandler.currentUser = null;
+    		System.out.println("Account closed.  You have been logged out.");
+    	}
     }
 
     /**

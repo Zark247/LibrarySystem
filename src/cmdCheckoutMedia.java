@@ -8,7 +8,13 @@ public class cmdCheckoutMedia implements Command {
      * Method to "check out" media
      */
     public void execute(String arg,User u) {
-        //u.checkoutMedia(media);
+       for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
+    	   if(m.title.toUpperCase().equals(arg.toUpperCase())) {
+    		   u.checkoutMedia(m);
+    		   return;
+    	   }
+       	}
+    	System.out.println("There is no media with that title.");
     }
 
     /**
