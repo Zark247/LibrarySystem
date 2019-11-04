@@ -7,14 +7,15 @@
       "description": "A cat. in a hat.",
       "title": "The Cat in the Hat",
       "newRelease": false,
-      "copies": 3,
+      "copies": 2,
       "ISBN": "0394800001X",
+      "ratings": "[]",
       "genre": "Children",
       "waitlist": "[]",
       "publisher": "Random House",
-      "lastBorrowDate": "N/A",
+      "lastBorrowDate": "11/4/19 10:32 AM",
       "renewCount": 0,
-      "lastDueDate": "N/A"
+      "lastDueDate": "12/4/19 10:32 AM"
     }
   ]
 }

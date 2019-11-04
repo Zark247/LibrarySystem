@@ -59,6 +59,7 @@ public class LibrarianUser extends User{
 				String result = s.nextLine();
 				if(result.toUpperCase().equals("Y")) {
 					m.copy();
+					m.copyCountUp();
 					System.out.println("Success!  New copy added.");
 					m.returnMedia();
 				}

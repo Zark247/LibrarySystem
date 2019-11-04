@@ -562,13 +562,18 @@ public class JSONReader {
 		for(User u:a.getWaitlist())
 			waitlist.add(u.getId());
 		mediadetail.put("waitlist",waitlist.toJSONString());
+		
+		JSONArray ratingsList = new JSONArray();
+		for(String rating:a.getRatingList())
+			ratingsList.add(rating);
+		mediadetail.put("ratings",ratingsList.toJSONString());
 		return mediadetail;
 	}
 	
 	//Private methods to access only one type of media.
 	private ArrayList<Book> returnInventoryBooks() {
 		ArrayList<Book> books = new ArrayList<Book>();
-		for(Media m:LibrarySystem.getInstance().inventory) {
+		for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
 			if(m instanceof Book)
 				books.add((Book) m);
 		}
@@ -576,7 +581,7 @@ public class JSONReader {
 	}
 	private ArrayList<AudioBook> returnInventoryAudioBooks() {
 		ArrayList<AudioBook> AudioBooks = new ArrayList<AudioBook>();
-		for(Media m:LibrarySystem.getInstance().inventory) {
+		for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
 			if(m instanceof AudioBook)
 				AudioBooks.add((AudioBook) m);
 		}
@@ -584,7 +589,7 @@ public class JSONReader {
 	}
 	private ArrayList<DVD> returnInventoryDVDs() {
 		ArrayList<DVD> DVDs = new ArrayList<DVD>();
-		for(Media m:LibrarySystem.getInstance().inventory) {
+		for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
 			if(m instanceof DVD)
 				DVDs.add((DVD) m);
 		}
@@ -592,7 +597,7 @@ public class JSONReader {
 	}
 	private ArrayList<EBook> returnInventoryEBooks() {
 		ArrayList<EBook> EBooks = new ArrayList<EBook>();
-		for(Media m:LibrarySystem.getInstance().inventory) {
+		for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
 			if(m instanceof EBook)
 				EBooks.add((EBook) m);
 		}
@@ -600,7 +605,7 @@ public class JSONReader {
 	}
 	private ArrayList<Magazine> returnInventoryMagazines() {
 		ArrayList<Magazine> Magazines = new ArrayList<Magazine>();
-		for(Media m:LibrarySystem.getInstance().inventory) {
+		for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
 			if(m instanceof Magazine)
 				Magazines.add((Magazine) m);
 		}
@@ -630,12 +635,11 @@ public class JSONReader {
 			loadedBook.setLastBorrowDate((java.util.Date)(DateFormat.getInstance().parse((String) bookJSON.get("lastBorrowDate"))));
 			loadedBook.setLastDueDate((java.util.Date)(DateFormat.getInstance().parse((String) bookJSON.get("lastDueDate"))));
 		}
-		
 		JSONArray waitlist = (JSONArray) new JSONParser().parse((String) bookJSON.get("waitlist"));
 		if(waitlist.size() != 0) {
 			Integer[] waitlistarray = new Integer[waitlist.size()];
 			for(int i = 0;i < waitlist.size();i++) {
-				waitlistarray[i] = (Integer)waitlist.get(i);
+				waitlistarray[i] = ((Long)waitlist.get(i)).intValue();
 			}
 			waitlists.add(waitlistarray);
 		} else {
@@ -644,7 +648,6 @@ public class JSONReader {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		if(loadedBook.hasCopies()) {
 			for(int i = 1;i < loadedBook.getCopies();i++)
 				loadedBook.copy();

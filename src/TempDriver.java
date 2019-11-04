@@ -9,22 +9,13 @@ import java.util.Scanner;
 public class TempDriver {
 	public static Scanner s = new Scanner(System.in);
 	public static void main(String[] args) {
-
 		JSONReader json = new JSONReader();
 		json.loadDatabase();
 		
-		AverageUser avgUser = new AverageUser("Average Name", "10/10/1980", "99 Sumter Dr.",
-				"average@email.com", "000-000-0000", "averageusername",
-				"averagepassword", 0);
-		ChildUser child = new ChildUser("Child Name", "05/20/2010", "99 Sumter Dr.",
-				"child@email.com", "111-111-1111", "childusername",
-				"childpassword", 0);
-		TeacherUser teacher = new TeacherUser("Teacher Name", "10/10/2000", "499 Sumter Dr.",
-				"teacher@email.com", "222-222-2222", "teacherusername",
-				"teacherpassword", 0);
-		LibrarianUser librarian = new LibrarianUser("Librarian Name", "11/11/1967", "10 Sumter Dr.",
-				"librarian@email.com", "333-333-3333", "librarianusername",
-				"librarianpassword", 0);
+		AverageUser avgUser = (AverageUser) LibrarySystem.getInstance().users.get(1);
+		ChildUser child = (ChildUser) LibrarySystem.getInstance().users.get(2);
+		TeacherUser teacher = (TeacherUser) LibrarySystem.getInstance().users.get(3);
+		LibrarianUser librarian = (LibrarianUser) LibrarySystem.getInstance().users.get(4);
 
 		ArrayList<User> userList = new ArrayList<User>();
 		userList.add(avgUser);
@@ -72,7 +63,7 @@ public class TempDriver {
 		LibrarySystem lib = LibrarySystem.getInstance();
 		
 		System.out.println("Currently in the library inventory");
-		for (Media media : lib.inventory) {
+		for (Media media : lib.inventoryNoCopies()) {
 			System.out.println(media.title);
 		}
 		
@@ -82,7 +73,7 @@ public class TempDriver {
 		librarian.retireMedia(dvd);
 		
 		System.out.println("\nCurrently in the library inventory");
-		for (Media media : lib.inventory) {
+		for (Media media : lib.inventoryNoCopies()) {
 			System.out.println(media.title);
 		}
 		
@@ -90,7 +81,7 @@ public class TempDriver {
 		avgUser.checkoutMedia(book);
 		
 		System.out.println("\nCurrently in the library inventory");
-		for (Media media : lib.inventory) {
+		for (Media media : lib.inventoryNoCopies()) {
 			System.out.println(media.title);
 		}
 		
@@ -128,7 +119,6 @@ public class TempDriver {
 		avgUser.checkoutMedia(lib.inventory.get(0));
 		avgUser.checkoutMedia(lib.inventory.get(0));
 		avgUser.checkoutMedia(lib.inventory.get(0));
-		avgUser.checkoutMedia(lib.inventory.get(0));
 		System.out.println();
 		
 		System.out.println("Attempting to add media, \"The Cat in the Hat\". -------------------------------");
@@ -144,7 +134,10 @@ public class TempDriver {
 		
 		book.displayRating();
 		
+		avgUser.returnMedia(lib.inventory.get(0));
+		avgUser.returnMedia(lib.inventory.get(1));
+		avgUser.returnMedia(lib.inventory.get(2));
+		
 		s.close();
 	}
-
 }

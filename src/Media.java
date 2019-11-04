@@ -98,6 +98,7 @@ public abstract class Media {
 		for(Media m:this.returnCopies()) {
 			if(!m.getWaitlist().isEmpty()) {
 				m.getWaitlist().get(0).notify("An item on your wishlist is available: " + this.title);
+				m.getWaitlist().remove(0);
 				return;
 			}
 		}
@@ -279,6 +280,11 @@ public abstract class Media {
 	}
 	
 	public abstract void copy();
+	
+	public void copyCountUp() {
+		for(Media m:this.returnCopies())
+			m.addCopyCount();
+	}
 
 	public ArrayList<String> getRatingList(){
 		return ratingList;
@@ -292,5 +298,13 @@ public abstract class Media {
 				copies.add(m);
 		}
 		return copies;
+	}
+	
+	private void addCopyCount() {
+		this.copies++;
+	}
+	
+	public void setRatingsList(ArrayList<String> ratings) {
+		this.ratingList = ratings;
 	}
 }
