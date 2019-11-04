@@ -2,15 +2,16 @@
   "ebooks": [
     {
       "checkedOut": false,
-      "newRelease": false,
-      "copies": 1,
       "year": "200",
       "author": "Jane Austin",
-      "genre": "Women\u0027s Fiction",
       "description": "A little sexist, dontcha think?",
+      "title": "Pride and Prejudice",
+      "newRelease": false,
+      "copies": 1,
+      "ratings": "[]",
+      "genre": "Women\u0027s Fiction",
       "waitlist": "[]",
       "lastBorrowDate": "N/A",
-      "title": "Pride and Prejudice",
       "renewCount": 0,
       "lastDueDate": "N/A"
     }

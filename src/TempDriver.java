@@ -1,16 +1,30 @@
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * A temporary driver class used to test classes and methods
  * @author Cameron Brandenburg
  */
 public class TempDriver {
-
+	public static Scanner s = new Scanner(System.in);
 	public static void main(String[] args) {
-    
-    JSONReader json = new JSONReader();
+		JSONReader json = new JSONReader();
+		InputHandler InHandle = new InputHandler();
 		json.loadDatabase();
+		String input = "";
+		System.out.println("Welcome to the library!  You are not currently logged in.");
+		while(!(input.toLowerCase().equals("quit"))) {
+			if(InputHandler.currentUser == null)
+				System.out.print("guest> ");
+			else
+				System.out.print(InputHandler.currentUser.getEmail() + "> ");
+			input = s.nextLine();
+			String[] inputs = input.split(" ");
+			InHandle.inputCommand(inputs);
+		}
+		
+		if(false) {
 		
 		AverageUser avgUser = new AverageUser("Average Name", "10/10/1980", "99 Sumter Dr.",
 				"average@email.com", "000-000-0000", "averageusername",
@@ -100,5 +114,5 @@ public class TempDriver {
 
 		avgUser.returnMedia(book);
 	}
-
+	}
 }
