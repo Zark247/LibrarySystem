@@ -19,9 +19,12 @@ public class InputHandler {
         commands.put("search", new cmdSearch());
         commands.put("checkout", new cmdCheckoutMedia());
         commands.put("payfine", new cmdPayFines());
-        commands.put("seefine", new cmdSeeFines());
+        commands.put("seefines", new cmdSeeFines());
         commands.put("wishlist", new cmdSeeWishList());
         commands.put("closeaccount", new cmdCloseAccount());
+        commands.put("rate", new cmdRateMedia());
+        commands.put("quit", new cmdQuit());
+        commands.put("help", new cmdHelp());
     }
 
     /**
@@ -33,13 +36,21 @@ public class InputHandler {
         	Command cmd = commands.get(cmdArgs[0]);
         	String argument = "";
         	for(int i = 0;i < cmdArgs.length;i++) {
-        		if(i != 0)
-        			argument += cmdArgs[i] + " ";
+        		if(i != 0) {
+        			if(i != cmdArgs.length-1)
+        				argument += cmdArgs[i] + " ";
+        			else
+        				argument += cmdArgs[i];
+        		}
         	}
-        	if(cmd.requiresUser())
-        		cmd.execute(argument, InputHandler.currentUser);
-        	else
+        	if(cmd.requiresUser()) {
+        		if(InputHandler.currentUser == null)
+        			System.out.println("You must be logged in to use that command!");
+        		else
+        			cmd.execute(argument, InputHandler.currentUser);
+        	}else {
         		cmd.execute(argument, null);
+        	}
         } else {
             System.out.println("Command not recognized.");
         }
