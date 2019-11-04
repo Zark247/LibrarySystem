@@ -142,8 +142,11 @@ public abstract class User {
 	public void checkoutMedia(Media m)
 	{
 		Media checkoutAttempt = m.checkout();
-		if(checkoutAttempt != null)
+		if(checkoutAttempt != null) {
 			this.checkedOutMedia.add(checkoutAttempt);
+			if(checkoutAttempt.getWaitlist().contains(this))
+				checkoutAttempt.getWaitlist().remove(this);
+		}
 	}
 	
 	/**

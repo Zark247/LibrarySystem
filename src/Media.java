@@ -47,7 +47,6 @@ public abstract class Media {
 		//TODO: Add hold functionality.
 		if(!this.checkedOut) {
 			this.checkedOut = true;
-
 			System.out.println("You have successfully checked out " + this.title + " on " + LibrarySystem.getInstance().returnSystime().getTime());
 			setDueDates();
 			System.out.println("This item is due on: " + this.lastDueDate.toString());
@@ -56,13 +55,11 @@ public abstract class Media {
 			//If this item IS checked out, it'll check it's copies for an available one.
 			if(this.hasCopies()) {
 				System.out.println("Checking for copies...");
-				for(Media m:LibrarySystem.getInstance().inventory) {
-					if(m.title.equals(this.title)) {
-						if(!m.isCheckedOut()) {
-							System.out.println("Copy found!");
-							m.checkout();
-							return m;
-						}
+				for(Media m:this.returnCopies()) {
+					if(!m.isCheckedOut()) {
+						System.out.println("Copy found!");
+						m.checkout();
+						return m;
 					}
 				}
 			} 
@@ -92,11 +89,10 @@ public abstract class Media {
 	public void returnMedia() {
 		checkedOut = false;
 		renewCount = 0;
-		for(Media m:LibrarySystem.getInstance().inventory) {
-			if(m.title.equals(this.title)) {
-				if(!m.getWaitlist().isEmpty()) {
-					m.getWaitlist().get(0).notify("An item on your wishlist is available: " + this.title);
-				}
+		for(Media m:this.returnCopies()) {
+			if(!m.getWaitlist().isEmpty()) {
+				m.getWaitlist().get(0).notify("An item on your wishlist is available: " + this.title);
+				return;
 			}
 		}
 	}
@@ -176,13 +172,17 @@ public abstract class Media {
 	 * Displays the total rating for a media
 	 */
 	public void displayRating(){
-		if(!ratingList.isEmpty()) {
-			System.out.println(this.title + " has a total of " + this.ratingList.size() + " ratings: ");
-			for (String rating : ratingList)
-				System.out.println(rating);
+		ArrayList<String> allRatings = new ArrayList<String>();
+		for(Media m:this.returnCopies()) {
+			allRatings.addAll(m.getRatingList());
 		}
-		else
-			System.out.println(this.title + " has no rating");
+			if(!allRatings.isEmpty()) {
+				System.out.println(this.title + " has a total of " + allRatings.size() + " ratings: ");
+				for (String rating : allRatings)
+					System.out.println(rating);
+			}
+			else
+				System.out.println(this.title + " has no rating");
 	}
 	
 	public void setCheckedOut(boolean checkedOut) {
@@ -276,5 +276,15 @@ public abstract class Media {
 
 	public ArrayList<String> getRatingList(){
 		return ratingList;
+	}
+	
+	//Returns all copies of this media, based on title.  INCLUDES SELF!
+	public ArrayList<Media> returnCopies() {
+		ArrayList<Media> copies = new ArrayList<Media>();
+		for(Media m:LibrarySystem.getInstance().inventory) {
+			if(m.title.equals(this.title))
+				copies.add(m);
+		}
+		return copies;
 	}
 }

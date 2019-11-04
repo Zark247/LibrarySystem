@@ -100,7 +100,11 @@ public class TempDriver {
 
 		avgUser.returnMedia(book);
 		
-		librarian.addMedia("The Cat in the Hat Comes Back");
+		librarian.addMedia("The Cat in the Hat");
+		
+		book.addRating(4, "Sort of generic, but still a good read.");
+		
+		book.displayRating();
 		
 	}
 
