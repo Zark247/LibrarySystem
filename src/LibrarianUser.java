@@ -52,7 +52,7 @@ public class LibrarianUser extends User{
 	 * @param title the title of the media to be added.
 	 */
 	public void addMedia(String title) {
-		Scanner s = new Scanner(System.in);
+		Scanner s = TempDriver.s;
 		for(Media m:LibrarySystem.getInstance().inventory) {
 			if(m.title.equals(title)) {
 				System.out.println("This item is already present within the system.  Would you like to add another copy? (Y/N)");
@@ -60,8 +60,8 @@ public class LibrarianUser extends User{
 				if(result.toUpperCase().equals("Y")) {
 					m.copy();
 					System.out.println("Success!  New copy added.");
+					m.returnMedia();
 				}
-				s.close();
 				return;
 			} 
 		}

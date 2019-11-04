@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 /**
  * Media.java - Abstract superclass for all media items.
  * @author Kevin Prince
@@ -63,7 +64,12 @@ public abstract class Media {
 					}
 				}
 			} 
+			Scanner s = TempDriver.s;
 			System.out.println("There are no copies of this item available.");
+			System.out.println("Would you like to be added to the waitlist? (Y/N)");
+			String result = s.nextLine();
+			if(result.toUpperCase().equals("Y"))
+				this.waitlist.add(InputHandler.currentUser);
 			return null;
 		}	
 	}

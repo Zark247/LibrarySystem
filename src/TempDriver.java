@@ -1,14 +1,15 @@
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * A temporary driver class used to test classes and methods
  * @author Cameron Brandenburg
  */
 public class TempDriver {
-
+	public static Scanner s = new Scanner(System.in);
 	public static void main(String[] args) {
-    
+
 		JSONReader json = new JSONReader();
 		json.loadDatabase();
 		
@@ -117,11 +118,33 @@ public class TempDriver {
 		System.out.println("\nSearching for: asdfjkl");
 		lib.search("asdfjkl");
 
-		librarian.addMedia("The Cat in the Hat");
+		System.out.println();
 		
+		System.out.println("Logging in as average user.");
+		LibrarySystem.getInstance().login("averageusername", "averagepassword");
+		System.out.println();
+		
+		System.out.println("Attempting to check out The Cat in the Hat 3 times. -------------------------------");
+		avgUser.checkoutMedia(lib.inventory.get(0));
+		avgUser.checkoutMedia(lib.inventory.get(0));
+		avgUser.checkoutMedia(lib.inventory.get(0));
+		avgUser.checkoutMedia(lib.inventory.get(0));
+		System.out.println();
+		
+		System.out.println("Attempting to add media, \"The Cat in the Hat\". -------------------------------");
+		librarian.addMedia("The Cat in the Hat");
+		System.out.println();
+		
+		System.out.println("Logging in as average user.");
+		LibrarySystem.getInstance().login("averageusername", "averagepassword");
+		System.out.println();
+		
+		System.out.println("Rating book 1, then displaying ratings. -------------------------------");
 		book.addRating(4, "Sort of generic, but still a good read.");
 		
 		book.displayRating();
+		
+		s.close();
 	}
 
 }

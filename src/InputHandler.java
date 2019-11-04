@@ -9,7 +9,7 @@ public class InputHandler {
      * Variables
      */
     private HashMap<String, Command> commands;
-    private static User currentUser;
+    public static User currentUser;
 
     /**
      * Declares a unique key for a command
