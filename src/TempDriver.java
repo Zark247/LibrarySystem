@@ -134,10 +134,6 @@ public class TempDriver {
 		
 		book.displayRating();
 		
-		avgUser.returnMedia(lib.inventory.get(0));
-		avgUser.returnMedia(lib.inventory.get(1));
-		avgUser.returnMedia(lib.inventory.get(2));
-		
 		s.close();
 	}
 }
