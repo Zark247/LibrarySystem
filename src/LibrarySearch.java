@@ -24,7 +24,7 @@ public class LibrarySearch {
 	 */
 	public ArrayList<Media> search(String searchFor) {
 		ArrayList<Media> foundMedia = new ArrayList<Media>();
-		ArrayList<Media> inv = LibrarySystem.getInstance().inventory;
+		ArrayList<Media> inv = LibrarySystem.getInstance().inventoryNoCopies();
 		for (Media media : inv) {
 			
 			// Searches for if the title is EXACTLY the search parameter

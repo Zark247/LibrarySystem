@@ -608,14 +608,14 @@ public class JSONReader {
 	}
 	//Loads waitlist.  Due to load order, waitlists must be loaded after users.
 	private void loadWaitLists() {
-		for(int i = 1;i < LibrarySystem.getInstance().inventory.size();i++) {
+		for(int i = 1;i < LibrarySystem.getInstance().inventoryNoCopies().size();i++) {
 			if(waitlists.get(i).length != 0)
 			for(int s:waitlists.get(i)) {
 				ArrayList<User> waitlisttemp = new ArrayList<User>();
 				for(User u:LibrarySystem.getInstance().users)
 					if(u.getId() == s)
 						waitlisttemp.add(u);
-				LibrarySystem.getInstance().inventory.get(i).setWaitlist(waitlisttemp);
+				LibrarySystem.getInstance().inventoryNoCopies().get(i).setWaitlist(waitlisttemp);
 			}
 		}
 	}
@@ -645,5 +645,9 @@ public class JSONReader {
 			e.printStackTrace();
 		}
 		
+		if(loadedBook.hasCopies()) {
+			for(int i = 1;i < loadedBook.getCopies();i++)
+				loadedBook.copy();
+		}
 	}
 }

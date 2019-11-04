@@ -101,6 +101,7 @@ public class TempDriver {
 		System.out.println("\nReturning: "+book.getTitle());
 		avgUser.returnMedia(book);
 		
+
 		System.out.println("\nSearching for: Tiny Houses");
 		lib.search("Tiny Houses");
 		
@@ -115,6 +116,12 @@ public class TempDriver {
 		
 		System.out.println("\nSearching for: asdfjkl");
 		lib.search("asdfjkl");
+
+		librarian.addMedia("The Cat in the Hat");
+		
+		book.addRating(4, "Sort of generic, but still a good read.");
+		
+		book.displayRating();
 	}
 
 }
