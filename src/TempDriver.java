@@ -18,7 +18,7 @@ public class TempDriver {
 			if(InputHandler.currentUser == null)
 				System.out.print("guest> ");
 			else
-				System.out.print(InputHandler.currentUser.getEmail() + "> ");
+				System.out.print(InputHandler.currentUser.getUsername() + "> ");
 			input = s.nextLine();
 			String[] inputs = input.split(" ");
 			InHandle.inputCommand(inputs);
@@ -146,8 +146,7 @@ public class TempDriver {
 		book.addRating(4, "Sort of generic, but still a good read.");
 		
 		book.displayRating();
-		
+		}
 		s.close();
-	}
 	}
 }

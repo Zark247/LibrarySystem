@@ -25,6 +25,7 @@ public class InputHandler {
         commands.put("rate", new cmdRateMedia());
         commands.put("quit", new cmdQuit());
         commands.put("help", new cmdHelp());
+        commands.put("login", new cmdLogin());
     }
 
     /**

@@ -99,12 +99,12 @@ public class LibrarySystem {
 							"\nYou have " + user.getNotifications().size() + " notification(s):");
 					for (String notification : user.getNotifications())
 						System.out.println(notification);
+					return;
 				}
-				else
-					System.out.println("Incorrect password");
 				
 			}
 		}
+		System.out.println("Incorrect username/password");
 	}
 	
 	public Calendar returnSystime() {

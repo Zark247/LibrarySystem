@@ -13,6 +13,7 @@ public class cmdHelp implements Command {
 		System.out.println("rate <media> - Rates the media specified, by title.  Will prompt for specific rating.");
 		System.out.println("quit - closes the terminal.");
 		System.out.println("help - displays a help page of all commands.");
+		System.out.println("login - prompts for e-mail and password of account.");
 	}
 
 	public boolean requiresUser() {
