@@ -6,7 +6,7 @@ public class cmdSeeFines implements Command {
      * Method to "see fines" associated with this account
      */
     public void execute(String arg,User u) {
-        u.update();
+        u.checkFines();
     }
 
     /**

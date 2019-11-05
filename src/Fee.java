@@ -45,13 +45,13 @@ public class Fee {
             +"\nTotal fees: " + tempTotal);
         } else {  // amount <= total
             total -= amount;
-            System.out.println("Total fees: " + tempTotal + " , Payment: " + amount
-            +"\nNew total after payment: "+ total);
+            System.out.println("Total fees: $" + tempTotal + " , Payment: $" + amount
+            +"\nNew total after payment: $"+ total);
         }
     }
     
     public String toString() {
-    	return "Fine for " + this.media.title + ": $" + this.total;
+    	return "You fine for \"" + this.media.title + "\" is $" + this.total;
     }
     
     public int returnId() {

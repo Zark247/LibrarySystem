@@ -97,22 +97,6 @@ public abstract class User {
 	}
 	
 	/**
-	 * Prints out the fines according to the media
-	 * @return
-	 */
-	public void checkFines() {
-		if(fines.isEmpty()) {
-			System.out.println("You have no fines");
-		}
-		else {
-			System.out.println("Your list of fines");
-			for (Fee f : fines) {
-				System.out.println("Your fine for " + f.getMedia() + " is " + f.getTotal());
-			}
-		}
-	}
-	
-	/**
 	 * Prints out the current user account id
 	 */
 	public void checkAccountNumber(){
@@ -207,23 +191,26 @@ public abstract class User {
 	}
 	
 	/**
+	 * Prints out the fines according to the media
+	 * @return
+	 */
+	public void checkFines() {
+		if(fines.isEmpty()) {
+			System.out.println("You have no fines");
+		}
+		else {
+			System.out.println("Your list of fines");
+			for (Fee f : fines) {
+				System.out.println(f); // toString method already in Fee class
+			}
+		}
+	}
+	
+	/**
 	 * Gets the updated total to display to the user
 	 */
 	public void update() {
-		double total = 0.0;
-		if (fines.isEmpty())
-			System.out.println("There are currently no fines");
-		else {
-			for (Fee f : fines)
-			{
-				total += f.getTotal();
-			}
-			System.out.println("Your current total of fees are: " + total);
-			for (Fee f : fines)
-			{
-				System.out.println(f.getMedia().getTitle() + ": $" + f.getTotal());
-			}
-		}
+		updateFees();
 	}
 	
 	/**
