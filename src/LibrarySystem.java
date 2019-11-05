@@ -93,7 +93,7 @@ public class LibrarySystem {
 		// Looks for the right username
 		for (User user : users){
 			if(user.getUsername().equals(username)) {
-				if(user.getPassword().equals(password)) {
+				if(user.getPassword().equals(password) && !user.isClosed()) {
 					InputHandler.changeUser(user);
 					System.out.println("Welcome, " + user.getName() +
 							"\nYou have " + user.getNotifications().size() + " notification(s):");
@@ -101,7 +101,6 @@ public class LibrarySystem {
 						System.out.println(notification);
 					return;
 				}
-				
 			}
 		}
 		System.out.println("Incorrect username/password");

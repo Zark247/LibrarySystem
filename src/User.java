@@ -162,7 +162,12 @@ public abstract class User {
 	 * @param m
 	 */
 	public void returnMedia(Media m){
-		m.returnMedia();
+		if(this.checkedOutMedia.contains(m)) {
+			m.returnMedia();
+			this.checkedOutMedia.remove(m);
+		} else {
+			System.out.println("You cannot return an item you do not have checked out!");
+		}
 	}
 	
 	/**
@@ -170,12 +175,11 @@ public abstract class User {
 	 * @param m
 	 */
 	public void renewMedia(Media m){
-		m.renew();
+		if(this.checkedOutMedia.contains(m))
+			m.renew();
+		else
+			System.out.println("You cannot renew a media you do not have checked out!");
 	}
-
-
-	//TODO: I thought we needed a "Search" method to "search" the library for media
-
 
 	// Search for username???
 	public void search(String s){
@@ -220,6 +224,10 @@ public abstract class User {
 				total += f.getTotal();
 			}
 			System.out.println("Your current total of fees are: " + total);
+			for (Fee f : fines)
+			{
+				System.out.println(f.getMedia().getTitle() + ": $" + f.getTotal());
+			}
 		}
 	}
 	
@@ -242,18 +250,9 @@ public abstract class User {
 	 * @param amt
 	 */
 	public void payFine(Fee f, double amt) {
-		//TODO: Add fine payment functionality.
-		//TODO: Jacob
-		double total = 0;
-		
-		if (fines.isEmpty())
-			System.out.println("You own nothing");
-		else {
-			for (Fee fee : fines)
-			{
-				total += fee.getTotal();
-			}
-		}
+		f.pay(amt);
+		if(f.getTotal() == 0)
+			this.fines.remove(f);
 	}
 	
 	/**
@@ -376,7 +375,7 @@ public abstract class User {
 	}
 
 	public ArrayList<Fee> getFines() {
-		return fines;
+		return this.fines;
 	}
 
 	public ArrayList<Media> getWishlist() {

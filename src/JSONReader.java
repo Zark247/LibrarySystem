@@ -43,8 +43,8 @@ public class JSONReader {
 		loadDVDs();
 		loadEBooks();
 		loadMagazines();
-		loadUsers();
 		loadFees();
+		loadUsers();
 		loadWaitLists();
 		System.out.println("Data loaded!");
 	}

@@ -64,7 +64,7 @@ public abstract class Media {
 					}
 				}
 			} 
-			Scanner s = TempDriver.s;
+			Scanner s = LibraryDriver.s;
 			System.out.println("There are no copies of this item available.");
 			System.out.println("Would you like to be added to the waitlist? (Y/N)");
 			String result = s.nextLine();
@@ -102,6 +102,7 @@ public abstract class Media {
 				return;
 			}
 		}
+		System.out.println("Success! " + this.title + " returned.");
 	}
 	
 	public void placeHold(User user) {
@@ -129,7 +130,8 @@ public abstract class Media {
 	}
 	
 	public String toString() {
-		return "Placeholder";
+		return "Title: " + this.title + "\n Genre: " + this.genre + "\n Year of Release: " + this.yearOfRelease + 
+				"\n Description: " + this.description + "\n Copies: " + this.copies;
 	}
 	
 	/**
@@ -168,7 +170,7 @@ public abstract class Media {
 			 *  that can be added to an array list. The array list will display the total ratings
 			 *  from each user.
 			 */
-			String addRating = "Rate: " + Integer.toString(this.rating) + "\nComment: " + this.comment;
+			String addRating = "Rating: " + Integer.toString(this.rating) + "\nComment: " + this.comment;
 			ratingList.add(addRating);
 		}
 		else
@@ -189,7 +191,7 @@ public abstract class Media {
 					System.out.println(rating);
 			}
 			else
-				System.out.println(this.title + " has no rating");
+				System.out.println(this.title + " has no ratings.");
 	}
 	
 	public void setCheckedOut(boolean checkedOut) {

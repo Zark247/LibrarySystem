@@ -9,7 +9,7 @@ public class cmdCloseAccount implements Command {
      */
     public void execute(String arg,User u) {
     	System.out.println("WARNING: This will close your account permanently, making it impossible to log in to.  Are you sure? (Y/N)");
-    	Scanner s = TempDriver.s;
+    	Scanner s = LibraryDriver.s;
     	String response = s.nextLine();
     	if(response.toUpperCase().equals("Y")) {
     		u.closeAccount();

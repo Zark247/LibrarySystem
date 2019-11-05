@@ -10,7 +10,7 @@ public class cmdRateMedia implements Command {
      * Method to "rate" media
      */
     public void execute(String arg,User u) {
-        Scanner s = TempDriver.s;
+        Scanner s = LibraryDriver.s;
         Media mediaRate = null;
         for(Media m:LibrarySystem.getInstance().inventoryNoCopies())
         	if(m.title.toUpperCase().equals(arg.toUpperCase()))

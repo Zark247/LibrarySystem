@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class cmdLogin implements Command {
 
 	public void execute(String argument, User u) {
-		Scanner s = TempDriver.s;
+		Scanner s = LibraryDriver.s;
 		System.out.print("Username: ");
 		String email = s.next();
 		s.nextLine();

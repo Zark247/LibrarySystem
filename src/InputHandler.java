@@ -26,6 +26,10 @@ public class InputHandler {
         commands.put("quit", new cmdQuit());
         commands.put("help", new cmdHelp());
         commands.put("login", new cmdLogin());
+        commands.put("viewmedia", new cmdViewMedia());
+        commands.put("renew", new cmdRenewMedia());
+        commands.put("return", new cmdReturnMedia());
+        commands.put("viewratings", new cmdMediaRatings());
     }
 
     /**
