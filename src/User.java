@@ -1,6 +1,9 @@
-
 import java.util.ArrayList;
 
+/**
+ * User.java - Abstract superclass for all users.
+ *
+ */
 public abstract class User {
 	public static int USER_COUNT = 0;
 	protected String name;
@@ -142,9 +145,9 @@ public abstract class User {
 	public void checkoutMedia(Media m)
 	{
 		Media checkoutAttempt = m.checkout();
-		if(checkoutAttempt != null) {
+		if(checkoutAttempt != null) { //The checkout method returns a media if it's successful.  If it is, add it to this list.
 			this.checkedOutMedia.add(checkoutAttempt);
-			if(checkoutAttempt.getWaitlist().contains(this))
+			if(checkoutAttempt.getWaitlist().contains(this)) //If this user was on the waitlist, remove it.
 				checkoutAttempt.getWaitlist().remove(this);
 		}
 	}
@@ -187,14 +190,6 @@ public abstract class User {
 			this.viewUser();
 		else
 			System.out.println("No user found");
-	}
-	
-	/**
-	 * places media on hold
-	 * @param m
-	 */
-	public void putOnHold(Media m) {
-		m.placeHold(this);
 	}
 	
 	/**

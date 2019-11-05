@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * Command to "close a user account"
+ * cmdCloseAccount.java - Command to "close a user account"
  */
 public class cmdCloseAccount implements Command {
     /**

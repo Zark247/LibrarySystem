@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * Command to "rate" a specific type of media
+ * cmdRateMedia.java - Command to "rate" a specific type of media
  */
 
 //TODO: Rate method for user needs to written
@@ -14,7 +14,7 @@ public class cmdRateMedia implements Command {
         Media mediaRate = null;
         for(Media m:LibrarySystem.getInstance().inventoryNoCopies())
         	if(m.title.toUpperCase().equals(arg.toUpperCase()))
-        		mediaRate = m;
+        		mediaRate = m; //Find the media to rate by title.
         if(mediaRate == null) {
         	System.out.println("No media with that title found!");
         } else {

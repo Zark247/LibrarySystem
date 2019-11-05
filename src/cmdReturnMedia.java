@@ -1,4 +1,8 @@
-
+/**
+ * cmdReturnMedia.java - Returns media by title.
+ * @author Kevin
+ *
+ */
 public class cmdReturnMedia implements Command {
 
 	public void execute(String argument, User u) {

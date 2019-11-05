@@ -1,12 +1,9 @@
 
 /**
- * Sub-media
+ * AudioBook.java - Submedia item representing audiobooks.
  */
 public class AudioBook extends Media{
 
-    /**
-     * Variables
-     */
     private String author, narrator;
 
     /**

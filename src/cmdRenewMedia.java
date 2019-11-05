@@ -1,4 +1,8 @@
-
+/**
+ * cmdRenewMedia.java - Renews the media specified by title.
+ * @author Kevin
+ *
+ */
 public class cmdRenewMedia implements Command {
 
 	public void execute(String argument, User u) {

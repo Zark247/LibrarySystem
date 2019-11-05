@@ -2,20 +2,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Command to "pay fines"
+ * cmdPayFines.java - Command to "pay fines"
  */
 public class cmdPayFines implements Command {
     /**
      * Method to "pay fine"
      */
     public void execute(String arg,User u) {
-    	if(arg.toUpperCase().equals("ALL")) {
+    	if(arg.toUpperCase().equals("ALL")) { //If payfine all, pay all fines.
     		System.out.println("Paying all fines...");
     		u.setFines(new ArrayList<Fee>());
     	} else {
     		String fineTitle = null;
     		for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
-        		if(m.getTitle().toUpperCase().equals(arg.toUpperCase())) {
+        		if(m.getTitle().toUpperCase().equals(arg.toUpperCase())) { //Otherwise, check for fine by title of media.
         			fineTitle = m.title;
         		}
         	}
@@ -24,7 +24,7 @@ public class cmdPayFines implements Command {
         			if(f.getMedia().getTitle().equals(fineTitle)) {
         				Scanner s = LibraryDriver.s;
         				System.out.println("Your fine for " + fineTitle + " totals $" + f.getTotal());
-        				System.out.println("How much would you like to pay towards this fine?");
+        				System.out.println("How much would you like to pay towards this fine?"); //Prompt user to input amount to pay.
         				double payment = s.nextDouble();
         				u.payFine(f, payment);
         				s.nextLine();

@@ -1,6 +1,6 @@
 
 /**
- * Sub-media
+ * DVD.java - Sub-media item representing DVDs.
  */
 public class DVD extends Media{
 

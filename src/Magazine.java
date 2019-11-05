@@ -1,6 +1,6 @@
 
 /**
- * Sub-media
+ * Magazine.java - Sub-media item to represent Magazines
  */
 public class Magazine extends Media{
 

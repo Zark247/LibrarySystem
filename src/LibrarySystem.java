@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -149,6 +148,7 @@ public class LibrarySystem {
 		}
 	}
 	
+	//Returns a version of the inventory list without showing copies.
 	public ArrayList<Media> inventoryNoCopies() {
 		ArrayList<Media> nocopies = new ArrayList<Media>();
 		for(Media m:this.inventory) {

@@ -1,6 +1,6 @@
 
 /**
- * A type of user that is the average user (what most accounts are)
+ * TeacherUser.java - A type of user that is the teacher user (should be approved by a librarian).
  * @author Cameron Brandenburg
  */
 public class TeacherUser extends User{

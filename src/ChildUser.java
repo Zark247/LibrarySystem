@@ -1,10 +1,9 @@
 
 /**
- * A type of user that is the average user (what most accounts are)
+ * ChildUser.java - A type of user that is a child (should be linked to a parent)
  * @author Cameron Brandenburg
  */
 public class ChildUser extends User{
-	
 	User parent;
 	boolean isLinked = false;
 	

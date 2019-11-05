@@ -1,6 +1,6 @@
 
 /**
- * A type of user that is the average user (what most accounts are)
+ * AverageUser.java - A type of user that is the average user (what most accounts are)
  * @author Cameron Brandenburg
  */
 public class AverageUser extends User{

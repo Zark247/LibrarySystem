@@ -1,4 +1,8 @@
-
+/**
+ * cmdHelp.java - Displays a list of all known commands.
+ * @author Kevin
+ *
+ */
 public class cmdHelp implements Command {
 
 	public void execute(String argument, User u) {

@@ -1,7 +1,5 @@
-
-
 /**
- * Interface for Commands
+ * Command.java - Interface for Commands
  */
 public interface Command {
 

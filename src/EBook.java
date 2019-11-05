@@ -1,6 +1,6 @@
 
 /**
- * Sub-media
+ * EBook.java - Sub-media item representing EBooks
  */
 public class EBook extends Media{
 

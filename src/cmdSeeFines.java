@@ -1,7 +1,5 @@
-
-
 /**
- * Command to "see fines"
+ * cmdSeeFines.java - Command to "see fines"
  */
 public class cmdSeeFines implements Command {
     /**

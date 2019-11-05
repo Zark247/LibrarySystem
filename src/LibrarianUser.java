@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * A type of user that is the average user (what most accounts are)
+ * LibrarianUser.java - A type of user that is the average user (what most accounts are)
  * @author Cameron Brandenburg
  */
 public class LibrarianUser extends User{

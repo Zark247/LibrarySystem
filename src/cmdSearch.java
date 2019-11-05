@@ -1,5 +1,5 @@
 /**
- * Command to search the library system
+ * cmdSearch.java - Command to search the library system
  */
 public class cmdSearch implements Command {
 	/**

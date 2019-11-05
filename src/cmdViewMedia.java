@@ -1,4 +1,8 @@
-
+/**
+ * cmdViewMedia.java - Command to view media information by title.
+ * @author Kevin
+ *
+ */
 public class cmdViewMedia implements Command {
 
 	public void execute(String argument, User u) {

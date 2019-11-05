@@ -1,7 +1,5 @@
-
-
 /**
- * Command to check media out
+ * cmdCheckoutMedia.java - Command to check media out
  */
 public class cmdCheckoutMedia implements Command {
     /**
@@ -9,7 +7,7 @@ public class cmdCheckoutMedia implements Command {
      */
     public void execute(String arg,User u) {
        for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
-    	   if(m.title.toUpperCase().equals(arg.toUpperCase())) {
+    	   if(m.title.toUpperCase().equals(arg.toUpperCase())) { //Find media matching the title input
     		   u.checkoutMedia(m);
     		   return;
     	   }

@@ -1,12 +1,8 @@
 
 /**
- * Sub-media
+ * Book.java - Submedia item representing books.
  */
 public class Book extends Media{
-
-    /**
-     * Variables
-     */
     private String author, publisher;
     private String ISBN;
 

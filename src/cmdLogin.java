@@ -1,5 +1,9 @@
 import java.util.Scanner;
-
+/**
+ * cmdLogin.java - Prompts the user for a username and password, then attempts to login.
+ * @author Kevin
+ *
+ */
 public class cmdLogin implements Command {
 
 	public void execute(String argument, User u) {

@@ -1,8 +1,8 @@
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
+
 /**
  * Media.java - Abstract superclass for all media items.
  * @author Kevin Prince
@@ -53,25 +53,26 @@ public abstract class Media {
 			System.out.println("This item is due on: " + this.lastDueDate.toString());
 			return this;
 		} else {
-			//If this item IS checked out, it'll check it's copies for an available one.
-			if(this.hasCopies()) {
-				System.out.println("Checking for copies...");
-				for(Media m:this.returnCopies()) {
-					if(!m.isCheckedOut()) {
-						System.out.println("Copy found!");
-						m.checkout();
-						return m;
-					}
-				}
-			} 
-			Scanner s = LibraryDriver.s;
-			System.out.println("There are no copies of this item available.");
-			System.out.println("Would you like to be added to the waitlist? (Y/N)");
-			String result = s.nextLine();
-			if(result.toUpperCase().equals("Y"))
-				this.waitlist.add(InputHandler.currentUser);
-			return null;
+			return copyCheckout(); //Check copies
 		}	
+	}
+	
+	//Helper method for checking out copies/adding to waitlist.
+	private Media copyCheckout() {
+		//If this item IS checked out, it'll check it's copies for an available one.
+		if(this.hasCopies()) {
+			System.out.println("Checking for copies...");
+			for(Media m:this.returnCopies()) {
+				if(!m.isCheckedOut()) {
+					System.out.println("Copy found!");
+					m.checkout();
+					return m;
+				}
+			}
+		} else {
+			placeHold();
+		}
+		return null;
 	}
 	
 	public void renew() {
@@ -105,8 +106,14 @@ public abstract class Media {
 		System.out.println("Success! " + this.title + " returned.");
 	}
 	
-	public void placeHold(User user) {
-		waitlist.add(user);
+	//Method is only called when item is fully checked out.
+	private void placeHold() {
+		Scanner s = LibraryDriver.s;
+		System.out.println("There are no copies of this item available.");
+		System.out.println("Would you like to be added to the waitlist? (Y/N)");
+		String result = s.nextLine();
+		if(result.toUpperCase().equals("Y"))
+			this.waitlist.add(InputHandler.currentUser);
 	}
 	
 	public boolean isCheckedOut() {

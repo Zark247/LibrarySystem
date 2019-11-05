@@ -1,7 +1,5 @@
-
-
 /**
- * Command to "see wish list"
+ * cmdSeeWishList.java - Command to "see wish list"
  */
 public class cmdSeeWishList implements Command {
     /**

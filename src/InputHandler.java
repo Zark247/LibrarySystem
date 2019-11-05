@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 /**
- * Handles input depending on what command the User enters
+ * InputHandler.java - Handles input depending on what command the User enters
  */
 public class InputHandler {
 
@@ -37,7 +37,7 @@ public class InputHandler {
      * @param cmdArgs Strings the user enters, seperated by spaces.
      */
     public void inputCommand(String[] cmdArgs) {
-        if(commands.containsKey(cmdArgs[0])) {
+        if(commands.containsKey(cmdArgs[0])) { //The first argument is the command, the rest are pass-ins.
         	Command cmd = commands.get(cmdArgs[0]);
         	String argument = "";
         	for(int i = 0;i < cmdArgs.length;i++) {

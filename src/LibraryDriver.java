@@ -1,9 +1,7 @@
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * A driver class which takes in input and runs commands.
+ * LibraryDriver.java - A driver class which takes in input and runs commands.
  * @author Kevin Prince
  */
 public class LibraryDriver {
@@ -22,7 +20,7 @@ public class LibraryDriver {
 			input = s.nextLine();
 			String[] inputs = input.split(" ");
 			InHandle.inputCommand(inputs);
-			//json.writeDatabase();
+			json.writeDatabase();
 		}
 		s.close();
 	}
