@@ -11,7 +11,8 @@ public class LibraryDriver {
 		InputHandler InHandle = new InputHandler();
 		json.loadDatabase();
 		String input = "";
-		System.out.println("Welcome to the library!");
+		System.out.println("Welcome to the library!"
+		+"\nType \"help\" for a list of commands.");
 		while(!(input.toLowerCase().equals("quit"))) {
 			if(InputHandler.currentUser == null)
 				System.out.print("guest> ");

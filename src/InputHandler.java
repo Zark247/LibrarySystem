@@ -30,6 +30,8 @@ public class InputHandler {
         commands.put("renew", new cmdRenewMedia());
         commands.put("return", new cmdReturnMedia());
         commands.put("viewratings", new cmdMediaRatings());
+        commands.put("viewaccount", new cmdViewAccount());
+        commands.put("createaccount", new cmdAccountCreation());
     }
 
     /**
