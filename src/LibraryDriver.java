@@ -21,7 +21,7 @@ public class LibraryDriver {
 			input = s.nextLine();
 			String[] inputs = input.split(" ");
 			InHandle.inputCommand(inputs);
-			json.writeDatabase();
+			//json.writeDatabase();
 		}
 		s.close();
 	}

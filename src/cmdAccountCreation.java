@@ -29,6 +29,8 @@ public class cmdAccountCreation implements Command {
             String userName = s.nextLine();
             System.out.println("Enter the password you would like to use: ");
             String passWord = s.nextLine();
+            System.out.println("Are you a teacher? (Requires Verification) (yes/no)");
+            String teacher = s.nextLine();
             int passwordLength = passWord.length();
             String x = "";
             for(int i = 0; i <passwordLength; ++i) {
@@ -44,9 +46,12 @@ public class cmdAccountCreation implements Command {
             +"\nUser name: " + userName
             +"\nPassword: " + x
             +"\nUser ID: " + id);
-            //TODO: This is supposed to create a new user, but throws error saying can't be instantiated
-            //User newUser = new User(name, birthday, address, eAddress, phoneNumber, userName, passWord, id);
-            //LibrarySystem.getInstance().users.add(newUser);
+            s.nextLine();
+            if(teacher.equalsIgnoreCase("yes"))
+            	LibrarySystem.getInstance().createAccount(3, lastName, birthday, address, eAddress, phoneNumber, userName, passWord, id);
+            else
+            	LibrarySystem.getInstance().createAccount(2, lastName, birthday, address, eAddress, phoneNumber, userName, passWord, id);
+            
         } else if(input.equalsIgnoreCase("No")) {
             System.out.println("You are under the age of 16, unfortunately you need to have a guardian/parent help you set up an account.");
         } else {
