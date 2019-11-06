@@ -482,6 +482,8 @@ public class JSONReader {
 		mediadetail.put("year",a.getYearOfRelease());
 		mediadetail.put("newRelease",a.isNewRelease());
 		mediadetail.put("copies",a.getCopies());
+		mediadetail.put("reviewCount",a.getReviewCount());
+		mediadetail.put("rating",a.getRating());
 		
 		mediadetail.put("checkedOut",a.isCheckedOut());
 		if(a.getLastBorrowDate() != null) {
@@ -508,7 +510,8 @@ public class JSONReader {
 	private void loadMediaData(Media loadedBook,JSONObject bookJSON) {
 		try { 
 		loadedBook.setCheckedOut(((Boolean)bookJSON.get("checkedOut")).booleanValue());
-		
+		loadedBook.setReviewCount(((Long)bookJSON.get("reviewCount")).intValue());
+		loadedBook.setRating(((Double)bookJSON.get("rating")).doubleValue());
 		loadedBook.setRenewCount((((Long)bookJSON.get("renewCount")).intValue()));
 		if(!((String)bookJSON.get("lastBorrowDate")).equals("N/A")) {
 			loadedBook.setLastBorrowDate((java.util.Date)(DateFormat.getInstance().parse((String) bookJSON.get("lastBorrowDate"))));

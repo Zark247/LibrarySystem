@@ -368,4 +368,12 @@ public abstract class Media {
 	public int getReviewCount() {
 		return this.reviewCount;
 	}
+	
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
 }
