@@ -30,6 +30,12 @@ public class InputHandler {
         commands.put("renew", new cmdRenewMedia());
         commands.put("return", new cmdReturnMedia());
         commands.put("viewratings", new cmdMediaRatings());
+        commands.put("viewaccount", new cmdViewAccount());
+        commands.put("createaccount", new cmdAccountCreation());
+        commands.put("logout", new cmdLogOut());
+        commands.put("addmedia", new cmdAddMedia());
+        commands.put("approveteacher", new cmdApproveTeacher());
+        commands.put("retiremedia", new cmdRetireMedia());
     }
 
     /**
@@ -65,6 +71,7 @@ public class InputHandler {
      *
      * @param newUser swaps the current user to a new user
      */
+    //TODO: Method deletes currentUser
     public static void changeUser(User newUser) {
         currentUser = newUser;
     }

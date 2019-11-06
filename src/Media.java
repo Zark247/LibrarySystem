@@ -14,7 +14,7 @@ public abstract class Media {
 	protected String genre;
 	protected String description;
 	protected String yearOfRelease;
-	protected int rating;
+	protected double rating;
 	protected String comment;
 	protected ArrayList<String> ratingList;
 	protected boolean newRelease;
@@ -26,6 +26,7 @@ public abstract class Media {
 	protected int renewCount;
 	protected int copies;
 	protected int checkoutLength; //Length of standard checkout in DAYS.
+	protected int reviewCount;
 	
 	/**
 	 * Parameterized constructor for Media
@@ -50,6 +51,8 @@ public abstract class Media {
 		this.waitlist = new ArrayList<User>();
 		this.ratingList = new ArrayList<String>();
 		LibrarySystem.getInstance().inventory.add(this);
+		this.renewCount = 0;
+		this.rating = 0.0;
 	}
 	
 	/**
@@ -94,7 +97,7 @@ public abstract class Media {
 	 * Renews a piece of media if it hasn't already been renewed 3 times
 	 */
 	public void renew() {
-		if(this.checkedOut && this.renewCount < 3) {
+		if(this.checkedOut && this.renewCount < 3 && this.waitlist.size() == 0) {
 			renewCount++;
 			setDueDates();
 			System.out.println("Success! New due date is: " + this.lastDueDate.toString());
@@ -102,8 +105,10 @@ public abstract class Media {
 		} else {
 			if(renewCount >= 3)
 				System.out.println("You cannot renew this item: it has already been renewed 3 times.");
-			else
+			else if(!this.checkedOut)
 				System.out.println("You can't renew an item you haven't checked out!");
+			else
+				System.out.println("Sorry, you cannot renew this item: Another user has it on hold.");
 		}
 	}
 	
@@ -131,7 +136,7 @@ public abstract class Media {
 	private void placeHold() {
 		Scanner s = LibraryDriver.s;
 		System.out.println("There are no copies of this item available.");
-		System.out.println("Would you like to be added to the waitlist? (Y/N)");
+		System.out.println("Would you like to be added to the waitlist? (Y/N)  There are currently " + this.waitlist.size() + " users in the waitlist.");
 		String result = s.nextLine();
 		if(result.toUpperCase().equals("Y"))
 			this.waitlist.add(InputHandler.currentUser);
@@ -159,7 +164,7 @@ public abstract class Media {
 	
 	public String toString() {
 		return "Title: " + this.title + "\n Genre: " + this.genre + "\n Year of Release: " + this.yearOfRelease + 
-				"\n Description: " + this.description + "\n Copies: " + this.copies;
+				"\n Description: " + this.description + "\n Copies: " + this.copies + "\n Rating: " + this.rating + " stars";
 	}
 	
 	/**
@@ -189,21 +194,33 @@ public abstract class Media {
 	 */
 	public void addRating(int rate, String comment){
 		if(rate >= 1 && rate <=5) {
-			this.rating = rate;
+			int ratingStars = rate;
 			this.comment = comment;
 			//System.out.println("Your rating for " + this.title + ": " + this.rating);
 			//System.out.println("Your comment for " + this.title + ": " + this.comment);
-			
+			ratingAverage(ratingStars);
 			/**
 			 *  This addRating variable will be user to store the rating as a string and comment 
 			 *  that can be added to an array list. The array list will display the total ratings
 			 *  from each user.
 			 */
-			String addRating = "Rating: " + Integer.toString(this.rating) + "\nComment: " + this.comment;
+			String addRating = "Rating: " + Integer.toString(ratingStars) + "\nComment: " + this.comment;
 			ratingList.add(addRating);
 		}
 		else
 			System.out.println("Rating must be from 1 - 5");
+	}
+	
+	private double ratingAverage(int newRating) {
+		double ratings = 0.0;
+		int ratingCount = 0;
+		for(Media m:this.returnCopies()) {
+			ratings += m.getRating();
+			ratingCount += m.getReviewCount();
+		}
+		this.rating = (ratings + newRating)/(ratingCount + 1);
+		reviewCount++;
+		return this.rating;
 	}
 	
 	/**
@@ -215,9 +232,9 @@ public abstract class Media {
 			allRatings.addAll(m.getRatingList());
 		}
 			if(!allRatings.isEmpty()) {
-				System.out.println(this.title + " has a total of " + allRatings.size() + " ratings: ");
-				for (String rating : allRatings)
-					System.out.println(rating);
+				System.out.println(this.title + " has a total of " + allRatings.size() + " ratings, average of " + this.rating + " stars.");
+				for (String review : allRatings)
+					System.out.println(review);
 			}
 			else
 				System.out.println(this.title + " has no ratings.");
@@ -263,7 +280,7 @@ public abstract class Media {
 		return yearOfRelease;
 	}
 
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
 	
@@ -346,5 +363,9 @@ public abstract class Media {
 	
 	public void setRatingsList(ArrayList<String> ratings) {
 		this.ratingList = ratings;
+	}
+	
+	public int getReviewCount() {
+		return this.reviewCount;
 	}
 }

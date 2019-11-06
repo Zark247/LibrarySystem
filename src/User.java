@@ -68,6 +68,7 @@ public abstract class User {
 	 */
 	public void closeAccount(){
 		this.isClosed = true;
+		this.fines = new ArrayList<Fee>();
 	}
 	
 	/**
@@ -129,10 +130,18 @@ public abstract class User {
 	public void checkoutMedia(Media m)
 	{
 		Media checkoutAttempt = m.checkout();
-		if(checkoutAttempt != null) { //The checkout method returns a media if it's successful.  If it is, add it to this list.
-			this.checkedOutMedia.add(checkoutAttempt);
-			if(checkoutAttempt.getWaitlist().contains(this)) //If this user was on the waitlist, remove it.
-				checkoutAttempt.getWaitlist().remove(this);
+		if(this.checkedOutMedia.size() <= this.checkoutLimit) {
+			if(this.fineTotal() < 100.00) {
+				if(checkoutAttempt != null) { //The checkout method returns a media if it's successful.  If it is, add it to this list.
+					this.checkedOutMedia.add(checkoutAttempt);
+					if(checkoutAttempt.getWaitlist().contains(this)) //If this user was on the waitlist, remove it.
+						checkoutAttempt.getWaitlist().remove(this);
+				}
+			} else {
+				System.out.println("Your fine total is above the maximum ($100)!  Please pay off your balance first.");
+			}
+		} else {
+			System.out.println("You have hit your maximum checkout limit!  Please return something first.");
 		}
 	}
 	
@@ -199,17 +208,35 @@ public abstract class User {
 			System.out.println("You have no fines");
 		}
 		else {
-			System.out.println("Your list of fines");
+			System.out.println("You currently owe $" + this.fineTotal() + ".  List of fines:");
 			for (Fee f : fines) {
 				System.out.println(f); // toString method already in Fee class
 			}
 		}
 	}
 	
+	private double fineTotal() {
+		double total = 0;
+		for(Fee f:this.fines)
+			total += f.getTotal();
+		return total;
+	}	
+	
 	/**
 	 * Gets the updated total to display to the user
 	 */
 	public void update() {
+		for(Media m:this.checkedOutMedia) {
+			if(m.isOverdue()) {
+				boolean fineExists = false;
+				for(Fee f:this.fines) {
+					if(f.getMedia().getId() == m.id)
+						fineExists = true;
+				}
+				if(!fineExists)
+					this.fines.add(new Fee(m));
+			}
+		}
 		updateFees();
 	}
 	
@@ -386,5 +413,14 @@ public abstract class User {
 	public String getAccountType() {
 		return accountType;
 	}
-
+	
+	public String toString() {
+		return "Account Name: " + this.name + "\n" +
+				"Account ID: " + this.accountId + "\n" +
+				"Account Type: " + this.accountType + "\n" +
+				"Date of Birth: " + this.dateOfBirth + "\n" + 
+				"Address: " + this.address + "\n" +
+				"Email: " + this.email + "\n" +
+				"Phone Number: " + this.phoneNumber;
+	}
 }

@@ -1,14 +1,14 @@
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.text.DateFormat;
-import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.text.DateFormat;
+import java.util.ArrayList;
 
 /**
  * JSONReader.java - A class to handle loading/reading JSON files to the system
