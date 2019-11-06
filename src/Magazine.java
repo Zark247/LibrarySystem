@@ -11,7 +11,7 @@ public class Magazine extends Media{
     private int volume, issue;
 
     /**
-     *
+     * Parameterized constructor for Magazine
      * @param title The title of the Magazine
      * @param genre The genre of the Magazine
      * @param description A brief description of the Magazine
@@ -41,7 +41,12 @@ public class Magazine extends Media{
 		return issue;
 	}
 	
+	
 	@Override
+	/**
+	 * Creates a copy of the magazine
+	 * Overrides abstract copy() method from Media
+	 */
 	public void copy() {
 		Object[] data = super.copyMediaData();
 		Magazine clone = new Magazine((String)data[0],(String)data[1],(String)data[2],(String)data[3],((Boolean)data[4]).booleanValue(),((Integer)data[5]).intValue(),

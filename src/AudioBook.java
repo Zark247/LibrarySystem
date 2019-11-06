@@ -7,7 +7,7 @@ public class AudioBook extends Media{
     private String author, narrator;
 
     /**
-     *
+     * Parameterized constructor for AudioBook
      * @param title The name of the AudioBook
      * @param genre The genre of the AudioBook
      * @param description A brief description of the AudioBook
@@ -33,6 +33,10 @@ public class AudioBook extends Media{
 	}
 	
 	@Override
+	/**
+	 * Creates a copy of the audiobook
+	 * Overrides abstract copy() method from Media
+	 */
 	public void copy() {
 		Object[] data = super.copyMediaData();
 		AudioBook clone = new AudioBook((String)data[0],(String)data[1],(String)data[2],(String)data[3],((Boolean)data[4]).booleanValue(),((Integer)data[5]).intValue(),

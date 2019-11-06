@@ -7,7 +7,7 @@ public class Book extends Media{
     private String ISBN;
 
     /**
-     *
+     * Parameterized constructor for Book
      * @param title The name of the Book
      * @param genre the genre of the Book
      * @param description A brief description of the Book
@@ -37,6 +37,10 @@ public class Book extends Media{
 	}
 	
 	@Override
+	/**
+	 * Creates a copy of the book
+	 * Overrides abstract copy() method from Media
+	 */
 	public void copy() {
 		Object[] data = super.copyMediaData();
 		Book clone = new Book((String)data[0],(String)data[1],(String)data[2],(String)data[3],((Boolean)data[4]).booleanValue(),((Integer)data[5]).intValue(),

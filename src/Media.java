@@ -6,7 +6,6 @@ import java.util.Scanner;
 /**
  * Media.java - Abstract superclass for all media items.
  * @author Kevin Prince
- *
  */
 public abstract class Media {
 	public static int MEDIA_COUNT = 0;
@@ -28,6 +27,15 @@ public abstract class Media {
 	protected int copies;
 	protected int checkoutLength; //Length of standard checkout in DAYS.
 	
+	/**
+	 * Parameterized constructor for Media
+	 * @param title The title of the media
+	 * @param genre The genre of the media
+	 * @param description A short description of the media
+	 * @param year A string containing the year the media was released
+	 * @param newRelease If it is a new release will be marked true, otherwise marked false
+	 * @param copies The number of identical copies a piece of media has
+	 */
 	public Media(String title,String genre,String description,String year,boolean newRelease,int copies) {
 		MEDIA_COUNT++;
 		this.title = title;
@@ -44,6 +52,10 @@ public abstract class Media {
 		LibrarySystem.getInstance().inventory.add(this);
 	}
 	
+	/**
+	 * Checks out a piece of media
+	 * @return The Media that was checked out
+	 */
 	public Media checkout() {
 		//TODO: Add hold functionality.
 		if(!this.checkedOut) {
@@ -57,7 +69,10 @@ public abstract class Media {
 		}	
 	}
 	
-	//Helper method for checking out copies/adding to waitlist.
+	/**
+	 * Helper method for checking out copies/adding to waitlist
+	 * @return The media that had another copy
+	 */
 	private Media copyCheckout() {
 		//If this item IS checked out, it'll check it's copies for an available one.
 		if(this.hasCopies()) {
@@ -75,6 +90,9 @@ public abstract class Media {
 		return null;
 	}
 	
+	/**
+	 * Renews a piece of media if it hasn't already been renewed 3 times
+	 */
 	public void renew() {
 		if(this.checkedOut && this.renewCount < 3) {
 			renewCount++;
@@ -106,7 +124,10 @@ public abstract class Media {
 		System.out.println("Success! " + this.title + " returned.");
 	}
 	
-	//Method is only called when item is fully checked out.
+	/**
+	 * Places a piece of media on hold
+	 * Method is only called when item is fully checked out
+	 */
 	private void placeHold() {
 		Scanner s = LibraryDriver.s;
 		System.out.println("There are no copies of this item available.");
@@ -163,7 +184,8 @@ public abstract class Media {
 	
 	/**
 	 * This method sets the rating of a media from 1 - 5, the user can also adds comments.
-	 * @param rate
+	 * @param rate The rating attached to the media
+	 * @param comment The comment to be added to the media
 	 */
 	public void addRating(int rate, String comment){
 		if(rate >= 1 && rate <=5) {
@@ -277,6 +299,12 @@ public abstract class Media {
 		return checkoutLength;
 	}
 
+	/**
+	 * An array containing the information of a piece of media
+	 * Used for copying media
+	 * A piece of media can have 
+	 * @return The array of information of the media
+	 */
 	protected Object[] copyMediaData() {
 		Object[] data = new Object[8];
 		data[0] = this.title;
@@ -299,7 +327,10 @@ public abstract class Media {
 		return ratingList;
 	}
 	
-	//Returns all copies of this media, based on title.  INCLUDES SELF!
+	/**
+	 * Returns all copies of this media, based on title.  INCLUDES SELF!
+	 * @return An array list of the copies of this specific media
+	 */
 	public ArrayList<Media> returnCopies() {
 		ArrayList<Media> copies = new ArrayList<Media>();
 		for(Media m:LibrarySystem.getInstance().inventory) {

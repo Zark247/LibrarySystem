@@ -11,7 +11,7 @@ public class DVD extends Media{
     private String[] actors;
 
     /**
-     *
+     * Parameterized constructor for DVD
      * @param title The name of the DVD
      * @param genre The genre of the DVD
      * @param description A brief description of the DVD
@@ -32,7 +32,11 @@ public class DVD extends Media{
 		  return director;
 	 }
     
-	@Override
+    @Override
+	/**
+	 * Creates a copy of the DVD
+	 * Overrides abstract copy() method from Media
+	 */
 	public void copy() {
 		Object[] data = super.copyMediaData();
 		DVD clone = new DVD((String)data[0],(String)data[1],(String)data[2],(String)data[3],((Boolean)data[4]).booleanValue(),((Integer)data[5]).intValue(),
