@@ -1,3 +1,16 @@
 {
-  "fees": []
+  "fees": [
+    {
+      "total": 45.60,
+      "mediaID": 1
+    },
+    {
+      "total": 30.20,
+      "mediaID": 6
+    },
+    {
+      "total": 54.25,
+      "mediaID": 7
+    }
+  ]
 }

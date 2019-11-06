@@ -1,3 +1,55 @@
 {
-  "books": []
+  "books": [
+    {
+      "checkedOut": false,
+      "year": "1957",
+      "author": "Dr. Seuss",
+      "description": "A cat.  In a hat?",
+      "title": "The Cat in the Hat",
+      "newRelease": false,
+      "copies": 3,
+      "ISBN": "039480001X",
+      "ratings": "[]",
+      "genre": "Children\u0027s",
+      "waitlist": "[]",
+      "publisher": "Random House",
+      "lastBorrowDate": "N/A",
+      "renewCount": 0,
+      "lastDueDate": "N/A"
+    },
+    {
+      "checkedOut": false,
+      "year": "1979",
+      "author": "Douglass Adams",
+      "description": "The internet\u0027s gonna love this.",
+      "title": "The Hitchhiker\u0027s Guide to the Galaxy",
+      "newRelease": false,
+      "copies": 2,
+      "ISBN": "9781447297017",
+      "ratings": "[]",
+      "genre": "Comedy",
+      "waitlist": "[]",
+      "publisher": "Pan Books",
+      "lastBorrowDate": "N/A",
+      "renewCount": 0,
+      "lastDueDate": "N/A"
+    },
+    {
+      "checkedOut": false,
+      "year": "1960",
+      "author": "Harper Lee",
+      "description": "The explosion of racial hate in an Alabama town is viewed by a little girl whose father defends a black man accused of rape.",
+      "title": "To Kill a Mockingbird",
+      "newRelease": false,
+      "copies": 1,
+      "ISBN": "9781428113701",
+      "ratings": "[]",
+      "genre": "Sourthern Fiction",
+      "waitlist": "[]",
+      "publisher": "J. B. Lippincott \u0026 Co.",
+      "lastBorrowDate": "N/A",
+      "renewCount": 0,
+      "lastDueDate": "N/A"
+    }
+  ]
 }

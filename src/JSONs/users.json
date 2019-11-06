@@ -28,7 +28,7 @@
       "password": "averagepassword",
       "isClosed": false,
       "children": "[]",
-      "fines": "[]",
+      "fines": "[1,2,3]",
       "name": "Average Name",
       "heldMedia": "[]",
       "id": 2,

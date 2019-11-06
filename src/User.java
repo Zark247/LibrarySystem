@@ -129,19 +129,19 @@ public abstract class User {
 	//Checks out the media returned by the Checkout method.
 	public void checkoutMedia(Media m)
 	{
-		Media checkoutAttempt = m.checkout();
-		if(this.checkedOutMedia.size() <= this.checkoutLimit) {
-			if(this.fineTotal() < 100.00) {
+		if(this.fineTotal() < 100.00) {
+			if(this.checkedOutMedia.size() <= this.checkoutLimit) {
+				Media checkoutAttempt = m.checkout();
 				if(checkoutAttempt != null) { //The checkout method returns a media if it's successful.  If it is, add it to this list.
 					this.checkedOutMedia.add(checkoutAttempt);
 					if(checkoutAttempt.getWaitlist().contains(this)) //If this user was on the waitlist, remove it.
 						checkoutAttempt.getWaitlist().remove(this);
 				}
 			} else {
-				System.out.println("Your fine total is above the maximum ($100)!  Please pay off your balance first.");
+				System.out.println("You have hit your maximum checkout limit!  Please return something first.");
 			}
-		} else {
-			System.out.println("You have hit your maximum checkout limit!  Please return something first.");
+		} else {	
+				System.out.println("Your fine total is above the maximum ($100)!  Please pay off your balance first.");
 		}
 	}
 	

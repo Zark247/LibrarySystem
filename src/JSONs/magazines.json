@@ -16,6 +16,23 @@
       "lastBorrowDate": "N/A",
       "renewCount": 0,
       "lastDueDate": "N/A"
+    },
+    {
+      "checkedOut": false,
+      "issue": 1,
+      "year": "1978",
+      "author": "Father Figure",
+      "description": "DIY WWII Fighter Jet",
+      "title": "Popular Mechanics",
+      "volume": 7,
+      "newRelease": false,
+      "copies": 0,
+      "ratings": "[]",
+      "genre": "Cameron Connors",
+      "waitlist": "[]",
+      "lastBorrowDate": "N/A",
+      "renewCount": 0,
+      "lastDueDate": "N/A"
     }
   ]
 }

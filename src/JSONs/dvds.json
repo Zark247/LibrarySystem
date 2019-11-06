@@ -14,6 +14,21 @@
       "lastBorrowDate": "N/A",
       "renewCount": 0,
       "lastDueDate": "N/A"
+    },
+    {
+      "checkedOut": false,
+      "year": "1997",
+      "director": "Roger Dolandson",
+      "description": "We\u0027re all gonna die, probably.",
+      "title": "Dante\u0027s Peak",
+      "newRelease": false,
+      "copies": 0,
+      "ratings": "[]",
+      "genre": "Thriller",
+      "waitlist": "[]",
+      "lastBorrowDate": "N/A",
+      "renewCount": 0,
+      "lastDueDate": "N/A"
     }
   ]
 }
