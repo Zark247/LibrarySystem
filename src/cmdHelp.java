@@ -18,6 +18,7 @@ public class cmdHelp implements Command {
 		System.out.println("payfine <media> - pays the fine tied with the media, by title.  Must be logged in.  Will prompt for an amount.  Use 'all' to pay all fines.");
 		System.out.println("seefines - shows your current fines.  Must be logged in.");
 		System.out.println("wishlist - shows your current wishlist.  Must be logged in.");
+		System.out.println("viewcheckedout - shows your current checked out media");
 		System.out.println("search <term> - Searches the current inventory using specified term.");
 		System.out.println("viewmedia <media> - Displays information on the specified media, by title.");
 		System.out.println("rate <media> - Rates the media specified, by title.  Will prompt for specific rating.");

@@ -36,6 +36,7 @@ public class InputHandler {
         commands.put("addmedia", new cmdAddMedia());
         commands.put("approveteacher", new cmdApproveTeacher());
         commands.put("retiremedia", new cmdRetireMedia());
+        commands.put("viewcheckedout", new cmdCheckedOutMedia());
     }
 
     /**
