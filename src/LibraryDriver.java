@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Scanner;
 
 /**
@@ -14,10 +15,15 @@ public class LibraryDriver {
 		System.out.println("Welcome to the library!"
 		+"\nType \"help\" for a list of commands.");
 		while(!(input.toLowerCase().equals("quit"))) {
+			LibrarySystem.getInstance().updateSystime(Calendar.getInstance());
+			if(input.equalsIgnoreCase("logout")) {
+				InputHandler.changeUser(null);
+			}
 			if(InputHandler.currentUser == null)
 				System.out.print("guest> ");
-			else
+			else {
 				System.out.print(InputHandler.currentUser.getUsername() + "> ");
+			}
 			input = s.nextLine();
 			String[] inputs = input.split(" ");
 			InHandle.inputCommand(inputs);

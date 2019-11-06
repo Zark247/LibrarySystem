@@ -9,11 +9,10 @@ public class cmdLogin implements Command {
 	public void execute(String argument, User u) {
 		Scanner s = LibraryDriver.s;
 		System.out.print("Username: ");
-		String email = s.next();
-		s.nextLine();
+		String userName = s.nextLine();
 		System.out.print("Password: ");
 		String password = s.nextLine();
-		LibrarySystem.getInstance().login(email, password);
+		LibrarySystem.getInstance().login(userName, password);
 		}
 
 	public boolean requiresUser() {

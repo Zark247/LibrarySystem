@@ -52,7 +52,7 @@ public class ChildUser extends User{
 	 */
 	public void changeToAverageUser() {
 		User user = new AverageUser(this.name, this.dateOfBirth, this.address, this.email,
-				this.phoneNumber, this.username, this.password, this.id = id);
+				this.phoneNumber, this.username, this.password, this.id);
 		USER_COUNT--; // Decrement user count because creating a new user increments it,and we are just switching over user types
 	}
 	

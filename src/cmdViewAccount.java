@@ -7,7 +7,7 @@ public class cmdViewAccount implements Command {
      * method to "view account"
      */
     public void execute(String argument, User u) {
-        System.out.println("Account type: " + u.accountType);
+        System.out.println(u);
     }
 
     /**

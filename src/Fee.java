@@ -51,7 +51,7 @@ public class Fee {
     }
     
     public String toString() {
-    	return "You fine for \"" + this.media.title + "\" is $" + this.total;
+    	return "Your fine for \"" + this.media.title + "\" is: $" + this.total;
     }
     
     public int returnId() {

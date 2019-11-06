@@ -1,12 +1,11 @@
 import java.util.Scanner;
-//TODO: Need to save user information
 /**
  * cmdAccountCreation.java - Command to create an account
  */
 public class cmdAccountCreation implements Command {
 
     /**
-     * //TODO: write explanation here
+     * Method for account creation
      */
     public void execute(String argument, User u) {
         Scanner s = LibraryDriver.s;
@@ -19,7 +18,7 @@ public class cmdAccountCreation implements Command {
             String lastName = s.nextLine();
             System.out.println("When is your birthday? Enter in a format that matches: 00-00-00");
             String birthday = s.nextLine();
-            System.out.println("What is your address? Enter in a format that matches: 000 Blank St. Ferguson, CA");
+            System.out.println("What is your address? Enter in a format that matches: 000 Blank St. Ferguson, CA 22222");
             String address = s.nextLine();
             System.out.println("Enter your email address: ");
             String eAddress = s.nextLine();
@@ -28,13 +27,13 @@ public class cmdAccountCreation implements Command {
             System.out.println("Enter the username you would like to use: ");
             String userName = s.nextLine();
             System.out.println("Enter the password you would like to use: ");
-            String passWord = s.nextLine();
+            String password = s.nextLine();
             System.out.println("Are you a teacher? (Requires Verification) (yes/no)");
             String teacher = s.nextLine();
-            int passwordLength = passWord.length();
-            String x = "";
+            int passwordLength = password.length();
+            StringBuilder x = new StringBuilder();
             for(int i = 0; i <passwordLength; ++i) {
-                x+="X";
+                x.append("X");
             }
             String name = firstName + " " + lastName;
             int id = (int)(Math.random()*((10000-1)+1))+1;
@@ -46,18 +45,16 @@ public class cmdAccountCreation implements Command {
             +"\nUser name: " + userName
             +"\nPassword: " + x
             +"\nUser ID: " + id);
-            s.nextLine();
             if(teacher.equalsIgnoreCase("yes"))
-            	LibrarySystem.getInstance().createAccount(3, lastName, birthday, address, eAddress, phoneNumber, userName, passWord, id);
+            	LibrarySystem.getInstance().createAccount(3, name, birthday, address, eAddress, phoneNumber, userName, password, id);
             else
-            	LibrarySystem.getInstance().createAccount(2, lastName, birthday, address, eAddress, phoneNumber, userName, passWord, id);
-            
+            	LibrarySystem.getInstance().createAccount(2, name, birthday, address, eAddress, phoneNumber, userName, password, id);
+
         } else if(input.equalsIgnoreCase("No")) {
             System.out.println("You are under the age of 16, unfortunately you need to have a guardian/parent help you set up an account.");
         } else {
             System.out.println("Incorrect input, try again.");
         }
-
     }
 
     /**
