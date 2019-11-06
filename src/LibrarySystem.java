@@ -98,6 +98,10 @@ public class LibrarySystem {
 							"\nYou have " + user.getNotifications().size() + " notification(s):");
 					for (String notification : user.getNotifications())
 						System.out.println(notification);
+					
+					System.out.println("You have " + user.getFines().size() + " fine(s):");
+					for (Fee f : user.getFines())
+						System.out.println(f);
 					return;
 				}
 			}
