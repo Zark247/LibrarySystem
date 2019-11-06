@@ -60,7 +60,6 @@ public abstract class Media {
 	 * @return The Media that was checked out
 	 */
 	public Media checkout() {
-		//TODO: Add hold functionality.
 		if(!this.checkedOut) {
 			this.checkedOut = true;
 			System.out.println("You have successfully checked out " + this.title + " on " + LibrarySystem.getInstance().returnSystime().getTime());
@@ -87,9 +86,8 @@ public abstract class Media {
 					return m;
 				}
 			}
-		} else {
-			placeHold();
 		}
+		placeHold();
 		return null;
 	}
 	
