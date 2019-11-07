@@ -37,7 +37,7 @@ public class cmdAccountCreation implements Command {
                 x.append("X");
             }
             String name = firstName + " " + lastName;
-            int id = (int)(Math.random()*((10000-1)+1))+1;
+            int id = (int)(Math.random()*((100000-1)+1))+1;
             System.out.println("Name: " + name
             +"\nBirthday: " + birthday
             +"\nAddress: " + address

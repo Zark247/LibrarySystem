@@ -8,6 +8,7 @@ public class cmdReturnMedia implements Command {
 		for(Media m:u.getCheckedOutMedia()) {
 			if(m.getTitle().toUpperCase().equals(argument.toUpperCase())) {
 				u.returnMedia(m);
+				System.out.println(m.getTitle() + " has been successfully returned.");
 				return;
 			}
 		}
