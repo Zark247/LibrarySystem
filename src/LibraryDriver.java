@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 /**
  * LibraryDriver.java - A driver class which takes in input and runs commands.
- * @author Kevin Prince
+ * @author Team Proxi
  */
 public class LibraryDriver {
 	public static Scanner s = new Scanner(System.in);

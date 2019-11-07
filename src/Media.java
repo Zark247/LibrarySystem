@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 /**
  * Media.java - Abstract superclass for all media items.
- * @author Kevin Prince
+ * @author Team Proxi
  */
 public abstract class Media {
 	public static int MEDIA_COUNT = 0;

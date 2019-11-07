@@ -1,6 +1,7 @@
 
 /**
  * AudioBook.java - Submedia item representing audiobooks.
+ * @author Team Proxi
  */
 public class AudioBook extends Media{
 
@@ -31,8 +32,7 @@ public class AudioBook extends Media{
 	public String getNarrator() {
 		return narrator;
 	}
-	
-	@Override
+
 	/**
 	 * Creates a copy of the audiobook
 	 * Overrides abstract copy() method from Media

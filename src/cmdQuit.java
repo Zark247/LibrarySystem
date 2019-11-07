@@ -1,7 +1,6 @@
 /**
  * cmdQuit.java - Simply sends a goodbye message.
- * @author Kevin
- *
+ * @author Team Proxi
  */
 public class cmdQuit implements Command {
 

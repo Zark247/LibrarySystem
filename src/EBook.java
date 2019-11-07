@@ -1,6 +1,7 @@
 
 /**
  * EBook.java - Sub-media item representing EBooks
+ * @author Team Proxi
  */
 public class EBook extends Media{
 

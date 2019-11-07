@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 /**
  * User.java - Abstract superclass for all users.
- *
+ * @author Team Proxi
  */
 public abstract class User {
 	public static int USER_COUNT = 0;
@@ -112,9 +112,9 @@ public abstract class User {
 			System.out.println("Wishlist is empty");
 		}
 		else {
-			System.out.println("Your wishlist");
+			System.out.println("Your wishlist:");
 			for (Media m : wishlist)
-				System.out.println(m);	
+				System.out.println(m.getTitle());
 		}
 	}
 	

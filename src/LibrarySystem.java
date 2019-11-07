@@ -3,7 +3,7 @@ import java.util.Calendar;
 
 /**
  * LibrarySystem.java - Class for the library system information.
- * @author Kevin Prince
+ * @author Team Proxi
  *
  */
 public class LibrarySystem {

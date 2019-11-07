@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 /**
  * cmdPayFines.java - Command to "pay fines"
+ * @author Team Proxi
  */
 public class cmdPayFines implements Command {
     /**

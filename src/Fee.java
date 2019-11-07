@@ -1,6 +1,6 @@
 /**
  * Fee.java - Class representing fees.  Have an associated media member.
- *
+ * @author Team Proxi
  */
 public class Fee {
 	public static int FEE_COUNT = 0;

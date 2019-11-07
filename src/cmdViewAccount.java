@@ -1,5 +1,6 @@
 /**
  * cmdViewAccount.java - Command to "view account"
+ * @author Team Proxi
  */
 public class cmdViewAccount implements Command {
 

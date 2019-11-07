@@ -1,5 +1,6 @@
 /**
  * cmdLogOut.java - Command to log out of an account
+ * @author Team Proxi
  */
 public class cmdLogOut implements Command {
 

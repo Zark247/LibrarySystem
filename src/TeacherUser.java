@@ -1,7 +1,7 @@
 
 /**
  * TeacherUser.java - A type of user that is the teacher user (should be approved by a librarian).
- * @author Cameron Brandenburg
+ * @author Team Proxi
  */
 public class TeacherUser extends User{
 	

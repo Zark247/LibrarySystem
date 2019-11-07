@@ -1,6 +1,12 @@
-
+/**
+ * cmdApproveTeacher - Command to approve a teacher account
+ * @author Team Proxi
+ */
 public class cmdApproveTeacher implements Command {
 
+	/**
+	 * Method to approve a teacher account
+	 */
 	public void execute(String argument, User u) {
 		if(u.getAccountType().equals("Librarian")) {
 			User teacher = null;;

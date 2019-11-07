@@ -1,5 +1,6 @@
 /**
  * cmdCheckoutMedia.java - Command to check media out
+ * @author Team Proxi
  */
 public class cmdCheckoutMedia implements Command {
     /**
