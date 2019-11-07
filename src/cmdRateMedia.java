@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 /**
  * cmdRateMedia.java - Command to "rate" a specific type of media
+ * @author Team Proxi
  */
 
-//TODO: Rate method for user needs to written
 public class cmdRateMedia implements Command {
     /**
      * Method to "rate" media
@@ -26,7 +26,6 @@ public class cmdRateMedia implements Command {
         	String comment = s.nextLine();
         	mediaRate.addRating(rate, comment);
         }
-        //user.rate(media, rating);
     }
 
     /**

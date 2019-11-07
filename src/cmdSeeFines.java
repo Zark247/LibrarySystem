@@ -1,5 +1,6 @@
 /**
  * cmdSeeFines.java - Command to "see fines"
+ * @author Team Proxi
  */
 public class cmdSeeFines implements Command {
     /**

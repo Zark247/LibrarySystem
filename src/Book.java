@@ -1,6 +1,7 @@
 
 /**
  * Book.java - Submedia item representing books.
+ * @author Team Proxi
  */
 public class Book extends Media{
     private String author, publisher;
@@ -35,8 +36,7 @@ public class Book extends Media{
 	public String getISBN() {
 		return ISBN;
 	}
-	
-	@Override
+
 	/**
 	 * Creates a copy of the book
 	 * Overrides abstract copy() method from Media

@@ -37,6 +37,7 @@ public class InputHandler {
         commands.put("approveteacher", new cmdApproveTeacher());
         commands.put("retiremedia", new cmdRetireMedia());
         commands.put("viewcheckedout", new cmdCheckedOutMedia());
+        commands.put("addwishlist", new cmdAddWishList());
     }
 
     /**

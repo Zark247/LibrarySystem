@@ -1,7 +1,6 @@
 /**
  * cmdMediaRatings.java - Command to return ratings for an item.
- * @author Kevin
- *
+ * @author Team Proxi
  */
 public class cmdMediaRatings implements Command {
 

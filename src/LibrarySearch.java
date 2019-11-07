@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 /**
  * LibrarySearch.java - A search function to search and sort the media within the LibrarySystem
- * @author Cameron Brandenburg
+ * @author Team Proxi
  */
 public class LibrarySearch {
 

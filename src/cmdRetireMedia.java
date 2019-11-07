@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+/**
+ * cmdRetireMedia.java - Command for librarians to retire media
+ * @author Team Proxi
+ */
 public class cmdRetireMedia implements Command {
 
 	public void execute(String argument, User u) {

@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 /**
  * cmdCloseAccount.java - Command to "close a user account"
+ * @author Team Proxi
  */
 public class cmdCloseAccount implements Command {
     /**

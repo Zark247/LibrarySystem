@@ -1,7 +1,7 @@
 
 /**
  * ChildUser.java - A type of user that is a child (should be linked to a parent)
- * @author Cameron Brandenburg
+ * @author Team Proxi
  */
 public class ChildUser extends User{
 	User parent;

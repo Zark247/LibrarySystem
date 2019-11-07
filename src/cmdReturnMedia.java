@@ -1,7 +1,6 @@
 /**
  * cmdReturnMedia.java - Returns media by title.
- * @author Kevin
- *
+ * @author Team Proxi
  */
 public class cmdReturnMedia implements Command {
 

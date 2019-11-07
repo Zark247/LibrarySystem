@@ -1,6 +1,7 @@
 
 /**
  * DVD.java - Sub-media item representing DVDs.
+ * @author Team Proxi
  */
 public class DVD extends Media{
 

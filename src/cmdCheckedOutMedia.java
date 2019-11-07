@@ -1,8 +1,7 @@
 
 /**
- * 
- * @author TeamProxi
  *
+ * @author TeamProxi
  */
 public class cmdCheckedOutMedia implements Command{
 

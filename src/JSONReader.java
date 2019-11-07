@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  * JSONReader.java - A class to handle loading/reading JSON files to the system
- * @author Kevin Prince
+ * @author Team Proxi
  *
  */
 public class JSONReader {

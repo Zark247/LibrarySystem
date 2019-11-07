@@ -1,5 +1,6 @@
 /**
  * cmdSearch.java - Command to search the library system
+ * @author Team Proxi
  */
 public class cmdSearch implements Command {
 	/**

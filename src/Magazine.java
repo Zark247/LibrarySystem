@@ -1,6 +1,7 @@
 
 /**
  * Magazine.java - Sub-media item to represent Magazines
+ * Team Proxi
  */
 public class Magazine extends Media{
 

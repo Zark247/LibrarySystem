@@ -1,5 +1,6 @@
 /**
  * cmdSeeWishList.java - Command to "see wish list"
+ * @author Team Proxi
  */
 public class cmdSeeWishList implements Command {
     /**

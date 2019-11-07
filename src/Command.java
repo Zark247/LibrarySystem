@@ -1,5 +1,6 @@
 /**
  * Command.java - Interface for Commands
+ * @author Team Proxi
  */
 public interface Command {
 

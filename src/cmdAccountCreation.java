@@ -1,6 +1,7 @@
 import java.util.Scanner;
 /**
  * cmdAccountCreation.java - Command to create an account
+ * @author Team Proxi
  */
 public class cmdAccountCreation implements Command {
 
@@ -57,10 +58,6 @@ public class cmdAccountCreation implements Command {
         }
     }
 
-    /**
-     *
-     * @return true if the user account is not closed, false if account is closed
-     */
     public boolean requiresUser() {
         return false;
     }
