@@ -28,6 +28,9 @@ public class JSONReader {
 	
 	private ArrayList<Integer[]> waitlists = new ArrayList<Integer[]>();
 	
+	/**
+	 * Loads all JSON files
+	 */
 	public void loadDatabase() {
 		loadBooks();
 		loadAudioBooks();
@@ -40,6 +43,9 @@ public class JSONReader {
 		System.out.println("Data loaded!");
 	}
 	
+	/**
+	 * Writes to all the JSON files
+	 */
 	public void writeDatabase() {
 		writeUsers();
 		writeBooks();
@@ -51,7 +57,9 @@ public class JSONReader {
 		System.out.println("Data saved!");
 	}
 	
-	//Load all users from JSON file.
+	/**
+	 * Loads all users from the JSON file
+	 */
 	private void loadUsers() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.USERS_FILE_NAME;			//Create the file reader
@@ -92,6 +100,9 @@ public class JSONReader {
 		}
 	}
 	
+	/**
+	 * Loads all the books from the JSON file
+	 */
 	private void loadBooks() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.BOOKS_FILE_NAME;
@@ -124,6 +135,9 @@ public class JSONReader {
 		}
 	}
 	
+	/**
+	 * Loads all the audiobooks from the JSON file
+	 */
 	private void loadAudioBooks() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.AUDIOBOOKS_FILE_NAME;
@@ -154,6 +168,9 @@ public class JSONReader {
 		}
 	}
 	
+	/**
+	 * Loads all the DVDs from the JSON file
+	 */
 	private void loadDVDs() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.DVDS_FILE_NAME;
@@ -184,6 +201,9 @@ public class JSONReader {
 		}
 	}
 	
+	/**
+	 * Loads all the EBooks from the JSON file
+	 */
 	private void loadEBooks() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.EBOOKS_FILE_NAME;
@@ -213,6 +233,9 @@ public class JSONReader {
 		}
 	}
 	
+	/**
+	 * Loads all the Magazines from the JSON file
+	 */
 	private void loadMagazines() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.MAGAZINES_FILE_NAME;
@@ -244,6 +267,9 @@ public class JSONReader {
 		}
 	}
 	
+	/**
+	 * Loads all the fees from the JSON file
+	 */
 	private void loadFees() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.FEES_FILE_NAME;
@@ -268,6 +294,9 @@ public class JSONReader {
 		}
 	}
 	
+	/**
+	 * Writes the User data to the JSON file
+	 */
 	private void writeUsers() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.USERS_FILE_NAME;
@@ -301,6 +330,9 @@ public class JSONReader {
 		}
 	}
 	
+	/**
+	 * Writes the AudioBook data to the JSON
+	 */
 	private void writeAudioBooks() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.AUDIOBOOKS_FILE_NAME;
@@ -328,6 +360,9 @@ public class JSONReader {
 			}
 	}
 	
+	/**
+	 * Writes all Book data to the JSON file
+	 */
 	private void writeBooks() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.BOOKS_FILE_NAME;
@@ -356,6 +391,9 @@ public class JSONReader {
 			}
 	}
 	
+	/**
+	 * Writes all DVD data to the JSON file
+	 */
 	private void writeDVDs() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.DVDS_FILE_NAME;
@@ -383,6 +421,9 @@ public class JSONReader {
 			}
 	}
 	
+	/**
+	 * Writes all EBook data to the JSON file
+	 */
 	private void writeEBooks() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.EBOOKS_FILE_NAME;
@@ -409,6 +450,9 @@ public class JSONReader {
 			}
 	}
 	
+	/**
+	 * Writes all Magazine data to the JSON file
+	 */
 	private void writeMagazines() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.MAGAZINES_FILE_NAME;
@@ -437,6 +481,9 @@ public class JSONReader {
 			}
 	}
 	
+	/**
+	 * Writes all Fee data to the JSON file
+	 */
 	private void writeFees() {
 		try {
 			String fileDest = JSON_FOLDER_DEST + JSONReader.FEES_FILE_NAME;
@@ -460,21 +507,28 @@ public class JSONReader {
 		}
 	}
 	
-	//Loads waitlist.  Due to load order, waitlists must be loaded after users.
-		private void loadWaitLists() {
-			for(int i = 1;i < LibrarySystem.getInstance().inventoryNoCopies().size();i++) {
-				if(waitlists.get(i).length != 0)
-				for(int s:waitlists.get(i)) {
-					ArrayList<User> waitlisttemp = new ArrayList<User>();
-					for(User u:LibrarySystem.getInstance().users)
-						if(u.getId() == s)
-							waitlisttemp.add(u);
-					LibrarySystem.getInstance().inventoryNoCopies().get(i).setWaitlist(waitlisttemp);
-				}
+	/**
+	 * Loads waitlist.  Due to load order, waitlists must be loaded after users.
+	 */
+	private void loadWaitLists() {
+		for(int i = 1;i < LibrarySystem.getInstance().inventoryNoCopies().size();i++) {
+			if(waitlists.get(i).length != 0)
+			for(int s:waitlists.get(i)) {
+				ArrayList<User> waitlisttemp = new ArrayList<User>();
+				for(User u:LibrarySystem.getInstance().users)
+					if(u.getId() == s)
+						waitlisttemp.add(u);
+				LibrarySystem.getInstance().inventoryNoCopies().get(i).setWaitlist(waitlisttemp);
 			}
 		}
+	}
 	
-	//Common detail helper method for all media
+	/**
+	 * Common detail helper method for all media
+	 * @param mediadetail The common details shared between all types of media
+	 * @param a The media that the details are added to
+	 * @return
+	 */
 	private JSONObject addMediaDetails(JSONObject mediadetail, Media a) {
 		mediadetail.put("title",a.getTitle());
 		mediadetail.put("genre",a.getGenre());
@@ -482,8 +536,6 @@ public class JSONReader {
 		mediadetail.put("year",a.getYearOfRelease());
 		mediadetail.put("newRelease",a.isNewRelease());
 		mediadetail.put("copies",a.getCopies());
-		mediadetail.put("reviewCount",a.getReviewCount());
-		mediadetail.put("rating",a.getRating());
 		
 		mediadetail.put("checkedOut",a.isCheckedOut());
 		if(a.getLastBorrowDate() != null) {
@@ -506,12 +558,15 @@ public class JSONReader {
 		return mediadetail;
 	}
 	
-	//Load common data for all media.
+	/**
+	 * Load common data for all media
+	 * @param loadedBook The media that has been loaded
+	 * @param bookJSON The JSON Object that the data is loaded from
+	 */
 	private void loadMediaData(Media loadedBook,JSONObject bookJSON) {
 		try { 
 		loadedBook.setCheckedOut(((Boolean)bookJSON.get("checkedOut")).booleanValue());
-		loadedBook.setReviewCount(((Long)bookJSON.get("reviewCount")).intValue());
-		loadedBook.setRating(((Double)bookJSON.get("rating")).doubleValue());
+		
 		loadedBook.setRenewCount((((Long)bookJSON.get("renewCount")).intValue()));
 		if(!((String)bookJSON.get("lastBorrowDate")).equals("N/A")) {
 			loadedBook.setLastBorrowDate((java.util.Date)(DateFormat.getInstance().parse((String) bookJSON.get("lastBorrowDate"))));
@@ -536,7 +591,11 @@ public class JSONReader {
 		}
 	}
 	
-	//Helper method to load fees.
+	/**
+	 * Helper method to load fees.
+	 * @param u The User that the fees are attached to
+	 * @param userJSON The JSON Object that the data is loaded from
+	 */
 	private void loadFees(User u, JSONObject userJSON) {
 		try {
 			JSONArray feeArray;
@@ -555,6 +614,11 @@ public class JSONReader {
 			}
 	}
 	
+	/**
+	 * Helper method to load notifications
+	 * @param u The user that the notifications are attached to
+	 * @param userJSON The JSON Object that the data is loaded from
+	 */
 	private void loadNotifications(User u, JSONObject userJSON) {
 		try {
 			JSONArray notifications = (JSONArray) new JSONParser().parse((String) userJSON.get("notifications"));
@@ -569,6 +633,11 @@ public class JSONReader {
 			}
 	}
 	
+	/**
+	 * Helper method to load the children of a user
+	 * @param user The user that the childre are attached to
+	 * @param userJSON The JSON object that the data is loaded from
+	 */
 	private void loadChildren(User user, JSONObject userJSON) {
 		try {
 			JSONArray children = (JSONArray) new JSONParser().parse((String) userJSON.get("children"));
@@ -585,6 +654,11 @@ public class JSONReader {
 			}
 	}
 	
+	/**
+	 * Helper method to load a User's wishlist
+	 * @param u The user whose wishlist is loaded
+	 * @param userJSON The JSON object that the data is loaded from
+	 */
 	private void loadWishlist(User u, JSONObject userJSON) {
 		try {
 			JSONArray wishlist = (JSONArray) new JSONParser().parse((String) userJSON.get("wishlist"));
@@ -602,6 +676,11 @@ public class JSONReader {
 			}
 	}
 	
+	/**
+	 * Helper method to load the list of a user's checked out media
+	 * @param u The user whose list to load
+	 * @param userJSON The JSON object that the data is loaded from
+	 */
 	private void loadCheckedOut(User u, JSONObject userJSON) {
 		try {
 			JSONArray checkedout = (JSONArray) new JSONParser().parse((String) userJSON.get("checkedOutMedia"));
@@ -620,6 +699,11 @@ public class JSONReader {
 			}
 	}
 	
+	/**
+	 * A helper method to load the list of a User's held media
+	 * @param u The user whose list to load
+	 * @param userJSON The JSON object that the data is loaded from
+	 */
 	private void loadHeldMedia(User u, JSONObject userJSON) {
 		try {
 			JSONArray heldmedia = (JSONArray) new JSONParser().parse((String) userJSON.get("heldMedia"));
@@ -637,80 +721,85 @@ public class JSONReader {
 			}
 	}
 	
-	//Helper method to write all user arrays.
-		private void writeUserArrays(JSONObject userdetail, User u) {
-			JSONArray fines = new JSONArray();
-			for(Fee f: u.getFines())
-				fines.add(f.returnId());
-			userdetail.put("fines", fines.toJSONString());
-			
-			JSONArray wishlist = new JSONArray();
-			for(Media m: u.getWishlist())
-				wishlist.add(m.returnId());
-			userdetail.put("wishlist", wishlist.toJSONString());
-			
-			JSONArray notifications = new JSONArray();
-			for(String n: u.getNotifications())
-				notifications.add(n);
-			userdetail.put("notifications",notifications.toJSONString());
-			
-			userdetail.put("isClosed",u.isClosed());
-			JSONArray children = new JSONArray();
-			for(User c: u.getChildren())
-				children.add(c.getId());
-			userdetail.put("children", children.toJSONString());
-			
-			JSONArray checkedout = new JSONArray();
-			for(Media m: u.getCheckedOutMedia())
-				checkedout.add(m.returnId());
-			userdetail.put("checkedOutMedia",checkedout.toJSONString());
-			
-			JSONArray heldmedia = new JSONArray();
-			for(Media m: u.getHeldMedia())
-				heldmedia.add(m.returnId());
-			userdetail.put("heldMedia",heldmedia.toJSONString());
-		}
+	/**
+	 * Helper method to write all user arrays.
+	 * @param userdetail A JSON object of all the data attached to a user
+	 * @param u The user to write the data to 
+	 */
+	private void writeUserArrays(JSONObject userdetail, User u) {
+		JSONArray fines = new JSONArray();
+		for(Fee f: u.getFines())
+			fines.add(f.returnId());
+		userdetail.put("fines", fines.toJSONString());
 		
+		JSONArray wishlist = new JSONArray();
+		for(Media m: u.getWishlist())
+			wishlist.add(m.returnId());
+		userdetail.put("wishlist", wishlist.toJSONString());
 		
-		//Private methods to access only one type of media.
-		private ArrayList<Book> returnInventoryBooks() {
-			ArrayList<Book> books = new ArrayList<Book>();
-			for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
-				if(m instanceof Book)
-					books.add((Book) m);
-			}
-			return books;
+		JSONArray notifications = new JSONArray();
+		for(String n: u.getNotifications())
+			notifications.add(n);
+		userdetail.put("notifications",notifications.toJSONString());
+			
+		userdetail.put("isClosed",u.isClosed());
+		JSONArray children = new JSONArray();
+		for(User c: u.getChildren())
+			children.add(c.getId());
+		userdetail.put("children", children.toJSONString());
+		
+		JSONArray checkedout = new JSONArray();
+		for(Media m: u.getCheckedOutMedia())
+			checkedout.add(m.returnId());
+		userdetail.put("checkedOutMedia",checkedout.toJSONString());
+		
+		JSONArray heldmedia = new JSONArray();
+		for(Media m: u.getHeldMedia())
+			heldmedia.add(m.returnId());
+		userdetail.put("heldMedia",heldmedia.toJSONString());
+	}	
+		
+	/**
+	 * Creates an ArrayList for each type of media
+	 */
+	private ArrayList<Book> returnInventoryBooks() {
+		ArrayList<Book> books = new ArrayList<Book>();
+		for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
+			if(m instanceof Book)
+				books.add((Book) m);
 		}
-		private ArrayList<AudioBook> returnInventoryAudioBooks() {
-			ArrayList<AudioBook> AudioBooks = new ArrayList<AudioBook>();
-			for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
-				if(m instanceof AudioBook)
-					AudioBooks.add((AudioBook) m);
-			}
-			return AudioBooks;
+		return books;
+	}
+	private ArrayList<AudioBook> returnInventoryAudioBooks() {
+		ArrayList<AudioBook> AudioBooks = new ArrayList<AudioBook>();
+		for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
+			if(m instanceof AudioBook)
+				AudioBooks.add((AudioBook) m);
 		}
-		private ArrayList<DVD> returnInventoryDVDs() {
-			ArrayList<DVD> DVDs = new ArrayList<DVD>();
-			for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
-				if(m instanceof DVD)
-					DVDs.add((DVD) m);
-			}
-			return DVDs;
+		return AudioBooks;
+	}
+	private ArrayList<DVD> returnInventoryDVDs() {
+		ArrayList<DVD> DVDs = new ArrayList<DVD>();
+		for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
+			if(m instanceof DVD)
+				DVDs.add((DVD) m);
 		}
-		private ArrayList<EBook> returnInventoryEBooks() {
-			ArrayList<EBook> EBooks = new ArrayList<EBook>();
-			for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
-				if(m instanceof EBook)
-					EBooks.add((EBook) m);
-			}
-			return EBooks;
+		return DVDs;
+	}
+	private ArrayList<EBook> returnInventoryEBooks() {
+		ArrayList<EBook> EBooks = new ArrayList<EBook>();
+		for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
+			if(m instanceof EBook)
+				EBooks.add((EBook) m);
 		}
-		private ArrayList<Magazine> returnInventoryMagazines() {
-			ArrayList<Magazine> Magazines = new ArrayList<Magazine>();
-			for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
-				if(m instanceof Magazine)
-					Magazines.add((Magazine) m);
-			}
-			return Magazines;
+		return EBooks;
+	}
+	private ArrayList<Magazine> returnInventoryMagazines() {
+		ArrayList<Magazine> Magazines = new ArrayList<Magazine>();
+		for(Media m:LibrarySystem.getInstance().inventoryNoCopies()) {
+			if(m instanceof Magazine)
+				Magazines.add((Magazine) m);
 		}
+		return Magazines;
+	}
 }
