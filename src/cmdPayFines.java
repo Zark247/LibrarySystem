@@ -12,6 +12,7 @@ public class cmdPayFines implements Command {
     public void execute(String arg,User u) {
     	if(arg.toUpperCase().equals("ALL")) { //If payfine all, pay all fines.
     		System.out.println("Paying all fines...");
+    		System.out.println(u.fineTotal() + " have been paid. Thank you");
     		u.setFines(new ArrayList<Fee>());
     	} else {
     		String fineTitle = null;
