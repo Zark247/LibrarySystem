@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author Team Proxi
  */
 public abstract class Media {
-	public static int MEDIA_COUNT = 0;
+	public static int media_count = 0;
 
 	protected String title;
 	protected String genre;
@@ -38,7 +38,7 @@ public abstract class Media {
 	 * @param copies The number of identical copies a piece of media has
 	 */
 	public Media(String title,String genre,String description,String year,boolean newRelease,int copies) {
-		MEDIA_COUNT++;
+		media_count++;
 		this.title = title;
 		this.genre = genre;
 		this.description = description;
@@ -47,7 +47,7 @@ public abstract class Media {
 		this.copies = copies;
 		this.renewCount = 0;
 		this.checkedOut = false;
-		this.id = MEDIA_COUNT;
+		this.id = media_count;
 		this.waitlist = new ArrayList<User>();
 		this.ratingList = new ArrayList<String>();
 		LibrarySystem.getInstance().inventory.add(this);
@@ -216,7 +216,10 @@ public abstract class Media {
 			ratings += m.getRating();
 			ratingCount += m.getReviewCount();
 		}
-		this.rating = (ratings + newRating)/(ratingCount + 1);
+		if(ratingCount != 0)
+			this.rating = (ratings + newRating)/2;
+		else
+			this.rating = (ratings + newRating);
 		reviewCount++;
 		return this.rating;
 	}

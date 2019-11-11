@@ -88,6 +88,7 @@ public class LibrarianUser extends User{
 			String newNarr = s.next();
 			AudioBook temp = new AudioBook(title,newGenre,newDesc,newYear,newRelease,1,newAuth,newNarr);
 			System.out.println("Success!  New audiobook added.");
+			notifyWishlists(title);
 			return;
 		}
 		if(mediaType.toUpperCase().equals("BOOK")) {
@@ -102,6 +103,7 @@ public class LibrarianUser extends User{
 			s.nextLine();
 			Book temp = new Book(title,newGenre,newDesc,newYear,newRelease,1,newAuth,newISBN,newPubl);
 			System.out.println("Success!  New book added.");
+			notifyWishlists(title);
 			return;
 		}
 		if(mediaType.toUpperCase().equals("DVD")) {
@@ -109,6 +111,7 @@ public class LibrarianUser extends User{
 			String newActors = s.next();
 			DVD temp = new DVD(title,newGenre,newDesc,newYear,newRelease,1,newActors);
 			System.out.println("Success!  New DVD added.");
+			notifyWishlists(title);
 			return;
 		}
 		if(mediaType.toUpperCase().equals("EBOOK")) {
@@ -117,6 +120,7 @@ public class LibrarianUser extends User{
 			s.nextLine();
 			EBook temp = new EBook(title,newGenre,newDesc,newYear,newRelease,1,newAuth);
 			System.out.println("Success!  New Ebook added.");
+			notifyWishlists(title);
 			return;
 		}
 		if(mediaType.toUpperCase().equals("MAGAZINE")) {
@@ -131,7 +135,24 @@ public class LibrarianUser extends User{
 			s.nextLine();
 			Magazine temp = new Magazine(title,newGenre,newDesc,newYear,newRelease,1,newAuth, newVol, newIssue);
 			System.out.println("Success!  New magazine added.");
+			notifyWishlists(title);
 			return;
+		}
+	}
+	
+	/**
+	 * Private helper method to notify users of new media if it's on their wishlist.
+	 * @param title the title of the new media.
+	 */
+	private void notifyWishlists(String title) {
+		for(User u:LibrarySystem.getInstance().users) {
+			for(String wish:u.getWishlist()) {
+				if(wish.equalsIgnoreCase(title)) {
+					u.notify("An item from your wishlist had been added: " + title + "!");
+					//u.getWishlist().remove(title);
+				}
+					
+			}
 		}
 	}
 	

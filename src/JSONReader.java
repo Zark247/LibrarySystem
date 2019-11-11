@@ -517,6 +517,13 @@ public class JSONReader {
 			loadedBook.setLastBorrowDate((java.util.Date)(DateFormat.getInstance().parse((String) bookJSON.get("lastBorrowDate"))));
 			loadedBook.setLastDueDate((java.util.Date)(DateFormat.getInstance().parse((String) bookJSON.get("lastDueDate"))));
 		}
+		JSONArray ratingList = (JSONArray) new JSONParser().parse((String) bookJSON.get("ratings"));
+		if(ratingList.size() != 0) {
+			ArrayList<String> ratings = new ArrayList<String>();
+			for(int i = 0; i < ratingList.size();i++)
+				ratings.add((String)ratingList.get(i));
+			loadedBook.setRatingsList(ratings);
+		}
 		JSONArray waitlist = (JSONArray) new JSONParser().parse((String) bookJSON.get("waitlist"));
 		if(waitlist.size() != 0) {
 			Integer[] waitlistarray = new Integer[waitlist.size()];
@@ -588,12 +595,10 @@ public class JSONReader {
 	private void loadWishlist(User u, JSONObject userJSON) {
 		try {
 			JSONArray wishlist = (JSONArray) new JSONParser().parse((String) userJSON.get("wishlist"));
-			ArrayList<Media> wishlistList = new ArrayList<Media>();
+			ArrayList<String> wishlistList = new ArrayList<String>();
 			for(Object l:wishlist.toArray()) {
-				int tempwish = ((Long)l).intValue();
-				for(Media f:LibrarySystem.getInstance().inventory) {
-					if(f.returnId() == tempwish)
-						wishlistList.add(f);
+				for(Object title:wishlist) {
+						wishlistList.add((String) title);
 				}
 			}
 			u.setWishlist(wishlistList);
@@ -645,8 +650,8 @@ public class JSONReader {
 			userdetail.put("fines", fines.toJSONString());
 			
 			JSONArray wishlist = new JSONArray();
-			for(Media m: u.getWishlist())
-				wishlist.add(m.returnId());
+			for(String title: u.getWishlist())
+				wishlist.add(title);
 			userdetail.put("wishlist", wishlist.toJSONString());
 			
 			JSONArray notifications = new JSONArray();

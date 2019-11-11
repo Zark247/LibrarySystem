@@ -6,7 +6,8 @@ import java.util.Scanner;
 public class cmdAccountCreation implements Command {
 
     /**
-     * Method for account creation
+     * Method for account creation.  
+     * Prompts the user for information regarding the account, then creates it.
      */
     public void execute(String argument, User u) {
         Scanner s = LibraryDriver.s;

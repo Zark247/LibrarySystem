@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * @author Team Proxi
  */
 public abstract class User {
-	public static int USER_COUNT = 0;
+	public static int user_count = 0;
 	protected String name;
 	protected String dateOfBirth;
 	protected String address;
@@ -17,7 +17,7 @@ public abstract class User {
 	protected int accountId;
 	protected int checkoutLimit;
 	protected ArrayList<Fee> fines = new ArrayList<Fee>();
-	protected ArrayList<Media> wishlist = new ArrayList<Media>();
+	protected ArrayList<String> wishlist = new ArrayList<String>();
 	protected String accountType;
 	protected ArrayList<String> notifications = new ArrayList<String>();
 	protected boolean isClosed = false;
@@ -49,7 +49,7 @@ public abstract class User {
 	 */
 	public User(String name, String dateOfBirth, String address, String email, String phoneNumber, String username,
 			String password, int id) {
-		USER_COUNT++;
+		user_count++;
 		this.setName(name);
 		this.setDateOfBirth(dateOfBirth);
 		this.setAddress(address);
@@ -57,7 +57,7 @@ public abstract class User {
 		this.setPhoneNumber(phoneNumber);
 		this.setUsername(username);
 		this.setPassword(password);
-		this.setId(USER_COUNT);
+		this.setId(user_count);
 		this.setAccountId(id);
 		LibrarySystem.getInstance().users.add(this);
 	}
@@ -113,8 +113,8 @@ public abstract class User {
 		}
 		else {
 			System.out.println("Your wishlist:");
-			for (Media m : wishlist)
-				System.out.println(m.getTitle());
+			for (String m : wishlist)
+				System.out.println(m);
 		}
 	}
 	
@@ -149,7 +149,7 @@ public abstract class User {
 	 * Adds a requested media to the list
 	 * @param m
 	 */
-	public void requestMedia(Media m){
+	public void requestMedia(String m){
 		this.wishlist.add(m);
 	}
 	
@@ -359,7 +359,7 @@ public abstract class User {
 		this.fines = fines;
 	}
 
-	public void setWishlist(ArrayList<Media> wishlist) {
+	public void setWishlist(ArrayList<String> wishlist) {
 		this.wishlist = wishlist;
 	}
 
@@ -387,7 +387,7 @@ public abstract class User {
 		return this.fines;
 	}
 
-	public ArrayList<Media> getWishlist() {
+	public ArrayList<String> getWishlist() {
 		return wishlist;
 	}
 

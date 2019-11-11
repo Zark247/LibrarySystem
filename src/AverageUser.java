@@ -32,7 +32,5 @@ public class AverageUser extends User{
 		this.accountType = "Average";
 	}
 	
-	public void viewUser() {
-		super.viewUser();
-	}
+	//This class lacks a viewUser() method, since it only need to display the super method.
 }
