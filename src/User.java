@@ -215,7 +215,7 @@ public abstract class User {
 		}
 	}
 	
-	private double fineTotal() {
+	public double fineTotal() {
 		double total = 0;
 		for(Fee f:this.fines)
 			total += f.getTotal();

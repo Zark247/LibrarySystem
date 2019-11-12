@@ -15,6 +15,8 @@ public abstract class Media {
 	protected String description;
 	protected String yearOfRelease;
 	protected double rating;
+	protected ArrayList<Integer> averageRatingArray;
+	protected double avgRate;
 	protected String comment;
 	protected ArrayList<String> ratingList;
 	protected boolean newRelease;
@@ -50,6 +52,7 @@ public abstract class Media {
 		this.id = media_count;
 		this.waitlist = new ArrayList<User>();
 		this.ratingList = new ArrayList<String>();
+		this.averageRatingArray = new ArrayList<Integer>();
 		LibrarySystem.getInstance().inventory.add(this);
 		this.renewCount = 0;
 		this.rating = 0.0;
@@ -194,8 +197,6 @@ public abstract class Media {
 		if(rate >= 1 && rate <=5) {
 			int ratingStars = rate;
 			this.comment = comment;
-			//System.out.println("Your rating for " + this.title + ": " + this.rating);
-			//System.out.println("Your comment for " + this.title + ": " + this.comment);
 			ratingAverage(ratingStars);
 			/**
 			 *  This addRating variable will be user to store the rating as a string and comment 
@@ -209,36 +210,28 @@ public abstract class Media {
 			System.out.println("Rating must be from 1 - 5");
 	}
 	
-	private double ratingAverage(int newRating) {
-		double ratings = 0.0;
-		int ratingCount = 0;
-		for(Media m:this.returnCopies()) {
-			ratings += m.getRating();
-			ratingCount += m.getReviewCount();
-		}
-		if(ratingCount != 0)
-			this.rating = (ratings + newRating)/2;
-		else
-			this.rating = (ratings + newRating);
-		reviewCount++;
-		return this.rating;
+	private void ratingAverage(int newRating) {
+		this.averageRatingArray.add(newRating);
+		int size = this.averageRatingArray.size();
+		double temp = 0;
+		
+		for (int i = 0; i < size; i++)
+			temp += this.averageRatingArray.get(i);
+		
+		this.avgRate = (temp/(double)size);
 	}
 	
 	/**
 	 * Displays the total rating for a media
 	 */
 	public void displayRating(){
-		ArrayList<String> allRatings = new ArrayList<String>();
-		for(Media m:this.returnCopies()) {
-			allRatings.addAll(m.getRatingList());
+		if(!ratingList.isEmpty()) {
+			System.out.println(this.title + " has a total of " + ratingList.size() + " ratings, average of " + this.avgRate + " stars.\n");
+			for (String review : ratingList)
+				System.out.println(review + "\n");
 		}
-			if(!allRatings.isEmpty()) {
-				System.out.println(this.title + " has a total of " + allRatings.size() + " ratings, average of " + this.rating + " stars.");
-				for (String review : allRatings)
-					System.out.println(review);
-			}
-			else
-				System.out.println(this.title + " has no ratings.");
+		else
+			System.out.println(this.title + " has no ratings.");
 	}
 	
 	public void setCheckedOut(boolean checkedOut) {

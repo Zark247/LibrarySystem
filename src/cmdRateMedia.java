@@ -19,7 +19,10 @@ public class cmdRateMedia implements Command {
         	System.out.println("No media with that title found!");
         } else {
         	System.out.println("You are now rating: " + mediaRate.title);
-        	mediaRate.displayRating();
+        	
+        	if(!mediaRate.getRatingList().isEmpty())
+        		mediaRate.displayRating();
+        	
         	System.out.print("What rating would you give this item (1-5)? ");
         	int rate = s.nextInt();
         	s.nextLine();
