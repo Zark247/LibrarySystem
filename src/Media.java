@@ -15,8 +15,6 @@ public abstract class Media {
 	protected String description;
 	protected String yearOfRelease;
 	protected double rating;
-	protected ArrayList<Integer> averageRatingArray;
-	protected double avgRate;
 	protected String comment;
 	protected ArrayList<String> ratingList;
 	protected boolean newRelease;
@@ -52,7 +50,6 @@ public abstract class Media {
 		this.id = media_count;
 		this.waitlist = new ArrayList<User>();
 		this.ratingList = new ArrayList<String>();
-		this.averageRatingArray = new ArrayList<Integer>();
 		LibrarySystem.getInstance().inventory.add(this);
 		this.renewCount = 0;
 		this.rating = 0.0;
@@ -139,8 +136,10 @@ public abstract class Media {
 		System.out.println("There are no copies of this item available.");
 		System.out.println("Would you like to be added to the waitlist? (Y/N)  There are currently " + this.waitlist.size() + " users in the waitlist.");
 		String result = s.nextLine();
-		if(result.toUpperCase().equals("Y"))
+		if(result.toUpperCase().equals("Y")) {
 			this.waitlist.add(InputHandler.currentUser);
+			System.out.println("You are now added to the waitlist. We'll notify you when it is available again.");
+		}
 	}
 	
 	public boolean isCheckedOut() {
@@ -195,30 +194,18 @@ public abstract class Media {
 	 */
 	public void addRating(int rate, String comment){
 		if(rate >= 1 && rate <=5) {
-			int ratingStars = rate;
+			this.rating = rate;
 			this.comment = comment;
-			ratingAverage(ratingStars);
 			/**
 			 *  This addRating variable will be user to store the rating as a string and comment 
 			 *  that can be added to an array list. The array list will display the total ratings
 			 *  from each user.
 			 */
-			String addRating = "Rating: " + Integer.toString(ratingStars) + "\nComment: " + this.comment;
+			String addRating = "Rating: " + Double.toString(this.rating) + "\nComment: " + this.comment;
 			ratingList.add(addRating);
 		}
 		else
 			System.out.println("Rating must be from 1 - 5");
-	}
-	
-	private void ratingAverage(int newRating) {
-		this.averageRatingArray.add(newRating);
-		int size = this.averageRatingArray.size();
-		double temp = 0;
-		
-		for (int i = 0; i < size; i++)
-			temp += this.averageRatingArray.get(i);
-		
-		this.avgRate = (temp/(double)size);
 	}
 	
 	/**
@@ -226,7 +213,7 @@ public abstract class Media {
 	 */
 	public void displayRating(){
 		if(!ratingList.isEmpty()) {
-			System.out.println(this.title + " has a total of " + ratingList.size() + " ratings, average of " + this.avgRate + " stars.\n");
+			System.out.println(this.title + " has a total of " + ratingList.size() + " ratings.\n");
 			for (String review : ratingList)
 				System.out.println(review + "\n");
 		}
