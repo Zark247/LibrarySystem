@@ -2,7 +2,8 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/CPBra/git/TeamProxi---LibrarySystem/gson-2.8.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/CPBra/git/TeamProxi---LibrarySystem/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="D:/CSCE 247 Workspace/LibrarySystem/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="D:/CSCE 247 Workspace/LibrarySystem/json-simple-1.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -27,6 +27,7 @@ public class JSONReader {
 	
 	
 	private ArrayList<Integer[]> waitlists = new ArrayList<Integer[]>();
+	private ArrayList<Integer[]> childrenlist = new ArrayList<Integer[]>();
 	
 	/**
 	 * Loads all JSON files
@@ -39,6 +40,7 @@ public class JSONReader {
 		loadMagazines();
 		loadFees();
 		loadUsers();
+		postLoadChildren();
 		loadWaitLists();
 		System.out.println("Data loaded!");
 	}
@@ -294,6 +296,7 @@ public class JSONReader {
 		}
 	}
 	
+	
 	/**
 	 * Writes the User data to the JSON file
 	 */
@@ -508,16 +511,36 @@ public class JSONReader {
 	}
 	
 	/**
+	 * Loads children to all users.  Due to load order, children should be loaded after all users are within the system.
+	 */
+	private void postLoadChildren() {
+		for(int i = 0;i < LibrarySystem.getInstance().users.size();i++) {
+			if(childrenlist.get(i).length != 0) {
+				ArrayList<User> childrentemp = new ArrayList<User>();
+				for(int s:childrenlist.get(i)) {
+					for(User u:LibrarySystem.getInstance().users) {
+						if(u.getId() == s)
+							childrentemp.add(u);
+					}
+				}
+				LibrarySystem.getInstance().users.get(i).setChildren(childrentemp);
+			}
+		}
+	}
+	
+	/**
 	 * Loads waitlist.  Due to load order, waitlists must be loaded after users.
 	 */
 	private void loadWaitLists() {
-		for(int i = 1;i < LibrarySystem.getInstance().inventoryNoCopies().size();i++) {
-			if(waitlists.get(i).length != 0)
-			for(int s:waitlists.get(i)) {
+		for(int i = 0;i < LibrarySystem.getInstance().inventoryNoCopies().size();i++) {
+			if(waitlists.get(i).length != 0) {
 				ArrayList<User> waitlisttemp = new ArrayList<User>();
-				for(User u:LibrarySystem.getInstance().users)
-					if(u.getId() == s)
-						waitlisttemp.add(u);
+				for(int s:waitlists.get(i)) {
+					for(User u:LibrarySystem.getInstance().users) {
+						if(u.getId() == s)
+							waitlisttemp.add(u);
+					}
+				}
 				LibrarySystem.getInstance().inventoryNoCopies().get(i).setWaitlist(waitlisttemp);
 			}
 		}
@@ -642,23 +665,24 @@ public class JSONReader {
 	
 	/**
 	 * Helper method to load the children of a user
-	 * @param user The user that the childre are attached to
+	 * @param user The user that the children are attached to
 	 * @param userJSON The JSON object that the data is loaded from
 	 */
 	private void loadChildren(User user, JSONObject userJSON) {
 		try {
 			JSONArray children = (JSONArray) new JSONParser().parse((String) userJSON.get("children"));
-			ArrayList<User> childrenList = new ArrayList<User>();
-			for(Object l:children.toArray()) {
-				int tempchild = ((Long)l).intValue();
-				for(User u:LibrarySystem.getInstance().users)
-					if(u.getId() == tempchild)
-						childrenList.add(u);
+			if(children.size() != 0) {
+				Integer[] childrenarray = new Integer[children.size()];
+				for(int i = 0;i < children.size();i++) {
+					childrenarray[i] = ((Long)children.get(i)).intValue();
+				}
+				childrenlist.add(childrenarray);
+			} else {
+				childrenlist.add(new Integer[0]);
 			}
-			user.setChildren(childrenList);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
