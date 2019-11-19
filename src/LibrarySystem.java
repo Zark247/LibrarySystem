@@ -16,7 +16,7 @@ public class LibrarySystem {
 	private Calendar systime;
 	private boolean midnightUpdated;
 	
-	private LibrarySystem() {
+	protected LibrarySystem() {
 		inventory = new ArrayList<Media>();
 		comingSoon = new ArrayList<Media>();
 		users = new ArrayList<User>();
